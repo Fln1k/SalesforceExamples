@@ -1,0 +1,11 @@
+{
+  "packageDirectories": [
+    {
+      "path": "force-app",
+      "default": true
+    }
+  ],
+  "namespace": "",
+  "sfdcLoginUrl": "https://resilient-bear-33i6xj-dev-ed.my.salesforce.com/",
+  "sourceApiVersion": "50.0"
+}
