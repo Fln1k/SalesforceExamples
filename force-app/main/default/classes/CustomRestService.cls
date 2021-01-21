@@ -21,7 +21,31 @@ global with sharing class CustomRestService{
 		                                  WHERE CreatedDate > :dateToFind and CreatedDate < :dateToFind.addDays(1)
 		                                  WITH SECURITY_ENFORCED];
 
-		return JSON.serialize(result.getIdsMap());
+        return JSON.serialize(result.getIdsMap());
+        
+        /*
+        https://resilient-bear-33i6xj-dev-ed.my.salesforce.com/services/apexrest/CustomRestService
+        Json:
+        {
+            "accounts": [
+                {
+                "Name": "salesforce test 1"
+                },
+                {
+                "Name": "salesforce test 2"
+                }
+            ],
+            "contacts": [
+                {
+                "LastName": "Test lastname 1"
+                },
+                {
+                "LastName": "Test lastname 2"
+                }
+            ]
+        }
+
+        */
 	}
 
 	@HttpPost
@@ -32,11 +56,14 @@ global with sharing class CustomRestService{
 		System.debug(result);
 		try{
 			insert result.accounts;
-			insert result.contacts;
+            insert result.contacts;
+            return JSON.serialize(result.getIdsMap());
 		} catch (Exception e){
-			System.debug('error while insert contacts and accounts <<<<<< ' + e);
-		}
-		//contactRecords[0].get('lastName'));
-		return JSON.serialize(result.getIdsMap());
+            return 'error while insert contacts and accounts <<<<<< ' + e;
+		}  
+
+        /*
+            https://resilient-bear-33i6xj-dev-ed.my.salesforce.com/services/apexrest/CustomRestService/2021-01-21
+        */
 	}
 }
