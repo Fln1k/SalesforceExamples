@@ -1,4 +1,4 @@
-global with sharing class AccountContactWrapper{
+public with sharing class AccountContactWrapper{
 	public List<Account> accounts;
 	public List<Contact> contacts;
 	

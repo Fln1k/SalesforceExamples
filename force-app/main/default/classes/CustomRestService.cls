@@ -1,8 +1,7 @@
-@RestResource(urlMapping = 
-'/CustomRestService/*')
+@RestResource(urlMapping = '/CustomRestService/*')
 global with sharing class CustomRestService{
 	@HttpGet
-	global static String getAccount(){
+	global static String getAccountContactIds(){
 		List<Account> accountRecords = new List<Account>();
 		List<Contact> contactRecords = new List<Contact>();
 		RestRequest request = RestContext.request;
@@ -22,34 +21,10 @@ global with sharing class CustomRestService{
 		                   WITH SECURITY_ENFORCED];
 
 		return JSON.serialize(result.getIdsMap());
-
-		/*
-		 https://resilient-bear-33i6xj-dev-ed.my.salesforce.com/services/apexrest/CustomRestService
-		 Json:
-		 {
-		 "accounts": [
-		 {
-		 "Name": "salesforce test 1"
-		 },
-		 {
-		 "Name": "salesforce test 2"
-		 }
-		 ],
-		 "contacts": [
-		 {
-		 "LastName": "Test lastname 1"
-		 },
-		 {
-		 "LastName": "Test lastname 2"
-		 }
-		 ]
-		 }
-
-		 */
 	}
 
 	@HttpPost
-	global static String createAccount(){
+	global static String createAccountContact(){
 		RestRequest request = RestContext.request;
 		String stringJson = request.requestBody.tostring();
 		AccountContactWrapper result = AccountContactWrapper.parse(stringJson);
@@ -61,9 +36,5 @@ global with sharing class CustomRestService{
 		} catch (Exception e){
 			return 'error while insert contacts and accounts <<<<<< ' + e;
 		}
-
-		/*
-		 https://resilient-bear-33i6xj-dev-ed.my.salesforce.com/services/apexrest/CustomRestService/2021-01-21
-		 */
 	}
 }
