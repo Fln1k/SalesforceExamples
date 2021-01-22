@@ -20,17 +20,17 @@ private class CustomRestServiceTest{
 		System.assertEquals('{"contactsIds":["' + tempContact.Id + '"],"accountsIds":["' + tempAccount.Id + '"]}', listAccountContactIds, 'json with wrong params');
 	}
 
-    @isTest
+	@isTest
 	static void createAccountsAndContactsAndReturnListOfIds(){
-        String jsonMsg = '{"accounts": [{"Name": "salesforce test 1"}],"contacts": [{"LastName": "Test lastname 1"}]}';
-        RestRequest req = new RestRequest(); 
-        RestResponse res = new RestResponse();
-        req.requestURI = '/services/apexrest/CustomRestService';  //Request URL
-        req.httpMethod = 'POST';//HTTP Request Type
-        req.requestBody = Blob.valueof(JsonMsg);
-        RestContext.request = req;
-        RestContext.response= res;
-        String listAccountContactIds = CustomRestService.createAccountContact();
-        System.assert(listAccountContactIds != null, 'empty ids list');
+		String jsonMsg = '{"accounts": [{"Name": "salesforce test 1"}],"contacts": [{"LastName": "Test lastname 1"}]}';
+		RestRequest req = new RestRequest();
+		RestResponse res = new RestResponse();
+		req.requestURI = '/services/apexrest/CustomRestService';  //Request URL
+		req.httpMethod = 'POST';//HTTP Request Type
+		req.requestBody = Blob.valueof(JsonMsg);
+		RestContext.request = req;
+		RestContext.response = res;
+		String listAccountContactIds = CustomRestService.createAccountContact();
+		System.assert(listAccountContactIds != null, 'empty ids list');
 	}
 }
