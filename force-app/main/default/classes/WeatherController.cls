@@ -13,9 +13,6 @@ public with sharing class WeatherController{
 		Http http = new Http();
 		HTTPResponse res = http.send(req);
 		String response = res.getBody();
-		response = response.replaceAll('"date":', '"forecastDate":');
-		response = response.replaceAll('"time":', '"forecastTime":');
-		System.debug(WeatherForecast.parse(response).Forecast.Forecastday.size());
 		return WeatherForecast.parse(response);
 	}
 }

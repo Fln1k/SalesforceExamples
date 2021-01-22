@@ -60,6 +60,8 @@ public class WeatherForecast{
 	}
 
 	public  static WeatherForecast parse(String json){
+		json = json.replaceAll('"date":', '"forecastDate":');
+		json = json.replaceAll('"time":', '"forecastTime":');
 		return (WeatherForecast)System.JSON.deserialize(json, WeatherForecast.class);
 	}
 }
