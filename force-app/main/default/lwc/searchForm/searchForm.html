@@ -1,0 +1,26 @@
+<template>
+  <div class="slds-m-around_medium">
+    <h1 class="slds-text-heading_small">Forecast</h1>
+    <p class="slds-text-body_regular">
+      please input city name and select number of days
+    </p>
+  </div>
+  <div>
+    <lightning-input
+      id="city-search"
+      label="Enter city name in English please"
+      placeholder="Minsk"
+      type="search"
+      onchange={handleCityName}
+    ></lightning-input>
+  </div>
+  <lightning-combobox
+    id="days-select"
+    label="Status"
+    value="Select days count"
+    options={options}
+    onchange={handleDaysCount}
+  ></lightning-combobox>
+  <br/>
+  <div id="forecastOutput"></div>
+</template>
