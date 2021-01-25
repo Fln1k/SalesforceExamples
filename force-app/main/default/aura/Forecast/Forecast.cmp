@@ -14,7 +14,7 @@
     value="{! v.cityName }"
     placeholder="Minsk"
   />
-  <lightning:select aura:id="selectDays" label="How many tickets?">
+  <lightning:select aura:id="selectDays" label="Select days amount please">
     <option value="">choose one...</option>
     <option value="1">one</option>
     <option value="2">two</option>
