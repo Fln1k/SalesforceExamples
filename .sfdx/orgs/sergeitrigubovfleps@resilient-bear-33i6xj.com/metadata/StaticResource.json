@@ -1,0 +1,32 @@
+{
+  "status": 0,
+  "result": [
+    {
+      "createdById": "0055g0000038aLCAAY",
+      "createdByName": "Sergei Trigubov",
+      "createdDate": "2021-01-25T10:43:18.000Z",
+      "fileName": "staticresources/Forecast.resource",
+      "fullName": "Forecast",
+      "id": "0815g000000ogsWAAQ",
+      "lastModifiedById": "0055g0000038aLCAAY",
+      "lastModifiedByName": "Sergei Trigubov",
+      "lastModifiedDate": "2021-01-25T10:43:30.000Z",
+      "manageableState": "unmanaged",
+      "type": "StaticResource"
+    },
+    {
+      "createdById": "0055g0000038aLCAAY",
+      "createdByName": "Sergei Trigubov",
+      "createdDate": "2021-01-20T12:19:32.000Z",
+      "fileName": "staticresources/trlhdtips__tt_penpal.resource",
+      "fullName": "trlhdtips__tt_penpal",
+      "id": "0815g0000016okKAAQ",
+      "lastModifiedById": "0055g0000038aLCAAY",
+      "lastModifiedByName": "Sergei Trigubov",
+      "lastModifiedDate": "2021-01-20T12:19:32.000Z",
+      "manageableState": "installed",
+      "namespacePrefix": "trlhdtips",
+      "type": "StaticResource"
+    }
+  ]
+}

@@ -1,9 +1,12 @@
 import { LightningElement, wire, api, track } from "lwc";
-import { refreshApex } from "@salesforce/apex";
 import getForecast from "@salesforce/apex/WeatherController.getForecast";
+import { loadStyle } from 'lightning/platformResourceLoader';
+import Forecast from '@salesforce/resourceUrl/Forecast'
 
 export default class LightningExampleInputSearch extends LightningElement {
-  queryTerm;
+      connectedCallback() {
+        loadStyle(this, Forecast); 
+    }
 
   @api daysCount;
   @api cityName;
@@ -19,30 +22,32 @@ export default class LightningExampleInputSearch extends LightningElement {
         cityName = this.cityName;
       }
       console.log(data);
-      let createElementWithClass = function(elementName, className) {
+      let createElementWithClass = function (elementName, className) {
         let tempElement = document.createElement(elementName);
         tempElement.classList.add(className);
         return tempElement;
-      }
+      };
 
       let wrapper = createElementWithClass("div", "wrapper");
       data.forecast.forecastday.forEach(function createInnerHtml(forecastDay) {
         let widget = createElementWithClass("div", "widget");
         let dateBlock = document.createElement("i");
-          dateBlock.innerHTML = forecastDay.forecastDate;
-          let forecastBlock = document.createElement("div");
-            let degreeBlock = createElementWithClass("p", "degree");
-            degreeBlock.innerHTML = forecastDay.day.avgtemp_c;
-            let cityNameBlock = createElementWithClass("p", "country");
-            cityNameBlock.innerHTML = cityName;
-          forecastBlock.appendChild(degreeBlock);
-          forecastBlock.appendChild(cityNameBlock);
+        dateBlock.innerHTML = forecastDay.forecastDate;
+        let forecastBlock = document.createElement("div");
+        let degreeBlock = createElementWithClass("p", "degree");
+        degreeBlock.innerHTML = forecastDay.day.avgtemp_c;
+        let cityNameBlock = createElementWithClass("p", "country");
+        cityNameBlock.innerHTML = cityName;
+        forecastBlock.appendChild(degreeBlock);
+        forecastBlock.appendChild(cityNameBlock);
         widget.appendChild(dateBlock);
         widget.appendChild(forecastBlock);
         wrapper.appendChild(widget);
       });
       this.template.querySelector('[data-id="forecastOutput"]').innerHTML = "";
-      this.template.querySelector('[data-id="forecastOutput"]').appendChild(wrapper);
+      this.template
+        .querySelector('[data-id="forecastOutput"]')
+        .appendChild(wrapper);
     } else if (error) {
       console.log("error");
       console.log(error);
