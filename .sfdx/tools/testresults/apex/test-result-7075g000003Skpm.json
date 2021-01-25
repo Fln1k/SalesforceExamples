@@ -1,0 +1,118 @@
+{
+  "summary": {
+    "outcome": "Passed",
+    "testsRan": 5,
+    "passing": 5,
+    "failing": 0,
+    "skipped": 0,
+    "passRate": "100%",
+    "failRate": "0%",
+    "skipRate": "0%",
+    "testStartTime": "Mon Jan 25 2021 3:51:38 PM",
+    "testExecutionTimeInMs": 426,
+    "testTotalTimeInMs": 426,
+    "commandTimeInMs": 2317,
+    "hostname": "https://resilient-bear-33i6xj-dev-ed.my.salesforce.com",
+    "orgId": "00D5g000003eE9iEAE",
+    "username": "sergeitrigubovfleps@resilient-bear-33i6xj.com",
+    "testRunId": "7075g000003Skpm",
+    "userId": "0055g0000038aLCAAY"
+  },
+  "tests": [
+    {
+      "id": "07M5g000000cIo0EAE",
+      "queueItemId": "7095g000000btTsAAI",
+      "stackTrace": null,
+      "message": null,
+      "asyncApexJobId": "7075g000003SkpmAAC",
+      "methodName": "getForecast",
+      "outcome": "Pass",
+      "apexLogId": "07L5g000000N4JAEA0",
+      "apexClass": {
+        "id": "01p5g000004RFYLAA4",
+        "name": "WeatherControllerTest",
+        "namespacePrefix": null,
+        "fullName": "WeatherControllerTest"
+      },
+      "runTime": 28,
+      "testTimestamp": "2021-01-25T12:51:39.000+0000",
+      "fullName": "WeatherControllerTest.getForecast"
+    },
+    {
+      "id": "07M5g000000cIo5EAE",
+      "queueItemId": "7095g000000btTtAAI",
+      "stackTrace": null,
+      "message": null,
+      "asyncApexJobId": "7075g000003SkpmAAC",
+      "methodName": "createAccountsAndContactsAndReturnListOfIds",
+      "outcome": "Pass",
+      "apexLogId": "07L5g000000N4NEEA0",
+      "apexClass": {
+        "id": "01p5g000004RBxMAAW",
+        "name": "CustomRestServiceTest",
+        "namespacePrefix": null,
+        "fullName": "CustomRestServiceTest"
+      },
+      "runTime": 140,
+      "testTimestamp": "2021-01-25T12:51:39.000+0000",
+      "fullName": "CustomRestServiceTest.createAccountsAndContactsAndReturnListOfIds"
+    },
+    {
+      "id": "07M5g000000cIo6EAE",
+      "queueItemId": "7095g000000btTtAAI",
+      "stackTrace": null,
+      "message": null,
+      "asyncApexJobId": "7075g000003SkpmAAC",
+      "methodName": "getListOfAccountAndContactIdsByCreationDate",
+      "outcome": "Pass",
+      "apexLogId": "07L5g000000N4NEEA0",
+      "apexClass": {
+        "id": "01p5g000004RBxMAAW",
+        "name": "CustomRestServiceTest",
+        "namespacePrefix": null,
+        "fullName": "CustomRestServiceTest"
+      },
+      "runTime": 60,
+      "testTimestamp": "2021-01-25T12:51:39.000+0000",
+      "fullName": "CustomRestServiceTest.getListOfAccountAndContactIdsByCreationDate"
+    },
+    {
+      "id": "07M5g000000cInwEAE",
+      "queueItemId": "7095g000000btTvAAI",
+      "stackTrace": null,
+      "message": null,
+      "asyncApexJobId": "7075g000003SkpmAAC",
+      "methodName": "testResetMyPassword",
+      "outcome": "Pass",
+      "apexLogId": "07L5g000000N4N9EAK",
+      "apexClass": {
+        "id": "01p5g000005N3z6AAC",
+        "name": "tt_UtilControllerTest",
+        "namespacePrefix": "trlhdtips",
+        "fullName": "trlhdtips__tt_UtilControllerTest"
+      },
+      "runTime": 166,
+      "testTimestamp": "2021-01-25T12:51:39.000+0000",
+      "fullName": "trlhdtips__tt_UtilControllerTest.testResetMyPassword"
+    },
+    {
+      "id": "07M5g000000cInvEAE",
+      "queueItemId": "7095g000000btTvAAI",
+      "stackTrace": null,
+      "message": null,
+      "asyncApexJobId": "7075g000003SkpmAAC",
+      "methodName": "testGetCurrentUser",
+      "outcome": "Pass",
+      "apexLogId": "07L5g000000N4N9EAK",
+      "apexClass": {
+        "id": "01p5g000005N3z6AAC",
+        "name": "tt_UtilControllerTest",
+        "namespacePrefix": "trlhdtips",
+        "fullName": "trlhdtips__tt_UtilControllerTest"
+      },
+      "runTime": 32,
+      "testTimestamp": "2021-01-25T12:51:39.000+0000",
+      "fullName": "trlhdtips__tt_UtilControllerTest.testGetCurrentUser"
+    }
+  ]
+}

@@ -1,0 +1,28 @@
+<aura:component implements="flexipage:availableForAllPageTypes" access="global" controller="WeatherController">
+  <aura:attribute name="cityName" type="String" />
+  <ltng:require styles="/resource/Forecast"/>
+
+  <div class="slds-m-around_medium">
+    <h1 class="slds-text-heading_small">Forecast</h1>
+    <p class="slds-text-body_regular">
+      please input city name and select number of days
+    </p>
+  </div>
+  <lightning:input
+    name="cityName"
+    label="Enter city name in English please"
+    value="{! v.cityName }"
+    placeholder="Minsk"
+  />
+  <lightning:select aura:id="selectDays" label="How many tickets?">
+    <option value="">choose one...</option>
+    <option value="1">one</option>
+    <option value="2">two</option>
+    <option value="3">three</option>
+  </lightning:select>
+  <lightning:layoutItem class="slds-m-vertical_x-small slds-m-horizontal_xxx-small">
+    <lightning:button aura:id="searchBtn" variant="Brand" label="Get Forecast" title="Search" onclick="{!c.onFormSubmit}" />
+  </lightning:layoutItem>
+  <div class="slds-align_absolute-center" id="forecastOutput"></div>
+
+</aura:component>

@@ -14,7 +14,6 @@ export default class LightningExampleInputSearch extends LightningElement {
 
   @wire(getForecast, { daysCount: "$daysCount", cityName: "$cityName" })
   wiredRecordsMethod({ error, data }) {
-    console.log("wire method call");
     if (data) {
       this.data = data;
       var cityName = "";
