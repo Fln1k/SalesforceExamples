@@ -1,17 +1,13 @@
-body {
-    font-family: 'Open Sans', sans-serif;
-    background-color: #eee;
-}
 .wrapper {
     position: absolute;
     top: 35%;
     left: 5%;
-    width: 635.156px;
     height: 300px;
 }
 .widget {
     position: relative;
     display: inline-block;
+    margin-right: 31px;
     box-sizing: content-box;
     width: 228px;
     height: 228px;

@@ -1,9 +1,12 @@
 import { LightningElement, wire, api, track } from "lwc";
-import { refreshApex } from "@salesforce/apex";
 import getForecast from "@salesforce/apex/WeatherController.getForecast";
+import { loadStyle } from 'lightning/platformResourceLoader';
+import Forecast from '@salesforce/resourceUrl/Forecast'
 
 export default class LightningExampleInputSearch extends LightningElement {
-  queryTerm;
+      connectedCallback() {
+        loadStyle(this, Forecast); 
+    }
 
   @api daysCount;
   @api cityName;
@@ -19,36 +22,32 @@ export default class LightningExampleInputSearch extends LightningElement {
         cityName = this.cityName;
       }
       console.log(data);
-      var htmlToInsert =`<div class="wrapper" style="position: absolute;
-      top: 35%;
-      left: 5%;
-      height: 300px;">`;
+      let createElementWithClass = function (elementName, className) {
+        let tempElement = document.createElement(elementName);
+        tempElement.classList.add(className);
+        return tempElement;
+      };
+
+      let wrapper = createElementWithClass("div", "wrapper");
       data.forecast.forecastday.forEach(function createInnerHtml(forecastDay) {
-        htmlToInsert +=
-          `
-          <div class="widget" style="margin-right: 31px; position: relative;
-          display: inline-block;
-          box-sizing: content-box;
-          width: 228px;
-          height: 228px;
-          padding: 36px;
-          border-radius: 6px;
-          background-color: #fff;
-          box-shadow: 0 0 15px #ddd;">
-            <i> ` + forecastDay.forecastDate + `</i>
-            <div style="font-weight: 300;
-            position: absolute;
-            bottom: 36px;
-            color: #b8b8b8;">
-              <p class="degree" style="font-size: 4em;">` + forecastDay.day.avgtemp_c + `°</p>
-              <p class="country" style="    font-size: 2em;
-              line-height: 10px;
-              color: #cbcbcb;">` + cityName + `</p>
-            </div>
-          </div>`;
+        let widget = createElementWithClass("div", "widget");
+        let dateBlock = document.createElement("i");
+        dateBlock.innerHTML = forecastDay.forecastDate;
+        let forecastBlock = document.createElement("div");
+        let degreeBlock = createElementWithClass("p", "degree");
+        degreeBlock.innerHTML = forecastDay.day.avgtemp_c;
+        let cityNameBlock = createElementWithClass("p", "country");
+        cityNameBlock.innerHTML = cityName;
+        forecastBlock.appendChild(degreeBlock);
+        forecastBlock.appendChild(cityNameBlock);
+        widget.appendChild(dateBlock);
+        widget.appendChild(forecastBlock);
+        wrapper.appendChild(widget);
       });
-      htmlToInsert += "</div>";
-      this.template.querySelector('[data-id="forecastOutput"]').innerHTML = htmlToInsert;
+      this.template.querySelector('[data-id="forecastOutput"]').innerHTML = "";
+      this.template
+        .querySelector('[data-id="forecastOutput"]')
+        .appendChild(wrapper);
     } else if (error) {
       console.log("error");
       console.log(error);
