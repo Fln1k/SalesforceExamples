@@ -1,0 +1,16 @@
+{
+  "status": 0,
+  "result": {
+    "createdById": "0055g0000038aLCAAY",
+    "createdByName": "Sergei Trigubov",
+    "createdDate": "2021-01-21T13:14:21.000Z",
+    "fileName": "lwc/searchForm",
+    "fullName": "searchForm",
+    "id": "0Rb5g000000CupeCAC",
+    "lastModifiedById": "0055g0000038aLCAAY",
+    "lastModifiedByName": "Sergei Trigubov",
+    "lastModifiedDate": "2021-01-22T13:42:45.000Z",
+    "manageableState": "unmanaged",
+    "type": "LightningComponentBundle"
+  }
+}

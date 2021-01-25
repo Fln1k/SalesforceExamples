@@ -1,0 +1,40 @@
+body {
+    font-family: 'Open Sans', sans-serif;
+    background-color: #eee;
+}
+.wrapper {
+    position: absolute;
+    top: 35%;
+    left: 5%;
+    width: 635.156px;
+    height: 300px;
+}
+.widget {
+    position: relative;
+    display: inline-block;
+    box-sizing: content-box;
+    width: 228px;
+    height: 228px;
+    padding: 36px;
+    border-radius: 6px;
+    background-color: #fff;
+    box-shadow: 0 0 15px #ddd;
+}
+.icon {
+    font-family: 'FontAwesome';
+    float: right;
+}
+.widget > div {
+    font-weight: 300;
+    position: absolute;
+    bottom: 36px;
+    color: #b8b8b8;
+}
+.degree {
+    font-size: 4em;
+}
+.country {
+    font-size: 2em;
+    line-height: 10px;
+    color: #cbcbcb;
+}
