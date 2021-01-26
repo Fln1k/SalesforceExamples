@@ -26,7 +26,7 @@ private class CustomRestServiceTest{
 		RestRequest req = new RestRequest();
 		RestResponse res = new RestResponse();
 		req.requestURI = '/services/apexrest/CustomRestService';  //Request URL
-		req.httpMethod = 'POST';//HTTP Request Type
+		req.httpMethod = 'POST'; //HTTP Request Type
 		req.requestBody = Blob.valueof(JsonMsg);
 		RestContext.request = req;
 		RestContext.response = res;

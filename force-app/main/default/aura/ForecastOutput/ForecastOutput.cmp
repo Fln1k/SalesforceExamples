@@ -1,0 +1,22 @@
+<aura:component>
+  <aura:attribute name="forecast" type="Object" />
+  <aura:handler
+    name="change"
+    value="{!v.forecast}"
+    action="{!c.handleValueChange}"
+  />
+  <div class="wrapper">
+    <aura:iteration
+      items="{!v.forecast.forecast.forecastday}"
+      var="dailyForecast"
+    >
+      <div class="widget">
+        <i>{!v.forecast.location.region},{!dailyForecast.forecastDate}</i>
+        <div>
+          <p class="degree">{!dailyForecast.day.avgtemp_c}</p>
+          <p class="country">{!v.forecast.location.name}</p>
+        </div>
+      </div>
+    </aura:iteration>
+  </div>
+</aura:component>

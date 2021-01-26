@@ -1,10 +1,10 @@
 .wrapper {
     position: absolute;
-    top: 40%;
     left: 5%;
     height: 300px;
 }
 .widget {
+    margin: 5px;
     position: relative;
     display: inline-block;
     margin-right: 31px;
