@@ -1,8 +1,8 @@
 ({
   onFormSubmit: function (component, event, helper) {
-    if (component.get("v.cityName").length > 0 && typeof component.find("selectDays").get("v.value") != "undefined") {
-      var cityName = component.get("v.cityName");
-      var dayCount = component.find("selectDays").get("v.value");
+    var cityName = component.get("v.cityName");
+    var dayCount = component.get("v.daysAmount");
+    if (cityName.length > 0 && typeof dayCount != "undefined") {
       var action = component.get("c.getForecast");
       action.setParams({
         cityName: cityName,
@@ -12,10 +12,8 @@
         var state = response.getState();
         if (state === "SUCCESS") {
           var data = response.getReturnValue();
-          var forecastOutputComponent = component.find(
-            "forecastOutputComponent"
-          );
-          forecastOutputComponent.set("v.forecast", data);
+          component.set("v.flagIndicatingDataHasBeenLoadedInVariables", "true");
+          component.set("v.forecast",data);
         } else if (state === "INCOMPLETE") {
           console.log("state INCOMPLETE");
         } else if (state === "ERROR") {

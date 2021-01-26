@@ -2,7 +2,7 @@
   <div class="wrapper">
     <template for:each={forecastdays} for:item="forecastday">
       <div class="widget" key={forecastday.forecastDate}>
-        <i>{location.region},{forecastday.forecastDate}</i>
+        <i>{location.region},<i onclick={handleChangeName}>{forecastday.forecastDate}</i></i>
         <div>
           <p class="degree">{forecastday.day.avgtemp_c}</p>
           <p class="country">{location.name}</p>

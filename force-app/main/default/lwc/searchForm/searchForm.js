@@ -10,6 +10,7 @@ export default class LightningExampleInputSearch extends LightningElement {
 
   @api daysCount;
   @api cityName;
+  @api currentVal;
   @track data = [];
   @track flagIndicatingDataHasBeenLoadedInVariables = false;
 
@@ -52,4 +53,9 @@ export default class LightningExampleInputSearch extends LightningElement {
     );
     this.daysCount = event.detail.value;
   }
+
+  handleChange(event){
+    this.currentVal=event.detail;
+    console.log("current val:" + this.currentVal);      
+    }
 }
