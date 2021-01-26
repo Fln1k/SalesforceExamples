@@ -12,15 +12,21 @@
       placeholder="Minsk"
       type="search"
       onchange={handleCityName}
+      required
     ></lightning-input>
   </div>
   <lightning-combobox
     id="days-select"
-    label="Status"
+    label="Select days count"
     value="Select days count"
     options={options}
     onchange={handleDaysCount}
+    required
   ></lightning-combobox>
-  <br/>
-  <div class="slds-align_absolute-center" data-id="forecastOutput"></div>
+  <p class="slds-m-vertical_x-small slds-m-horizontal_xxx-small">
+    <lightning-button label="Get Forecast" onclick={handleLoad}></lightning-button>
+</p>
+  <template if:true={flagIndicatingDataHasBeenLoadedInVariables}>
+    <c-forecast-output-l-w-c forecastdays={data.forecast.forecastday} location={data.location}></c-forecast-output-l-w-c>
+  </template>
 </template>

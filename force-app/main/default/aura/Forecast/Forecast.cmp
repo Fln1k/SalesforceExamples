@@ -1,6 +1,14 @@
-<aura:component implements="flexipage:availableForAllPageTypes" access="global" controller="WeatherController">
+<aura:component
+  implements="flexipage:availableForAllPageTypes"
+  access="global"
+  controller="WeatherController"
+>
   <aura:attribute name="cityName" type="String" />
-  <ltng:require styles="/resource/Forecast"/>
+  <aura:attribute name="options" type="List" />
+
+  <aura:handler name="init" value="{!this}" action="{!c.loadOptions}" />
+
+  <ltng:require styles="/resource/Forecast" />
 
   <div class="slds-m-around_medium">
     <h1 class="slds-text-heading_small">Forecast</h1>
@@ -11,18 +19,33 @@
   <lightning:input
     name="cityName"
     label="Enter city name in English please"
-    value="{! v.cityName }"
+    value="{!v.cityName}"
     placeholder="Minsk"
+    required="true"
   />
-  <lightning:select aura:id="selectDays" label="How many tickets?">
-    <option value="">choose one...</option>
-    <option value="1">one</option>
-    <option value="2">two</option>
-    <option value="3">three</option>
+  <lightning:select
+    aura:id="selectDays"
+    label="Select days amount please"
+    required="true"
+  >
+    <aura:iteration items="{!v.options}" var="item">
+      <option
+        text="{!item.label}"
+        value="{!item.value}"
+        selected="{!item.selected}"
+      />
+    </aura:iteration>
   </lightning:select>
-  <lightning:layoutItem class="slds-m-vertical_x-small slds-m-horizontal_xxx-small">
-    <lightning:button aura:id="searchBtn" variant="Brand" label="Get Forecast" title="Search" onclick="{!c.onFormSubmit}" />
+  <lightning:layoutItem
+    class="slds-m-vertical_x-small slds-m-horizontal_xxx-small"
+  >
+    <lightning:button
+      aura:id="searchBtn"
+      variant="Brand"
+      label="Get Forecast"
+      title="Search"
+      onclick="{!c.onFormSubmit}"
+    />
   </lightning:layoutItem>
-  <div class="slds-align_absolute-center" id="forecastOutput"></div>
-
+  <c:ForecastOutput aura:id="forecastOutputComponent" />
 </aura:component>
