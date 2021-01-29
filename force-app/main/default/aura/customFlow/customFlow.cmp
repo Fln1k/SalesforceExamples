@@ -1,0 +1,34 @@
+<aura:component
+  implements="
+forceCommunity:availableForAllPageTypes,
+flexipage:availableForAllPageTypes, 
+flexipage:availableForRecordHome,
+force:hasRecordId"
+  access="global"
+>
+  <aura:attribute
+    name="flowName"
+    type="String"
+    description="ApiName of the flow."
+    default="TestFlow"
+  />
+  <aura:attribute name="availableActions" type="String[]"/>
+  <aura:attribute
+    name="currentStage"
+    type="Object"
+    description="Will contains the current stage of the flow."
+  />
+  <aura:attribute
+    name="activeStages"
+    type="Object[]"
+    description="Will contains all the active stage of the flow. We contruct our path based on this list"
+  />
+  <aura:handler name="init" value="{!this}" action="{!c.init}" />
+  <aura:registerEvent name="statusChanged" type="c:statusChanged" />
+  <article class="slds-card">
+    <lightning:flow
+      aura:id="caseFlow"
+      onstatuschange="{!c.handleStatusChange}"
+    />
+  </article>
+</aura:component>

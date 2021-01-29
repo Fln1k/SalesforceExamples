@@ -1,0 +1,4 @@
+<aura:event type="APPLICATION">
+  <aura:attribute name="currentStage" type="Object" />
+  <aura:attribute name="activeStages" type="Object[]" />
+</aura:event>

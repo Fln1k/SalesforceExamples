@@ -1,0 +1,7 @@
+<design:component>
+  <design:attribute
+    name="flowName"
+    label="Flow Name"
+    description="ApiName of the flow we want to display."
+  />
+</design:component>
