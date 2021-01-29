@@ -4,6 +4,9 @@
     <p class="slds-text-body_regular">
       please input city name and select number of days
     </p>
+    <p class="slds-text-body_regular">
+      selected date: {currentVal}
+      </p>
   </div>
   <div>
     <lightning-input
@@ -27,6 +30,6 @@
     <lightning-button label="Get Forecast" onclick={handleLoad}></lightning-button>
 </p>
   <template if:true={flagIndicatingDataHasBeenLoadedInVariables}>
-    <c-forecast-output-l-w-c forecastdays={data.forecast.forecastday} location={data.location}></c-forecast-output-l-w-c>
+    <c-forecast-output-l-w-c forecastdays={data.forecast.forecastday} location={data.location} ondemoevent={handleChange}></c-forecast-output-l-w-c>
   </template>
 </template>

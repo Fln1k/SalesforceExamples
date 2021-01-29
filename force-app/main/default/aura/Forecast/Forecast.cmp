@@ -4,9 +4,18 @@
   controller="WeatherController"
 >
   <aura:attribute name="cityName" type="String" />
+  <aura:attribute name="daysAmount" type="String" />
   <aura:attribute name="options" type="List" />
+  <aura:attribute name="clickedDate" type="String" />
+  <aura:attribute
+    name="flagIndicatingDataHasBeenLoadedInVariables"
+    type="Boolean"
+    default="false"
+  />
+  <aura:attribute name="forecast" type="Object" />
 
   <aura:handler name="init" value="{!this}" action="{!c.loadOptions}" />
+  <aura:handler name="dateClickEvent" event="c:dateClick" action="{!c.handleComponentEvent}" />
 
   <ltng:require styles="/resource/Forecast" />
 
@@ -15,6 +24,9 @@
     <p class="slds-text-body_regular">
       please input city name and select number of days
     </p>
+    <p class="slds-text-body_regular">
+      selected date: {!v.clickedDate}
+      </p>
   </div>
   <lightning:input
     name="cityName"
@@ -27,6 +39,7 @@
     aura:id="selectDays"
     label="Select days amount please"
     required="true"
+    value="{!v.daysAmount}"
   >
     <aura:iteration items="{!v.options}" var="item">
       <option
@@ -47,5 +60,10 @@
       onclick="{!c.onFormSubmit}"
     />
   </lightning:layoutItem>
-  <c:ForecastOutput aura:id="forecastOutputComponent" />
+  <aura:renderIf isTrue="{!v.flagIndicatingDataHasBeenLoadedInVariables}">
+    <c:ForecastOutput
+      aura:id="forecastOutputComponent"
+      forecast="{!v.forecast}"
+    />
+  </aura:renderIf>
 </aura:component>

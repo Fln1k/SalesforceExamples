@@ -6,20 +6,10 @@ public with sharing class AccountContactWrapper{
 		return (AccountContactWrapper) System.JSON.deserialize(json, AccountContactWrapper.class);
 	}
 
-	public Map<String,List<Id>> getIdsMap(){
-		List<Id> accountIds = new List<Id>();
-		List<Id> contactIds = new List<Id>();
-		Map<String,List<Id>> result = new Map<String,List<Id>>();
-
-        for(Account tempAccount: this.accounts){
-            accountIds.add(tempAccount.Id);
-		}
-		result.put('accountsIds', accountIds);
-
-        for(Contact tempContact: this.contacts){
-            contactIds.add(tempContact.Id);
-		}
-		result.put('contactsIds', contactIds);
+	public Map<String,Set<Id>> getIdsMap(){
+		Map<String,Set<Id>> result = new Map<String,Set<Id>>();
+		result.put('accountsIds', (new Map<Id,Account>(this.accounts)).keySet());
+		result.put('contactsIds', (new Map<Id,Contact>(this.contacts)).keySet());
 
 		return result;
 	}
