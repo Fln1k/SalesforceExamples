@@ -13,7 +13,7 @@
         if (state === "SUCCESS") {
           var data = response.getReturnValue();
           component.set("v.flagIndicatingDataHasBeenLoadedInVariables", "true");
-          component.set("v.forecast",data);
+          component.set("v.forecast", data);
         } else if (state === "INCOMPLETE") {
           console.log("state INCOMPLETE");
         } else if (state === "ERROR") {
@@ -39,5 +39,10 @@
       { value: "3", label: "3" },
     ];
     component.set("v.options", opts);
+  },
+  handleComponentEvent: function (component, event, helper) {
+    var valueFromChild = event.getParam("date");
+    console.log("clicked date parent log: " + valueFromChild);
+    component.set("v.clickedDate", valueFromChild);
   },
 });

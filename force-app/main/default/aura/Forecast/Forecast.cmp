@@ -6,6 +6,7 @@
   <aura:attribute name="cityName" type="String" />
   <aura:attribute name="daysAmount" type="String" />
   <aura:attribute name="options" type="List" />
+  <aura:attribute name="clickedDate" type="String" />
   <aura:attribute
     name="flagIndicatingDataHasBeenLoadedInVariables"
     type="Boolean"
@@ -14,6 +15,7 @@
   <aura:attribute name="forecast" type="Object" />
 
   <aura:handler name="init" value="{!this}" action="{!c.loadOptions}" />
+  <aura:handler name="dateClickEvent" event="c:dateClick" action="{!c.handleComponentEvent}" />
 
   <ltng:require styles="/resource/Forecast" />
 
@@ -22,6 +24,9 @@
     <p class="slds-text-body_regular">
       please input city name and select number of days
     </p>
+    <p class="slds-text-body_regular">
+      selected date: {!v.clickedDate}
+      </p>
   </div>
   <lightning:input
     name="cityName"
