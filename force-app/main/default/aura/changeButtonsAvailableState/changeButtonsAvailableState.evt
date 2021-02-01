@@ -1,0 +1,4 @@
+<aura:event type="application">
+  <aura:attribute name="canBack" type="Boolean" />
+  <aura:attribute name="canNext" type="Boolean" />
+</aura:event>

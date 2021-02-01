@@ -12,20 +12,22 @@ force:hasRecordId"
     aura:id="Modalbox"
     class="slds-modal"
   >
-    <div class="slds-modal__container" style="width:90%; max-width: 90%;">
+    <div class="slds-modal__container" style="max-width: 90%">
       <div class="slds-modal__header">
         <button
           class="slds-button slds-modal__close slds-button--icon-inverse"
           title="Close"
           onclick="{!c.closeModal}"
         >
-        X
+          X
         </button>
         <h2 id="header43" class="slds-text-heading--medium">Test Modal</h2>
       </div>
-      <div class="slds-modal__content slds-p-around--medium" style="height: 60%;">
+      <div
+        class="slds-modal__content slds-p-around--medium"
+        style="max-height: 90%"
+      >
         <div>
-          <c:ExampleProcess />
           <c:customFlow />
         </div>
       </div>

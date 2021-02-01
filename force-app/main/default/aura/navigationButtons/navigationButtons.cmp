@@ -1,0 +1,47 @@
+<aura:component
+  implements="forceCommunity:availableForAllPageTypes, flexipage:availableForAllPageTypes, 
+flexipage:availableForRecordHome, 
+force:hasRecordId"
+  access="global"
+>
+  <!-- Attributes -->
+  <aura:attribute name="canBack" type="Boolean" />
+  <aura:attribute name="canNext" type="Boolean" />
+  <aura:attribute name="canFinish" type="Boolean" />
+  <!-- Events -->
+  <aura:registerEvent name="changeStageEvent" type="c:changeStage" />
+  <aura:handler name="init" value="{!this}" action="{!c.initializeButtons}" />
+  <aura:handler
+    event="c:changeButtonsAvailableState"
+    action="{!c.handleButtonsAvailableState}"
+  />
+  <!-- Latyout -->
+  <aura:renderIf isTrue="{!v.canBack}">
+    <lightning:button
+      aura:id="BACK"
+      label="Previous"
+      variant="brand"
+      value="-1"
+      onclick="{!c.changeStageFunction}"
+    />
+  </aura:renderIf>
+  <lightning:button aura:id="Cancel" label="Cancel" variant="brand" />
+  <aura:renderIf isTrue="{!v.canNext}">
+    <lightning:button
+      aura:id="Next"
+      label="Next"
+      variant="brand"
+      value="1"
+      onclick="{!c.changeStageFunction}"
+    />
+  </aura:renderIf>
+  <aura:renderIf isTrue="{!(!v.canNext)}">
+    <lightning:button
+      aura:id="Finsih"
+      label="Finsih"
+      variant="brand"
+      value="0"
+      onclick="{!c.changeStageFunction}"
+    />
+  </aura:renderIf>
+</aura:component>

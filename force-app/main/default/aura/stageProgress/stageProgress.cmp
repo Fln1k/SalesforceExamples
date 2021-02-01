@@ -1,0 +1,25 @@
+<aura:component
+  implements="forceCommunity:availableForAllPageTypes, flexipage:availableForAllPageTypes, 
+flexipage:availableForRecordHome, 
+force:hasRecordId"
+  access="global"
+>
+  <!-- Attributes -->
+  <aura:attribute name="progressIndicatorStages" type="List" />
+  <aura:attribute name="currentStage" type="String" default="1" />
+  <!-- Events -->
+  <aura:registerEvent name="changeButtonsAvailableStateEvent" type="c:changeButtonsAvailableState" />
+  <aura:registerEvent name="changeFlowContentEvent" type="c:changeFlowContent" />
+  <aura:handler event="c:changeStage" action="{!c.handleChangeStage}" />
+  <aura:handler name="init" value="{!this}" action="{!c.loadStages}" />
+  <!-- Layout -->
+  <lightning:progressIndicator
+   currentStep="{!v.currentStage}"
+    type="path"
+    variant="base"
+  >
+    <aura:iteration items="{!v.progressIndicatorStages}" var="item">
+      <lightning:progressStep label="{!item.label}" value="{!item.value}" />
+    </aura:iteration>
+  </lightning:progressIndicator>
+</aura:component>

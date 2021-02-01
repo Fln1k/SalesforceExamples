@@ -1,0 +1,21 @@
+<aura:component
+  implements="forceCommunity:availableForAllPageTypes, flexipage:availableForAllPageTypes, 
+flexipage:availableForRecordHome, 
+force:hasRecordId"
+  access="global"
+>
+  <!-- Attributes -->
+  <aura:attribute name="currentStage" type="Integer" default="1" />
+  <!-- Events -->
+  <aura:handler event="c:changeFlowContent" action="{!c.handlechangeFlowContent}" />
+  <!-- Layout -->
+  <aura:if isTrue="{!v.currentStage == 1}">
+    <c:firstStage />
+  </aura:if>
+  <aura:if isTrue="{!v.currentStage == 2}">
+    <c:secondStage />
+  </aura:if>
+  <aura:if isTrue="{!v.currentStage == 3}">
+    <c:thirdStage />
+  </aura:if>
+</aura:component>
