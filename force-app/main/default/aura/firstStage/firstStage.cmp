@@ -3,13 +3,21 @@
   <aura:attribute name="objectName" type="String" default="Account" />
   <!-- Events -->
   <aura:registerEvent name="addNewAccountEvent" type="c:addNewAccount" />
+  <aura:handler
+    event="c:assignAccountId"
+    action="{!c.handleAssignAccountId}"
+  />
+  <!-- Layout -->
+  <lightning:overlayLibrary aura:id="overlayLib"/>
+
   <table>
     <tr>
       <td style="width: 70%; vertical-align:bottom; padding-right: 10px;">
         <c:strike_lookup
+          aura:id="accountLookupField"
           label="{!v.objectName}"
           object="{!v.objectName}"
-          searchField="Name"  
+          searchField="Name"
         />
       </td>
       <td style="width: 25%; vertical-align:bottom;">
@@ -23,5 +31,4 @@
       </td>
     </tr>
   </table>
-  <c:newAccount/>
 </aura:component>

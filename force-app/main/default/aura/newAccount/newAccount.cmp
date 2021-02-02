@@ -1,4 +1,60 @@
-<aura:component>
+<aura:component
+  implements="forceCommunity:availableForAllPageTypes, flexipage:availableForAllPageTypes, 
+flexipage:availableForRecordHome, 
+force:hasRecordId"
+  access="global"
+  controller="customAccountController"
+>
+  <!-- Attributes -->
+  <aura:attribute name="newAccountNameField" type="String" />
+  <aura:attribute name="newAccountCountryField" type="String" />
   <!-- Events -->
-  <aura:handler name="addNewAccountEvent" event="c:addNewAccount" action="{!c.handleAddNewAccount}" />
+  <aura:registerEvent name="assignAccountIdEvent" type="c:assignAccountId" />
+  <aura:handler event="c:addNewAccount" action="{!c.handleAddNewAccount}" />
+  <!-- Layout -->
+  <div
+    role="dialog"
+    tabindex="-1"
+    aria-labelledby="header43"
+    aura:id="accountModal"
+    class="slds-modal"
+  >
+    <div class="slds-modal__container" style="max-width: 20%">
+      <div class="slds-modal__header">
+        <h2 id="header43" class="slds-text-heading--medium">New Account</h2>
+      </div>
+      <div
+        class="slds-modal__content slds-p-around--medium"
+        style="height: 40%"
+      >
+        <div>
+          <lightning:input
+            aura:id="newAccountLastNameField"
+            label="Last name"
+            name="lastname"
+            placeholder="Last name"
+            required="true"
+            value="{!v.newAccountNameField}"
+          />
+          <lightning:input
+            aura:id="newAccountCountryField"
+            label="Country"
+            name="country"
+            placeholder="Country"
+            required="true"
+            value="{!v.newAccountCountryField}"
+          />
+        </div>
+      </div>
+      <div class="slds-modal__footer">
+        <lightning:button
+          aura:id="cancelNewAccount"
+          label="Cancel"
+          onclick="{!c.closeModal}"
+        />
+        <lightning:button aura:id="Save" label="Save" variant="brand" onclick="{!c.saveAccount}"/>
+      </div>
+    </div>
+  </div>
+  <div class="slds-backdrop" aura:id="accountModalbackdrop"></div>
 </aura:component>

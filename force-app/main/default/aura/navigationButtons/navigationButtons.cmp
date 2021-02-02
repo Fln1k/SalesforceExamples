@@ -4,12 +4,13 @@
   <aura:attribute name="canNext" type="Boolean" />
   <!-- Events -->
   <aura:registerEvent name="changeStageEvent" type="c:changeStage" />
+  <aura:registerEvent name="closeModalEvent" type="c:closeModal" />
+  
   <aura:handler name="init" value="{!this}" action="{!c.initializeButtons}" />
   <aura:handler
     event="c:changeButtonsAvailableState"
     action="{!c.handleButtonsAvailableState}"
   />
-  <aura:registerEvent name="closeModalEvent" type="c:closeModal" />
   <!-- Latyout -->
   <lightning:button
     aura:id="BACK"

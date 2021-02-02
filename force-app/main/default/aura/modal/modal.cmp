@@ -17,13 +17,6 @@ force:hasRecordId"
   >
     <div class="slds-modal__container" style="max-width: 90%">
       <div class="slds-modal__header">
-        <button
-          class="slds-button slds-modal__close slds-button--icon-inverse"
-          title="Close"
-          onclick="{!c.closeModal}"
-        >
-          X
-        </button>
         <h2 id="header43" class="slds-text-heading--medium">Test Modal</h2>
       </div>
       <div
