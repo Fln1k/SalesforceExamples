@@ -1,34 +1,11 @@
-<aura:component
-  implements="forceCommunity:availableForAllPageTypes, flexipage:availableForAllPageTypes, 
-flexipage:availableForRecordHome, 
-force:hasRecordId"
-  access="global"
->
+<aura:component access="global">
   <!-- Events -->
-  <aura:handler name="closeModalEvent" event="c:closeModal" action="{!c.handleCloseModal}" />
+  <aura:handler
+    name="closeModalEvent"
+    event="c:closeModal"
+    action="{!c.handleCloseModal}"
+  />
   <!-- Layout -->
-  <ui:button label="openmodal" press="{!c.openmodal}" />
-  <div
-    role="dialog"
-    tabindex="-1"
-    aria-labelledby="header43"
-    aura:id="Modalbox"
-    class="slds-modal"
-  >
-    <div class="slds-modal__container" style="max-width: 90%">
-      <div class="slds-modal__header">
-        <h2 id="header43" class="slds-text-heading--medium">Test Modal</h2>
-      </div>
-      <div
-        class="slds-modal__content slds-p-around--medium"
-        style="max-height: 90%"
-      >
-        <div>
-          <c:customFlow />
-        </div>
-      </div>
-      <div class="slds-modal__footer"></div>
-    </div>
-  </div>
-  <div class="slds-backdrop" aura:id="Modalbackdrop"></div>
+  <lightning:overlayLibrary aura:id="modalOverlay"/>
+  <c:customFlow />
 </aura:component>

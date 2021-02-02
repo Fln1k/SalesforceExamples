@@ -1,15 +1,6 @@
 ({
-    handleAddNewAccount : function(component, event, helper) {
-        var cmpTarget = component.find('accountModal');
-        var cmpBack = component.find('accountModalbackdrop');
-        $A.util.addClass(cmpTarget, 'slds-fade-in-open');
-        $A.util.addClass(cmpBack, 'slds-backdrop--open'); 
-    },
     closeModal:function(component,event,helper){    
-        var cmpTarget = component.find('accountModal');
-        var cmpBack = component.find('accountModalbackdrop');
-        $A.util.removeClass(cmpBack,'slds-backdrop--open');
-        $A.util.removeClass(cmpTarget, 'slds-fade-in-open'); 
+        component.find("newAccountOverlay").notifyClose();
     },
     saveAccount:function(component,event,helper){    
         var name = component.get('v.newAccountNameField');

@@ -8,8 +8,9 @@
     action="{!c.handleAssignAccountId}"
   />
   <!-- Layout -->
-  <lightning:overlayLibrary aura:id="overlayLib"/>
-
+  <!-- modal -->
+  <lightning:overlayLibrary aura:id="newAccountOverlay"/>
+  <!-- page -->
   <table>
     <tr>
       <td style="width: 70%; vertical-align:bottom; padding-right: 10px;">
@@ -21,13 +22,7 @@
         />
       </td>
       <td style="width: 25%; vertical-align:bottom;">
-        <lightning:button
-          aura:id="new"
-          label="new"
-          variant="brand"
-          value="-1"
-          onclick="{!c.newRecord}"
-        />
+        <lightning:button name="modal" label="New" onclick="{!c.handleShowNewAccount}"/>
       </td>
     </tr>
   </table>
