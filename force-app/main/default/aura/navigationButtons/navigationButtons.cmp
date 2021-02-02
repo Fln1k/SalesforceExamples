@@ -1,13 +1,7 @@
-<aura:component
-  implements="forceCommunity:availableForAllPageTypes, flexipage:availableForAllPageTypes, 
-flexipage:availableForRecordHome, 
-force:hasRecordId"
-  access="global"
->
+<aura:component>
   <!-- Attributes -->
   <aura:attribute name="canBack" type="Boolean" />
   <aura:attribute name="canNext" type="Boolean" />
-  <aura:attribute name="canFinish" type="Boolean" />
   <!-- Events -->
   <aura:registerEvent name="changeStageEvent" type="c:changeStage" />
   <aura:handler name="init" value="{!this}" action="{!c.initializeButtons}" />
@@ -15,17 +9,21 @@ force:hasRecordId"
     event="c:changeButtonsAvailableState"
     action="{!c.handleButtonsAvailableState}"
   />
+  <aura:registerEvent name="closeModalEvent" type="c:closeModal" />
   <!-- Latyout -->
-  <aura:renderIf isTrue="{!v.canBack}">
-    <lightning:button
-      aura:id="BACK"
-      label="Previous"
-      variant="brand"
-      value="-1"
-      onclick="{!c.changeStageFunction}"
-    />
-  </aura:renderIf>
-  <lightning:button aura:id="Cancel" label="Cancel" variant="brand" />
+  <lightning:button
+    aura:id="BACK"
+    label="Previous"
+    variant="brand"
+    value="-1"
+    onclick="{!c.changeStageFunction}"
+    disabled="{!(!v.canBack)}"
+  />
+  <lightning:button
+    aura:id="Cancel"
+    label="Cancel"
+    onclick="{!c.closeModalFunction}"
+  />
   <aura:renderIf isTrue="{!v.canNext}">
     <lightning:button
       aura:id="Next"

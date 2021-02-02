@@ -1,9 +1,4 @@
-<aura:component
-  implements="forceCommunity:availableForAllPageTypes, flexipage:availableForAllPageTypes, 
-flexipage:availableForRecordHome, 
-force:hasRecordId"
-  access="global"
->
+<aura:component>
   <!-- Attributes -->
   <aura:attribute name="progressIndicatorStages" type="List" />
   <aura:attribute name="currentStage" type="String" default="1" />

@@ -1,14 +1,27 @@
 <aura:component>
-  First Stage
-  <br />
-  First Stage
-  <br />
-  First Stage
-  <br />
-  First Stage
-  <br />
-  First Stage
-  <br />
-  First Stage
-  <br />
+  <!-- Attributes -->
+  <aura:attribute name="objectName" type="String" default="Account" />
+  <!-- Events -->
+  <aura:registerEvent name="addNewAccountEvent" type="c:addNewAccount" />
+  <table>
+    <tr>
+      <td style="width: 70%; vertical-align:bottom; padding-right: 10px;">
+        <c:strike_lookup
+          label="{!v.objectName}"
+          object="{!v.objectName}"
+          searchField="Name"  
+        />
+      </td>
+      <td style="width: 25%; vertical-align:bottom;">
+        <lightning:button
+          aura:id="new"
+          label="new"
+          variant="brand"
+          value="-1"
+          onclick="{!c.newRecord}"
+        />
+      </td>
+    </tr>
+  </table>
+  <c:newAccount/>
 </aura:component>

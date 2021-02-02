@@ -1,5 +1,5 @@
 ({
-    myAction : function(component, event, helper) {
-
-    }
-})
+  newRecord: function (component, event, helper) {
+    component.getEvent("addNewAccountEvent").fire();
+  },
+});

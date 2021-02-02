@@ -4,6 +4,9 @@ flexipage:availableForRecordHome,
 force:hasRecordId"
   access="global"
 >
+  <!-- Events -->
+  <aura:handler name="closeModalEvent" event="c:closeModal" action="{!c.handleCloseModal}" />
+  <!-- Layout -->
   <ui:button label="openmodal" press="{!c.openmodal}" />
   <div
     role="dialog"

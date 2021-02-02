@@ -1,0 +1,4 @@
+<aura:component>
+  <!-- Events -->
+  <aura:handler name="addNewAccountEvent" event="c:addNewAccount" action="{!c.handleAddNewAccount}" />
+</aura:component>
