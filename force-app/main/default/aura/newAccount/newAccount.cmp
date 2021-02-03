@@ -8,7 +8,7 @@
   <lightning:overlayLibrary aura:id="newAccountOverlay" />
   <div>
     <lightning:input
-      aura:id="newAccountLastNameField"
+      aura:id="newAccountField"
       label="Last name"
       name="lastname"
       placeholder="Last name"
@@ -16,7 +16,7 @@
       value="{!v.newAccountNameField}"
     />
     <lightning:input
-      aura:id="newAccountCountryField"
+      aura:id="newAccountField"
       label="Country"
       name="country"
       placeholder="Country"

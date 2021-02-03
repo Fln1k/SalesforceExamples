@@ -3,7 +3,7 @@
   <aura:handler
     name="closeModalEvent"
     event="c:closeModal"
-    action="{!c.handleCloseModal}"
+    action="{!c.closeModal}"
   />
   <!-- Layout -->
   <lightning:overlayLibrary aura:id="modalOverlay"/>

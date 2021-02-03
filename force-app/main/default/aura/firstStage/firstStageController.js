@@ -1,5 +1,6 @@
 ({
   handleAssignAccountId: function (component, event, helper) {
+    component.find("accountLookupField").set("v.value","");
     component.set("v.accountId", event.getParam("id"));
   },
   accountLookupFieldValueChange: function (component, event, helper) {
@@ -14,15 +15,15 @@
         var opportunityIds = JSON.parse(response.getReturnValue());
         console.log(opportunityIds);
         var opportunityDisabled;
-        if (opportunityIds.length < 2) {
+        if (!opportunityIds.length) {
           opportunityDisabled = true;
+        } else {
           if (opportunityIds.length == 1) {
             component.set("v.opportunityId", opportunityIds[0]);
           }
-        } else {
           opportunityDisabled = false;
           opportunityLookupField.set(
-            "v.filter",
+            "v.opportuityLookupFieldFilter",
             "AccountId='" + id + "' and  (NOT StageName  like 'Closed%')"
           );
         }
@@ -32,7 +33,7 @@
     } else {
       var opportunityLookupField = component.find("opportunityLookupField");
       opportunityLookupField.set("v.disabled", "true");
-      opportunityLookupField.set("v.value", "");
+      component.set("v.opportunityId", "");
     }
   },
   showNewAccount: function (component) {

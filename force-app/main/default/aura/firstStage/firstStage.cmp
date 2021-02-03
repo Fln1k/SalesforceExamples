@@ -1,8 +1,9 @@
 <aura:component controller="customAccountController">
   <!-- Attributes -->
   <aura:attribute name="objectName" type="String" default="Account" />
-  <aura:attribute name="accountId" type="String" />
-  <aura:attribute name="opportunityId" type="String" />
+  <aura:attribute name="opportuityLookupFieldFilter" type="String" />
+  <aura:attribute name="accountId" type="Id" />
+  <aura:attribute name="opportunityId" type="Id" />
   <!-- Events -->
   <aura:handler
     name="change"
@@ -41,7 +42,8 @@
           object="Opportunity"
           value="{!v.opportunityId}"
           searchField="Name"
-          disabled="true"
+          disabled="false"
+          filter="{!v.opportuityLookupFieldFilter}"
         />
       </td>
     </tr>
