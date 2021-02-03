@@ -18,8 +18,6 @@ export default class LightningExampleInputSearch extends LightningElement {
     if (this.cityName.length > 0 && typeof this.daysCount != "undefined") {
       getForecast({ daysCount: this.daysCount, cityName: this.cityName })
         .then((result) => {
-          console.log("data:");
-          console.log(result);
           this.data = result;
           this.flagIndicatingDataHasBeenLoadedInVariables = true;
         })
@@ -41,21 +39,12 @@ export default class LightningExampleInputSearch extends LightningElement {
   }
 
   handleCityName(event) {
-    console.log(
-      "change city name from " + this.cityName + " to " + event.detail.value
-    );
     this.cityName = event.detail.value;
   }
 
   handleDaysCount(event) {
-    console.log(
-      "change days amount from " + this.daysCount + " to " + event.detail.value
-    );
     this.daysCount = event.detail.value;
   }
 
   handleChange(event){
-    this.currentVal=event.detail;
-    console.log("current val:" + this.currentVal);      
-    }
 }

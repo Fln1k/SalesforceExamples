@@ -7,4 +7,10 @@ public class customAccountController {
         insert acc;
         return acc;
     }
+
+    @AuraEnabled
+    public static String getCountOfAccountOpportunities(string Id){
+        list<AggregateResult> opportunitiesCount = new list<AggregateResult>([select count(Id)cnt from Opportunity where AccountId=:Id]);
+        return String.valueOf(opportunitiesCount[0].get('cnt')) ;
+    }
 }

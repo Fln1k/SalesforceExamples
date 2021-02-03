@@ -1,12 +1,17 @@
-<aura:component>
+<aura:component controller="customAccountController">
   <!-- Attributes -->
   <aura:attribute name="objectName" type="String" default="Account" />
   <!-- Events -->
   <aura:registerEvent name="addNewAccountEvent" type="c:addNewAccount" />
   <aura:handler
-    event="c:assignAccountId"
-    action="{!c.handleAssignAccountId}"
+    event="c:assignLookupId"
+    action="{!c.handleAssignLookupId}"
   />
+  <aura:handler
+  name="removeAccountRecordEvent"
+  event="c:removeAccountRecord"
+  action="{!c.handleRemoveAccountRecord}"
+/>
   <!-- Layout -->
   <!-- modal -->
   <lightning:overlayLibrary aura:id="newAccountOverlay"/>
@@ -23,6 +28,17 @@
       </td>
       <td style="width: 25%; vertical-align:bottom;">
         <lightning:button name="modal" label="New" onclick="{!c.handleShowNewAccount}"/>
+      </td>
+    </tr>
+    <tr>
+      <td style="width: 70%; vertical-align:bottom; padding-right: 10px;">
+        <c:strike_lookup
+        aura:id="opportunityLookupField"
+        label="Opportunity"
+        object="Opportunity"
+        searchField="Name"
+        disabled="true"
+      />
       </td>
     </tr>
   </table>

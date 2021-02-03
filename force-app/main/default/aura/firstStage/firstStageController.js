@@ -2,10 +2,32 @@
   newRecord: function (component, event, helper) {
     $A.get("e.c:addNewAccount").fire();
   },
-  handleAssignAccountId: function (component, event, helper) {
+  handleAssignLookupId: function (component, event, helper) {
     var id = event.getParam("id");
-    console.log("id of created Account: " + id);
-    component.find("accountLookupField").set("v.value", id);
+    var object = event.getParam("object").toLowerCase();
+    component.find(object + "LookupField").set("v.value", id);
+    if (object == "account") {
+      var action = component.get("c.getCountOfAccountOpportunities");
+      action.setParams({
+        Id: id,
+      });
+      action.setCallback(this, function (response) {
+        var opportunitiesCount = response.getReturnValue();
+        var opportunityDisabled;
+        if (!parseInt(opportunitiesCount)) {
+          opportunityDisabled = true;
+        } else {
+          opportunityDisabled = false;
+          component
+        .find("opportunityLookupField")
+        .set("v.filter", "AccountId='" + id + "'");
+        }
+        component
+          .find("opportunityLookupField")
+          .set("v.disabled", opportunityDisabled);
+      });
+      $A.enqueueAction(action);
+    }
   },
   handleShowNewAccount: function (component) {
     $A.createComponent("c:newAccount", {}, function (content, status) {
@@ -18,13 +40,16 @@
             body: modalBody,
             showCloseButton: true,
             closeCallback: function (ovl) {
-              console.log("Overlay is closing");
             },
           })
           .then(function (overlay) {
-            console.log("Overlay is made");
           });
       }
     });
+  },
+  handleRemoveAccountRecord: function (component, event, helper) {
+    var opportunityLookupField = component.find("opportunityLookupField");
+    opportunityLookupField.set('v.disabled', "true");
+    opportunityLookupField.set('v.value', '');
   },
 });

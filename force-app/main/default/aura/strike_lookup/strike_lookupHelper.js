@@ -221,7 +221,9 @@ License: BSD 3-Clause License*/
         var records = component.get('v.records');
 
         if (focusIndex < records.length) {
-            component.set('v.value', records[focusIndex].value);
+            var assignLookupIdEvent = $A.get("e.c:assignLookupId");
+            assignLookupIdEvent.setParams({ "id": records[focusIndex].value,"object":component.get('v.object') });
+            assignLookupIdEvent.fire();
             component.set('v.valueLabel', records[focusIndex].label);
             component.set('v.valueSublabel', records[focusIndex].sublabel);
             component.find('lookupInput').getElement().value = '';

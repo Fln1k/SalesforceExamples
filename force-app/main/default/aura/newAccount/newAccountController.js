@@ -13,11 +13,9 @@
                 country: country
             });
             action.setCallback(this,function(response){
-                console.log("created!!!")
-                console.log();
-                var assignAccountIdEvent = $A.get("e.c:assignAccountId");
-                assignAccountIdEvent.setParams({ "id": response.getReturnValue().Id });
-                assignAccountIdEvent.fire();
+                var assignLookupIdEvent = $A.get("e.c:assignLookupId");
+                assignLookupIdEvent.setParams({ "id": response.getReturnValue().Id,"object":'Account'  });
+                assignLookupIdEvent.fire();
                 component.set("v.newAccountNameField", "");
                 component.set("v.newAccountCountryField", "");
                 $A.enqueueAction(component.get('c.closeModal'));

@@ -107,8 +107,8 @@ License: BSD 3-Clause License*/
     handlePillClick: function(component, event, helper) {
         event.preventDefault();
         event.stopPropagation();
-
         component.set('v.value', '');
+        component.getEvent("removeAccountRecordEvent").fire();
 
         helper.getRecordsBySearchTerm(component, event, helper);
 

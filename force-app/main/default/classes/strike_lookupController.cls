@@ -10,12 +10,12 @@ public with sharing class strike_lookupController {
     @AuraEnabled
     public static String getRecentRecords(String jsonString) {
         strike_responseData responseData = new strike_responseData();
-
         try {
             Map<String, Object> jsonMap = (Map<String, Object>)JSON.deserializeUntyped(jsonString);
+            String objectType = (String)jsonMap.get('object');
             Map<Id, RecentlyViewed> recentlyViewedMap = new Map<Id, RecentlyViewed>([SELECT Id
                                                                                      FROM RecentlyViewed
-                                                                                     WHERE Type = :((String)jsonMap.get('object'))]);
+                                                                                     WHERE Type = :objectType]);
             List<Id> idList = new List<Id>(recentlyViewedMap.keySet());
 
             if (idList.size() > 0) {

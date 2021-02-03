@@ -3,7 +3,7 @@
   <aura:attribute name="newAccountNameField" type="String" />
   <aura:attribute name="newAccountCountryField" type="String" />
   <!-- Events -->
-  <aura:registerEvent name="assignAccountIdEvent" type="c:assignAccountId" />
+  <aura:registerEvent name="assignLookupIdEvent" type="c:assignLookupId" />
   <!-- Layout -->
   <lightning:overlayLibrary aura:id="newAccountOverlay" />
   <div>
@@ -25,7 +25,7 @@
     />
   </div>
   <br/>
-  <div>
+  <div class="slds-align_absolute-center">
     <lightning:button
       aura:id="cancelNewAccount"
       label="Cancel"

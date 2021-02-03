@@ -3,5 +3,7 @@
   <br />
   <c:flowContent />
   <br />
-  <c:navigationButtons />
+  <div class="slds-align_absolute-center">
+    <c:navigationButtons />
+  </div>
 </aura:component>
