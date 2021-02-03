@@ -10,7 +10,6 @@ public class customAccountController {
 
     @AuraEnabled
     public static String getCountOfAccountOpportunities(string Id){
-        list<AggregateResult> opportunitiesCount = new list<AggregateResult>([select count(Id)cnt from Opportunity where AccountId=:Id]);
-        return String.valueOf(opportunitiesCount[0].get('cnt')) ;
+        return JSON.serialize((new Map<Id,Opportunity>([select Id from Opportunity where AccountId=:Id and (NOT StageName  like 'Closed%')])).keySet());
     }
 }

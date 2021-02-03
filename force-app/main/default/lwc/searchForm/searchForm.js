@@ -46,5 +46,5 @@ export default class LightningExampleInputSearch extends LightningElement {
     this.daysCount = event.detail.value;
   }
 
-  handleChange(event){
+  handleChange(event) {}
 }

@@ -13,8 +13,8 @@
                 country: country
             });
             action.setCallback(this,function(response){
-                var assignLookupIdEvent = $A.get("e.c:assignLookupId");
-                assignLookupIdEvent.setParams({ "id": response.getReturnValue().Id,"object":'Account'  });
+                var assignLookupIdEvent = $A.get("e.c:assignAccountId");
+                assignLookupIdEvent.setParams({ "id": response.getReturnValue().Id});
                 assignLookupIdEvent.fire();
                 component.set("v.newAccountNameField", "");
                 component.set("v.newAccountCountryField", "");

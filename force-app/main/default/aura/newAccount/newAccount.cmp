@@ -3,7 +3,7 @@
   <aura:attribute name="newAccountNameField" type="String" />
   <aura:attribute name="newAccountCountryField" type="String" />
   <!-- Events -->
-  <aura:registerEvent name="assignLookupIdEvent" type="c:assignLookupId" />
+  <aura:registerEvent name="assignAccountIdEvent" type="c:assignAccountId" />
   <!-- Layout -->
   <lightning:overlayLibrary aura:id="newAccountOverlay" />
   <div>

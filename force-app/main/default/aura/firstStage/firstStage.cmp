@@ -1,44 +1,48 @@
 <aura:component controller="customAccountController">
   <!-- Attributes -->
   <aura:attribute name="objectName" type="String" default="Account" />
+  <aura:attribute name="accountId" type="String" />
+  <aura:attribute name="opportunityId" type="String" />
   <!-- Events -->
-  <aura:registerEvent name="addNewAccountEvent" type="c:addNewAccount" />
   <aura:handler
-    event="c:assignLookupId"
-    action="{!c.handleAssignLookupId}"
+    name="change"
+    value="{!v.accountId}"
+    action="{!c.accountLookupFieldValueChange}"
   />
-  <aura:handler
-  name="removeAccountRecordEvent"
-  event="c:removeAccountRecord"
-  action="{!c.handleRemoveAccountRecord}"
-/>
+  <aura:handler event="c:assignAccountId" action="{!c.handleAssignAccountId}" />
   <!-- Layout -->
   <!-- modal -->
-  <lightning:overlayLibrary aura:id="newAccountOverlay"/>
+  <lightning:overlayLibrary aura:id="newAccountOverlay" />
   <!-- page -->
   <table>
     <tr>
-      <td style="width: 70%; vertical-align:bottom; padding-right: 10px;">
+      <td style="width: 70%; vertical-align: bottom; padding-right: 10px">
         <c:strike_lookup
           aura:id="accountLookupField"
           label="{!v.objectName}"
           object="{!v.objectName}"
+          value="{!v.accountId}"
           searchField="Name"
         />
       </td>
-      <td style="width: 25%; vertical-align:bottom;">
-        <lightning:button name="modal" label="New" onclick="{!c.handleShowNewAccount}"/>
+      <td style="width: 25%; vertical-align: bottom">
+        <lightning:button
+          name="modal"
+          label="New"
+          onclick="{!c.showNewAccount}"
+        />
       </td>
     </tr>
     <tr>
-      <td style="width: 70%; vertical-align:bottom; padding-right: 10px;">
+      <td style="width: 70%; vertical-align: bottom; padding-right: 10px">
         <c:strike_lookup
-        aura:id="opportunityLookupField"
-        label="Opportunity"
-        object="Opportunity"
-        searchField="Name"
-        disabled="true"
-      />
+          aura:id="opportunityLookupField"
+          label="Opportunity"
+          object="Opportunity"
+          value="{!v.opportunityId}"
+          searchField="Name"
+          disabled="true"
+        />
       </td>
     </tr>
   </table>
