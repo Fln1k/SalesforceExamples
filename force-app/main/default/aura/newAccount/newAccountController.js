@@ -3,6 +3,7 @@
     component.find("newAccountOverlay").notifyClose();
   },
   saveAccount: function (component, event, helper) {
+    component.set("v.IsSpinner",true);
     var name = component.get("v.newAccountNameField");
     var country = component.get("v.newAccountCountryField");
     var allValid = component
@@ -23,6 +24,7 @@
         assignLookupIdEvent.fire();
         component.set("v.newAccountNameField", "");
         component.set("v.newAccountCountryField", "");
+        component.set("v.IsSpinner",false);
         $A.enqueueAction(component.get("c.closeModal"));
       });
       $A.enqueueAction(action);

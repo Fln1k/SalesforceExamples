@@ -1,7 +1,8 @@
-<aura:component access="global" controller="customAccountController">
+<aura:component access="global" controller="customFlowController">
   <!-- Attributes -->
   <aura:attribute name="newAccountNameField" type="String" />
   <aura:attribute name="newAccountCountryField" type="String" />
+  <aura:attribute name="IsSpinner" type="Boolean"/>
   <!-- Events -->
   <aura:registerEvent name="assignAccountIdEvent" type="c:assignAccountId" />
   <!-- Layout -->
@@ -9,16 +10,21 @@
   <div>
     <lightning:input
       aura:id="newAccountField"
-      label="Last name"
-      name="lastname"
-      placeholder="Last name"
+      label="Name"
+      name="Name"
+      placeholder="Name"
       required="true"
       value="{!v.newAccountNameField}"
     />
+    <aura:if isTrue="{!v.IsSpinner}">
+      <div class="slds-is-relative">
+        <lightning:spinner alternativeText="Creating new account" />
+      </div>
+    </aura:if>
     <lightning:input
       aura:id="newAccountField"
       label="Country"
-      name="country"
+      name="Country"
       placeholder="Country"
       required="true"
       value="{!v.newAccountCountryField}"

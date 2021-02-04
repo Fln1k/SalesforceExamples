@@ -1,9 +1,19 @@
-<aura:component>
-  <c:stageProgress />
+<aura:component extends="c:customFlowVariables">
+  <c:stageProgress
+    currentStage="{!v.currentStage}"
+    canBack="{!v.canBack}"
+    canNext="{!v.canNext}"
+  />
   <br />
-  <c:flowContent />
+  <c:flowContent currentStage="{!v.currentStage}" accountId="{!v.accountId}" opportunityId="{!v.opportunityId}"/>
   <br />
   <div class="slds-align_absolute-center">
-    <c:navigationButtons />
+    <c:navigationButtons
+      currentStage="{!v.currentStage}"
+      canBack="{!v.canBack}"
+      canNext="{!v.canNext}"
+      accountId="{!v.accountId}"
+      opportunityId="{!v.opportunityId}"
+    />
   </div>
 </aura:component>

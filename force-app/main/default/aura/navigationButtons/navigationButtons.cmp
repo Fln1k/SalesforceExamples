@@ -1,17 +1,9 @@
-<aura:component>
-  <!-- Attributes -->
-  <aura:attribute name="canBack" type="Boolean" />
-  <aura:attribute name="canNext" type="Boolean" />
+<aura:component extends="c:customFlowVariables" controller="customFlowController">
   <!-- Events -->
-  <aura:registerEvent name="changeStageEvent" type="c:changeStage" />
   <aura:registerEvent name="closeModalEvent" type="c:closeModal" />
-  
-  <aura:handler name="init" value="{!this}" action="{!c.initializeButtons}" />
-  <aura:handler
-    event="c:changeButtonsAvailableState"
-    action="{!c.handleButtonsAvailableState}"
-  />
+  <aura:registerEvent name="errorMessageOnAccountLookupEvent" type="c:errorMessageOnAccountLookup" />
   <!-- Latyout -->
+  <br />
   <lightning:button
     aura:id="BACK"
     label="Previous"

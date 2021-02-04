@@ -1,10 +1,21 @@
 ({
+  setUpOpportunityFilter: function (component, event, helper) {
+    var opportunityLookupField = component.find("opportunityLookupField");
+    var accountId = component.get("v.accountId");
+    if (accountId.length) {
+      opportunityLookupField.set("v.disabled", false);
+    }
+  },
   handleAssignAccountId: function (component, event, helper) {
-    component.find("accountLookupField").set("v.value","");
+    component.find("accountLookupField").set("v.value", "");
     component.set("v.accountId", event.getParam("id"));
+  },
+  handleErrorMessageOnAccountLookup: function (component, event, helper) {
+    component.find("accountLookupField").set("v.error", true);
   },
   accountLookupFieldValueChange: function (component, event, helper) {
     var id = event.getParam("value");
+    component.find("accountLookupField").set("v.error", false);
     var opportunityLookupField = component.find("opportunityLookupField");
     if (id.length > 0) {
       var action = component.get("c.getCountOfAccountOpportunities");
@@ -13,7 +24,6 @@
       });
       action.setCallback(this, function (response) {
         var opportunityIds = JSON.parse(response.getReturnValue());
-        console.log(opportunityIds);
         var opportunityDisabled;
         if (!opportunityIds.length) {
           opportunityDisabled = true;
@@ -22,18 +32,17 @@
             component.set("v.opportunityId", opportunityIds[0]);
           }
           opportunityDisabled = false;
-          opportunityLookupField.set(
-            "v.opportuityLookupFieldFilter",
-            "AccountId='" + id + "' and  (NOT StageName  like 'Closed%')"
+          component.set(
+            "v.opportunityLookupFieldFilter",
+            "AccountId='" + id + "' and  (NOT StageName like 'Closed%')"
           );
         }
         opportunityLookupField.set("v.disabled", opportunityDisabled);
       });
       $A.enqueueAction(action);
     } else {
-      var opportunityLookupField = component.find("opportunityLookupField");
-      opportunityLookupField.set("v.disabled", "true");
-      component.set("v.opportunityId", "");
+      opportunityLookupField.set("v.disabled", true);
+      opportunityLookupField.set("v.value", "");
     }
   },
   showNewAccount: function (component) {
@@ -51,5 +60,14 @@
           .then(function (overlay) {});
       }
     });
+  },
+  opportunityLookupFieldValueChange: function (component, event, helper) {
+    var accountId = component.get("v.accountId");
+    if (accountId.length) {
+      component.set(
+        "v.opportunityLookupFieldFilter",
+        "AccountId='" + accountId + "' and  (NOT StageName like 'Closed%')"
+      );
+    }
   },
 });

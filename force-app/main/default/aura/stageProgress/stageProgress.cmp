@@ -1,14 +1,12 @@
-<aura:component>
+<aura:component extends="c:customFlowVariables">
   <!-- Attributes -->
   <aura:attribute name="progressIndicatorStages" type="List" />
-  <aura:attribute name="currentStage" type="String" default="1" />
   <!-- Events -->
-  <aura:registerEvent name="changeButtonsAvailableStateEvent" type="c:changeButtonsAvailableState" />
-  <aura:registerEvent name="changeFlowContentEvent" type="c:changeFlowContent" />
-  <aura:handler event="c:changeStage" action="{!c.handleChangeStage}" />
+  <aura:handler name="change" value="{!v.currentStage}" action="{!c.changeCurrentStageHandler}" />
   <aura:handler name="init" value="{!this}" action="{!c.loadStages}" />
   <!-- Layout -->
   <lightning:progressIndicator
+  aura:id="progressIndicator"
    currentStep="{!v.currentStage}"
     type="path"
     variant="base"

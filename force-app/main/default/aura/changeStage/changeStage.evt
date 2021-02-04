@@ -1,3 +1,0 @@
-<aura:event type="application">
-    <aura:attribute name="value" type="Integer"/>
-</aura:event>

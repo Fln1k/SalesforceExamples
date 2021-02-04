@@ -1,18 +1,25 @@
-<aura:component controller="customAccountController">
+<aura:component controller="customFlowController">
   <!-- Attributes -->
   <aura:attribute name="objectName" type="String" default="Account" />
-  <aura:attribute name="opportuityLookupFieldFilter" type="String" />
+  <aura:attribute name="opportunityLookupFieldFilter" type="String" default=""/>
   <aura:attribute name="accountId" type="Id" />
   <aura:attribute name="opportunityId" type="Id" />
   <!-- Events -->
+  <aura:handler name="init" value="{!this}" action="{!c.setUpOpportunityFilter}" />
   <aura:handler
     name="change"
     value="{!v.accountId}"
     action="{!c.accountLookupFieldValueChange}"
   />
+  <aura:handler
+  name="change"
+  value="{!v.opportunityId}"
+  action="{!c.opportunityLookupFieldValueChange}"
+/>
   <aura:handler event="c:assignAccountId" action="{!c.handleAssignAccountId}" />
+  <aura:handler event="c:errorMessageOnAccountLookup" action="{!c.handleErrorMessageOnAccountLookup}" />
   <!-- Layout -->
-  <!-- modal -->
+  <!-- modal -->  
   <lightning:overlayLibrary aura:id="newAccountOverlay" />
   <!-- page -->
   <table>
@@ -23,7 +30,12 @@
           label="{!v.objectName}"
           object="{!v.objectName}"
           value="{!v.accountId}"
+          subtitleField="BillingCountry"
+          iconName="standard:account"
+          placeholder="Account name"
+          errorMessage="Select an account please"
           searchField="Name"
+          required="true"
         />
       </td>
       <td style="width: 25%; vertical-align: bottom">
@@ -40,10 +52,12 @@
           aura:id="opportunityLookupField"
           label="Opportunity"
           object="Opportunity"
+          placeholder="Opportunity name"
           value="{!v.opportunityId}"
           searchField="Name"
           disabled="false"
-          filter="{!v.opportuityLookupFieldFilter}"
+          iconName="standard:opportunity"
+          filter="{!v.opportunityLookupFieldFilter}"
         />
       </td>
     </tr>
