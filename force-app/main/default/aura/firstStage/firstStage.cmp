@@ -1,10 +1,7 @@
-<aura:component controller="customFlowController">
+<aura:component controller="customFlowController"  extends="c:customFlowVariables">
   <!-- Attributes -->
   <aura:attribute name="objectName" type="String" default="Account" />
   <aura:attribute name="opportunityLookupFieldFilter" type="String" default=""/>
-  <aura:attribute name="accountId" type="Id" />
-  <aura:attribute name="opportunityId" type="Id" />
-  <aura:attribute name="accountOpportunitiesCount" type="Integer" default="0"/>
   <!-- Events -->
   <aura:handler name="init" value="{!this}" action="{!c.setUpOpportunityFilter}" />
   <aura:handler

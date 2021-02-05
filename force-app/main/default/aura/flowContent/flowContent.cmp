@@ -5,10 +5,11 @@
       accountId="{!v.accountId}"
       opportunityId="{!v.opportunityId}"
       accountOpportunitiesCount="{!v.accountOpportunitiesCount}"
+      closedOpportunitiesAmount="{!v.closedOpportunitiesAmount}"
     />
   </aura:if>
   <aura:if isTrue="{!v.currentStage == 2}">
-    <c:secondStage />
+    <c:secondStage closedOpportunitiesAmount="{!v.closedOpportunitiesAmount}"/>
   </aura:if>
   <aura:if isTrue="{!v.currentStage == 3}">
     <c:thirdStage />

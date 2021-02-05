@@ -3,22 +3,39 @@
   <aura:attribute name="firstCheckboxGroup" type="List" />
   <aura:attribute name="secondCheckboxGroup" type="List" />
   <aura:attribute name="thirdCheckboxGroup" type="List" />
+  <aura:attribute name="closedOpportunitiesAmount" type="Integer" />
+  <aura:attribute name="disabledOptions" type="List" />
+  <aura:attribute name="checkedOrderType" type="String" />
 
   <!-- Events -->
   <aura:handler name="init" value="{!this}" action="{!c.loadCheckboxGroups}" />
+  <aura:handler
+    name="change"
+    value="{!v.checkedOrderType}"
+    action="{!c.configureThirdCombobox}"
+  />
+  <!-- Layout -->
   <table>
     <tr>
-      <td style="vertical-align: baseline;">
+      <td style="vertical-align: baseline">
         <c:checkboxGroup
-          value="{!v.firstCheckboxGroup}"
+          options="{!v.firstCheckboxGroup}"
           title="Customer Type"
         />
       </td>
-      <td style="vertical-align: baseline;">
-        <c:checkboxGroup value="{!v.secondCheckboxGroup}" title="Order Type" />
+      <td style="vertical-align: baseline">
+        <c:checkboxGroup
+          options="{!v.secondCheckboxGroup}"
+          title="Order Type"
+          checkedValue="{!v.checkedOrderType}"
+        />
       </td>
-      <td style="vertical-align: baseline;">
-        <c:checkboxGroup value="{!v.thirdCheckboxGroup}" title="Payment Plan" />
+      <td style="vertical-align: baseline">
+        <c:checkboxGroup
+          options="{!v.thirdCheckboxGroup}"
+          title="Payment Plan"
+          disabledOptions="{!v.disabledOptions}"
+        />
       </td>
     </tr>
   </table>

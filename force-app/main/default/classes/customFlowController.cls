@@ -20,8 +20,8 @@ public with sharing class customFlowController {
     }
 
     @AuraEnabled
-    public static String getCountOfAccountOpportunities(string Id){
-        return JSON.serialize((new Map<Id,Opportunity>([select Id from Opportunity where AccountId=:Id and (NOT StageName  like 'Closed%')])).keySet());
+    public static List<Opportunity> getCountOfAccountOpportunities(string Id){
+        return new List<Opportunity>([select Id, StageName from Opportunity where AccountId=:Id]);
     }
 }
 

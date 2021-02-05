@@ -2,6 +2,7 @@
     <aura:attribute name="currentStage" type="Integer" default="1"/>
     <aura:attribute name="accountId" type="Id" default=''/>
     <aura:attribute name="opportunityId" type="Id" default=''/>
+    <aura:attribute name="closedOpportunitiesAmount" type="Integer" default="0"/>
     <aura:attribute name="accountOpportunitiesCount" type="Integer" default="0"/>
     <aura:attribute name="canBack" type="Boolean" default="false"/>
     <aura:attribute name="canNext" type="Boolean" default="true"/>

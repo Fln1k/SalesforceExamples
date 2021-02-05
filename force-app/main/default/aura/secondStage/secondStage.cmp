@@ -1,5 +1,8 @@
 <aura:component>
+  <!-- Attributes -->
+  <aura:attribute name="closedOpportunitiesAmount" type="Integer"/>
+  <!-- Layout -->
   <c:secondStageHeader />
   <hr width="100%" size="5" color="#ff0000" />
-  <c:secondStageFooter />
+  <c:secondStageFooter closedOpportunitiesAmount="{!v.closedOpportunitiesAmount}" />
 </aura:component>
