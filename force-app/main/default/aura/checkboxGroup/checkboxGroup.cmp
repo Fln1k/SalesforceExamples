@@ -1,0 +1,29 @@
+<aura:component>
+  <!-- Attribute -->
+  <aura:attribute name="value" type="List" />
+  <aura:attribute name="title" type="String" />
+  <aura:attribute name="helpText" type="String" />
+  <!-- Layout -->
+  {!v.title} <br />
+  <aura:iteration items="{!v.value}" var="checkbox">
+    <aura:if isTrue="{!not(empty(checkbox.helpText))}">
+      <lightning:input
+        aura:id="checkbox"
+        type="checkbox"
+        label="{!checkbox.label}"
+        name="{!'checkbox' + checkbox.value}"
+        onchange="{!c.removeCheckedFromOtherBoxes}"
+        fieldLevelHelp="{!checkbox.helpText}"
+      />
+      <aura:set attribute="else">
+        <lightning:input
+          aura:id="checkbox"
+          type="checkbox"
+          label="{!checkbox.label}"
+          name="{!'checkbox' + checkbox.value}"
+          onchange="{!c.removeCheckedFromOtherBoxes}"
+        />
+      </aura:set>
+    </aura:if>
+  </aura:iteration>
+</aura:component>

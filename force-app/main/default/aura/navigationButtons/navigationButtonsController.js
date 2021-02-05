@@ -14,7 +14,8 @@
       {
         var action = component.get("c.createOpportunity");
         action.setParams({
-          accountId: accountId
+          accountId: accountId,
+          postfix: parseInt(component.get("v.accountOpportunitiesCount"))+1
         });
         action.setCallback(this, function (response) {
           var newOpportunityId = response.getReturnValue().Id;

@@ -1,7 +1,11 @@
 <aura:component extends="c:customFlowVariables">
   <!-- Layout -->
   <aura:if isTrue="{!v.currentStage == 1}">
-    <c:firstStage accountId="{!v.accountId}" opportunityId="{!v.opportunityId}" />
+    <c:firstStage
+      accountId="{!v.accountId}"
+      opportunityId="{!v.opportunityId}"
+      accountOpportunitiesCount="{!v.accountOpportunitiesCount}"
+    />
   </aura:if>
   <aura:if isTrue="{!v.currentStage == 2}">
     <c:secondStage />

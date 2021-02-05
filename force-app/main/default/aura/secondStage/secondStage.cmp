@@ -1,18 +1,5 @@
 <aura:component>
-  Second Stage
-  <br />
-  Second Stage
-  <br />
-  Second Stage
-  <br />
-  Second Stage
-  <br />
-  Second Stage
-  <br />
-  Second Stage
-  <br />
-  Second Stage
-  <br />
-  Second Stage
-  <br />
+  <c:secondStageHeader />
+  <hr width="100%" size="5" color="#ff0000" />
+  <c:secondStageFooter />
 </aura:component>

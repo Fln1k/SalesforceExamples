@@ -9,10 +9,10 @@ public with sharing class customFlowController {
     }
 
     @AuraEnabled
-    public static Opportunity createOpportunity(String accountId){
+    public static Opportunity createOpportunity(String accountId,string postfix){
         Opportunity newOpportunity = new Opportunity();
         newOpportunity.CloseDate=date.today().addMonths(2);
-        newOpportunity.Name='Opportunity for account '+accountId;
+        newOpportunity.Name='Opportunity '+postfix;
         newOpportunity.StageName='Prospecting';
         newOpportunity.AccountId = accountId;
         insert newOpportunity;

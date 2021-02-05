@@ -32,6 +32,7 @@
             component.set("v.opportunityId", opportunityIds[0]);
           }
           opportunityDisabled = false;
+          component.set("v.accountOpportunitiesCount", opportunityIds.length);
           component.set(
             "v.opportunityLookupFieldFilter",
             "AccountId='" + id + "' and  (NOT StageName like 'Closed%')"

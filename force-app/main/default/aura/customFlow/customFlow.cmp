@@ -5,7 +5,12 @@
     canNext="{!v.canNext}"
   />
   <br />
-  <c:flowContent currentStage="{!v.currentStage}" accountId="{!v.accountId}" opportunityId="{!v.opportunityId}"/>
+  <c:flowContent
+    currentStage="{!v.currentStage}"
+    accountId="{!v.accountId}"
+    opportunityId="{!v.opportunityId}"
+    accountOpportunitiesCount="{!v.accountOpportunitiesCount}"
+  />
   <br />
   <div class="slds-align_absolute-center">
     <c:navigationButtons
@@ -14,6 +19,7 @@
       canNext="{!v.canNext}"
       accountId="{!v.accountId}"
       opportunityId="{!v.opportunityId}"
+      accountOpportunitiesCount="{!v.accountOpportunitiesCount}"
     />
   </div>
 </aura:component>
