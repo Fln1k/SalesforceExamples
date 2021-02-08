@@ -1,9 +1,13 @@
 <aura:component>
   <!-- Attribute -->
   <aura:attribute name="options" type="List" />
-  <aura:attribute name="title" type="String" />
-  <aura:attribute name="checkedValue" type="String" />
+  <aura:attribute name="title" type="String" default="" />
+  <aura:attribute name="value" type="String" default="" />
   <aura:attribute name="disabledOptions" type="List" />
+  <aura:attribute name="isError" type="Boolean" default="false" />
+
+  <!-- Methods -->
+  <aura:method name="showError" action="{!c.showError}" access="PUBLIC" />
   <!-- Events -->
   <aura:handler
     name="change"
@@ -19,9 +23,12 @@
       value="{!checkbox.value}"
       label="{! checkbox.label}"
       fieldLevelHelp="{! checkbox.helpText ? checkbox.helpText:''}"
-      onchange="{!c.removeCheckedFromOtherBoxes}"
+      onchange="{!c.checkboxOnChange}"
       checked="{! checkbox.checked ? checkbox.checked:false}"
       disabled="{! checkbox.disabled ? checkbox.disabled:false}"
     />
+    <aura:if isTrue="{!v.isError}">
+    <div style="color: red">Select option</div>
+    </aura:if>
   </aura:iteration>
 </aura:component>

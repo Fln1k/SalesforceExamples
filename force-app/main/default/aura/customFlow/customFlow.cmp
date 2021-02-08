@@ -1,4 +1,7 @@
 <aura:component extends="c:customFlowVariables">
+  <!-- Attributes -->
+  <aura:attribute name="paymentPlan" type="String"  default=''/>
+  <!-- Layout -->
   <c:stageProgress
     currentStage="{!v.currentStage}"
     canBack="{!v.canBack}"
@@ -10,6 +13,7 @@
     accountId="{!v.accountId}"
     opportunityId="{!v.opportunityId}"
     accountOpportunitiesCount="{!v.accountOpportunitiesCount}"
+    paymentPlan="{!v.paymentPlan}"
   />
   <br />
   <div class="slds-align_absolute-center">
@@ -20,6 +24,7 @@
       accountId="{!v.accountId}"
       opportunityId="{!v.opportunityId}"
       accountOpportunitiesCount="{!v.accountOpportunitiesCount}"
+      paymentPlan="{!v.paymentPlan}"
     />
   </div>
 </aura:component>

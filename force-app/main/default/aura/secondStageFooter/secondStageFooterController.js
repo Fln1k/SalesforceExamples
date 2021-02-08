@@ -17,29 +17,29 @@
         disabled: true,
       },
     ];
-      var secondGroup = [
-        {
-          value: "New",
-          label: "New",
-          helpText: "First time order",
-          block: ["Plan 1", "Plan 2", "Plan 3", "Plan 4", "Plan 6"],
-          disabled: !isNew,
-        },
-        {
-          value: "Reorder",
-          label: "Reorder",
-          helpText: "Not first time order",
-          block: ["Plan 1", "Plan 3", "Plan 5"],
-          disabled: isNew,
-        },
-        {
-          value: "Test",
-          label: "Test",
-          helpText: "test order",
-          block: ["Plan 2", "Plan 4", "Plan 5"],
-          disabled: isNew,
-        },
-      ];
+    var secondGroup = [
+      {
+        value: "New",
+        label: "New",
+        helpText: "First time order",
+        block: ["Plan 1", "Plan 2", "Plan 3", "Plan 4", "Plan 6"],
+        disabled: !isNew,
+      },
+      {
+        value: "Reorder",
+        label: "Reorder",
+        helpText: "Not first time order",
+        block: ["Plan 1", "Plan 3", "Plan 5"],
+        disabled: isNew,
+      },
+      {
+        value: "Test",
+        label: "Test",
+        helpText: "test order",
+        block: ["Plan 2", "Plan 4", "Plan 5"],
+        disabled: isNew,
+      },
+    ];
     var thirdGroup = [
       { value: "Plan 1", label: "Plan 1", disabled: true },
       { value: "Plan 2", label: "Plan 2", disabled: true },
@@ -48,23 +48,51 @@
       { value: "Plan 5", label: "Plan 5", disabled: true },
       { value: "Plan 6", label: "Plan 6", disabled: true },
     ];
+    var orderType = component.get("v.orderType");
+    if (orderType) {
+      var secondGroupChecked = secondGroup.filter((obj) => {
+        return obj.value === orderType;
+      });
+      secondGroupChecked[0].checked=true;
+      thirdGroup.forEach((element) => {
+        if (!secondGroupChecked[0].block.includes(element.value)) {
+          element.disabled=false;
+        }
+        if(element.value == component.get("v.paymentPlan"))
+        {
+          element.checked=true;
+        }
+      });
+    }
+
     component.set("v.firstCheckboxGroup", firstGroup);
     component.set("v.secondCheckboxGroup", secondGroup);
     component.set("v.thirdCheckboxGroup", thirdGroup);
   },
   configureThirdCombobox: function (component, event, helper) {
-    var selectedValue = component.get("v.checkedOrderType");
-    if(selectedValue.length>0)
-    {
+    var selectedValue = component.get("v.orderType");
+    if (selectedValue.length > 0) {
       var secondGroup = component.get("v.secondCheckboxGroup");
-      var result = secondGroup.filter(obj => {
-        return obj.value === selectedValue
+      var result = secondGroup.filter((obj) => {
+        return obj.value === selectedValue;
       });
       component.set("v.disabledOptions", result[0].block);
+    } else {
+      component.set("v.disabledOptions", [
+        "Plan 1",
+        "Plan 2",
+        "Plan 3",
+        "Plan 4",
+        "Plan 5",
+        "Plan 6",
+      ]);
     }
-    else
-    {
-      component.set("v.disabledOptions", ['Plan 1', 'Plan 2', 'Plan 3', 'Plan 4', 'Plan 5', 'Plan 6']);
+  },
+  handlePaymentPlanUndefined: function (component, event, helper) {
+    if (!component.get("v.orderType")) {
+      component.find("orderTypeGroup").showError();
+    } else {
+      component.find("paymentTypeGroup").showError();
     }
   },
 });
