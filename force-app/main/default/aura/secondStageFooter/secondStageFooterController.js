@@ -49,22 +49,21 @@
       { value: "Plan 6", label: "Plan 6", disabled: true },
     ];
     var orderType = component.get("v.orderType");
+    var paymentPlan = component.get("v.paymentPlan");
     if (orderType) {
       var secondGroupChecked = secondGroup.filter((obj) => {
         return obj.value === orderType;
       });
-      secondGroupChecked[0].checked=true;
+      secondGroupChecked[0].checked = true;
       thirdGroup.forEach((element) => {
         if (!secondGroupChecked[0].block.includes(element.value)) {
-          element.disabled=false;
+          element.disabled = false;
         }
-        if(element.value == component.get("v.paymentPlan"))
-        {
-          element.checked=true;
+        if (element.value == paymentPlan) {
+          element.checked = true;
         }
       });
     }
-
     component.set("v.firstCheckboxGroup", firstGroup);
     component.set("v.secondCheckboxGroup", secondGroup);
     component.set("v.thirdCheckboxGroup", thirdGroup);
