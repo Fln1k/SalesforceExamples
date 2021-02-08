@@ -23,15 +23,28 @@
         Id: id,
       });
       action.setCallback(this, function (response) {
-        var opportunityIds = JSON.parse(response.getReturnValue());
+        var opportunities = response.getReturnValue();
+        var closedOpportunitiesCounter = 0
+        var availableOpportunities = [];
+        opportunities.forEach(function (opportunity) {
+          if (opportunity.StageName.includes("Closed")){
+            ++closedOpportunitiesCounter;
+          }
+          else{
+            availableOpportunities.push(opportunity)
+          }
+        });
+        component.set("v.closedOpportunitiesAmount", closedOpportunitiesCounter);
         var opportunityDisabled;
-        if (!opportunityIds.length) {
+        var availableOpportunitiesLength = availableOpportunities.length
+        if (!availableOpportunitiesLength) {
           opportunityDisabled = true;
         } else {
-          if (opportunityIds.length == 1) {
-            component.set("v.opportunityId", opportunityIds[0]);
+          if (availableOpportunitiesLength == 1) {
+            component.set("v.opportunityId", availableOpportunities[0].Id);
           }
           opportunityDisabled = false;
+          component.set("v.accountOpportunitiesCount", availableOpportunitiesLength);
           component.set(
             "v.opportunityLookupFieldFilter",
             "AccountId='" + id + "' and  (NOT StageName like 'Closed%')"

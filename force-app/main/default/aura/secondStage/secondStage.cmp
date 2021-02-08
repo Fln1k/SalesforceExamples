@@ -1,18 +1,14 @@
 <aura:component>
-  Second Stage
-  <br />
-  Second Stage
-  <br />
-  Second Stage
-  <br />
-  Second Stage
-  <br />
-  Second Stage
-  <br />
-  Second Stage
-  <br />
-  Second Stage
-  <br />
-  Second Stage
-  <br />
+  <!-- Attributes -->
+  <aura:attribute name="closedOpportunitiesAmount" type="Integer" />
+  <aura:attribute name="orderType" type="String" default=''/>
+  <aura:attribute name="paymentPlan" type="String"  default=''/>
+  <!-- Layout -->
+  <c:secondStageHeader />
+  <hr width="100%" size="5" color="#ff0000" />
+  <c:secondStageFooter
+    closedOpportunitiesAmount="{!v.closedOpportunitiesAmount}"
+    paymentPlan="{!v.paymentPlan}"
+    orderType="{!v.orderType}"
+  />
 </aura:component>

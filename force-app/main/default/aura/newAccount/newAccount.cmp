@@ -1,7 +1,7 @@
 <aura:component access="global" controller="customFlowController">
   <!-- Attributes -->
-  <aura:attribute name="newAccountNameField" type="String" />
-  <aura:attribute name="newAccountCountryField" type="String" />
+  <aura:attribute name="newAccountNameField" type="String"  default=''/>
+  <aura:attribute name="newAccountCountryField" type="String"  default=''/>
   <aura:attribute name="IsSpinner" type="Boolean"/>
   <!-- Events -->
   <aura:registerEvent name="assignAccountIdEvent" type="c:assignAccountId" />

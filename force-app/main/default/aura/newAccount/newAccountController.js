@@ -3,7 +3,6 @@
     component.find("newAccountOverlay").notifyClose();
   },
   saveAccount: function (component, event, helper) {
-    component.set("v.IsSpinner",true);
     var name = component.get("v.newAccountNameField");
     var country = component.get("v.newAccountCountryField");
     var allValid = component
@@ -13,6 +12,7 @@
         return validSoFar && !inputCmp.get("v.validity").valueMissing;
       }, true);
     if (allValid) {
+      component.set("v.IsSpinner",true);
       var action = component.get("c.createAccount");
       action.setParams({
         name: name,
