@@ -1,12 +1,7 @@
 <aura:component>
   <!-- Attributes -->
   <aura:attribute name="options" type="List" default="[]" />
-  <!-- Events -->
-  <aura:handler
-    name="init"
-    value="{!this}"
-    action="{!c.recalculateSubtotalPrice}"
-  />
+  <aura:attribute name="subtotals" type="Object" default="{}" />
   <!-- Layout -->
   <div class="slds-truncate">{!v.options.pricebookName}</div>
   <table class="slds-table slds-table_cell-buffer slds-table_bordered">

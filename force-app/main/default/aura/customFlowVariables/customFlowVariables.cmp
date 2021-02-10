@@ -9,5 +9,6 @@
     <aura:attribute name="productsOptions" type="List" default='[]'/>
     <aura:attribute name="paymentPlan" type="String" default="" />
     <aura:attribute name="orderType" type="String" default="" />
+    <aura:attribute name="subtotals" type="Object" default="{}" />
     <div>{!v.body}</div>
 </aura:component>	

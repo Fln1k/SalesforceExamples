@@ -23,12 +23,13 @@
         totalPrice += parseFloat(element.amount) * parseFloat(element.price);
       }
     });
-    component.set(
-      "v.options.total",
-      (
-        (totalPrice / 100) * component.get("v.options.tax") +
-        totalPrice
-      ).toFixed(2)
-    );
+    totalPrice = (
+      (totalPrice / 100) * component.get("v.options.tax") +
+      totalPrice
+    ).toFixed(2);
+    component.set("v.options.total",totalPrice);
+    var subtotals = component.get("v.subtotals");
+    subtotals[component.get("v.options.pricebookName")] = totalPrice;
+    component.set("v.subtotals", subtotals);
   },
 });

@@ -1,6 +1,4 @@
 <aura:component extends="c:customFlowVariables">
-  <!-- Attributes -->
-  <aura:attribute name="productsOptions" type="List" default='[]'/>
   <!-- Layout -->
   <aura:if isTrue="{!v.currentStage == 1}">
     <c:firstStage
@@ -22,6 +20,7 @@
   </aura:if>
   <aura:if isTrue="{!v.currentStage == 3}">
     <c:thirdStage accountId="{!v.accountId}"
-    productsOptions="{!v.productsOptions}" />
+    productsOptions="{!v.productsOptions}"
+    subtotals="{!v.subtotals}" />
   </aura:if>
 </aura:component>
