@@ -27,8 +27,8 @@
       checked="{! checkbox.checked ? checkbox.checked:false}"
       disabled="{! checkbox.disabled ? checkbox.disabled:false}"
     />
-    <aura:if isTrue="{!v.isError}">
+  </aura:iteration>
+  <aura:if isTrue="{!v.isError}">
     <div style="color: red">Select option</div>
     </aura:if>
-  </aura:iteration>
 </aura:component>

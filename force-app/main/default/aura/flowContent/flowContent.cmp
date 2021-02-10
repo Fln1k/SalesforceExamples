@@ -1,7 +1,6 @@
 <aura:component extends="c:customFlowVariables">
   <!-- Attributes -->
-  <aura:attribute name="paymentPlan" type="String"  default=''/>
-  <aura:attribute name="orderType" type="String" default=''/>
+  <aura:attribute name="productsOptions" type="List" default='[]'/>
   <!-- Layout -->
   <aura:if isTrue="{!v.currentStage == 1}">
     <c:firstStage
@@ -9,6 +8,9 @@
       opportunityId="{!v.opportunityId}"
       accountOpportunitiesCount="{!v.accountOpportunitiesCount}"
       closedOpportunitiesAmount="{!v.closedOpportunitiesAmount}"
+      productsOptions="{!v.productsOptions}"
+      paymentPlan="{!v.paymentPlan}"
+      orderType="{!v.orderType}"
     />
   </aura:if>
   <aura:if isTrue="{!v.currentStage == 2}">
@@ -19,6 +21,7 @@
     />
   </aura:if>
   <aura:if isTrue="{!v.currentStage == 3}">
-    <c:thirdStage />
+    <c:thirdStage accountId="{!v.accountId}"
+    productsOptions="{!v.productsOptions}" />
   </aura:if>
 </aura:component>

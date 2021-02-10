@@ -53,7 +53,7 @@
           placeholder="Opportunity name"
           value="{!v.opportunityId}"
           searchField="Name"
-          disabled="false"
+          disabled="true"
           iconName="standard:opportunity"
           filter="{!v.opportunityLookupFieldFilter}"
         />

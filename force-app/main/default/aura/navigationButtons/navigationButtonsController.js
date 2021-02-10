@@ -25,7 +25,7 @@
       }
       if (currentStage == 2) {
         var paymentPlan = component.get("v.paymentPlan");
-        if (paymentPlan.length == 0) {
+        if (!paymentPlan.length) {
           isValid = false;
           $A.get("e.c:paymentPlanUndefined").fire();
         }

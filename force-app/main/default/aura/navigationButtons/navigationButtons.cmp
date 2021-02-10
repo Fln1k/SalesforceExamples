@@ -2,8 +2,6 @@
   extends="c:customFlowVariables"
   controller="customFlowController"
 >
-  <!-- Attributes -->
-  <aura:attribute name="paymentPlan" type="String"  default=''/>
   <!-- Events -->
   <aura:registerEvent name="closeModalEvent" type="c:closeModal" />
   <aura:registerEvent

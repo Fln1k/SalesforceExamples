@@ -1,9 +1,12 @@
 ({
   loadStages: function (component, event, helper) {
     var opts = [
-      { value: 1, label: "Open" },
-      { value: 2, label: "In Progress" },
-      { value: 3, label: "Closed" },
+      { value: 1, label: "Account select" },
+      { value: 2, label: "Plan Select" },
+      { value: 3, label: "3 stage" },
+      { value: 4, label: "4 stage" },
+      { value: 5, label: "5 stage" },
+      { value: 6, label: "6 stage" },
     ];
     component.set("v.progressIndicatorStages", opts);
   },

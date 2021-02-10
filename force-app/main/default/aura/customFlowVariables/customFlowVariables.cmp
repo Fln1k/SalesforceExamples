@@ -6,5 +6,8 @@
     <aura:attribute name="accountOpportunitiesCount" type="Integer" default="0"/>
     <aura:attribute name="canBack" type="Boolean" default="false"/>
     <aura:attribute name="canNext" type="Boolean" default="true"/>
+    <aura:attribute name="productsOptions" type="List" default='[]'/>
+    <aura:attribute name="paymentPlan" type="String" default="" />
+    <aura:attribute name="orderType" type="String" default="" />
     <div>{!v.body}</div>
 </aura:component>	

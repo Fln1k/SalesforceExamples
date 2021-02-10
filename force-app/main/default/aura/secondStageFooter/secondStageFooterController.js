@@ -50,7 +50,7 @@
     ];
     var orderType = component.get("v.orderType");
     var paymentPlan = component.get("v.paymentPlan");
-    if (orderType) {
+    if (orderType.length) {
       var secondGroupChecked = secondGroup.filter((obj) => {
         return obj.value === orderType;
       });
