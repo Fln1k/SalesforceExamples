@@ -22,7 +22,9 @@
           <div class="slds-truncate" title="Price">Price</div>
         </th>
         <th class="" scope="col" style="width: 6%">
-          <div class="slds-truncate" title="Subtotal">Total</div>
+          <div class="slds-truncate" title="Subtotal">
+            Total(with {!v.options.tax}% tax)
+          </div>
         </th>
       </tr>
     </thead>
@@ -55,7 +57,8 @@
               class="slds-truncate"
               id="{!v.options.pricebookName + '::' + option.name+'_total'}"
             >
-              {!option.amount? option.amount*option.price:0}{!v.options.currency}
+              {!option.amount?
+              option.amount*(option.price/100*v.options.tax+option.price):0}{!v.options.currency}
             </div>
           </th>
         </tr>
@@ -65,7 +68,9 @@
         <th data-label="Name" scope="row"></th>
         <th data-label="Price" scope="row"></th>
         <th data-label="Total" scope="row">
-          <div class="slds-truncate">Subotal: {!v.options.total}{!v.options.currency}</div>
+          <div class="slds-truncate">
+            Subotal: {!v.options.total}{!v.options.currency}
+          </div>
         </th>
       </tr>
     </tbody>

@@ -34,15 +34,18 @@ public with sharing class customFlowController {
         Account currentAccount = [Select BillingCountry from Account 
                                   WHERE Id=:accountId];
         Set<Id> pricebookIds = new Set<Id>();
-        for(CountrySetting__c countrySetting : [Select Pricebook__c
+        Map<Id,Double> taxes = new Map<Id,Double>();
+        for(CountrySetting__c countrySetting : [Select Pricebook__c, Tax__c
                                                  from CountrySetting__c 
                                                  WHERE Country__c=:currentAccount.BillingCountry
                                                 ]){
                                                     pricebookIds.add(countrySetting.Pricebook__c);
+                                                    taxes.put(countrySetting.Pricebook__c,countrySetting.Tax__c); 
                                                 }
-        String result = JSON.serialize([SELECT Product2.Name, UnitPrice, Pricebook2.Name,CurrencyIsoCode
+        String pricebooks =  JSON.serialize([SELECT Product2.Name, UnitPrice, Pricebook2.Name,CurrencyIsoCode
                                         FROM PricebookEntry
                                         WHERE Pricebook2Id in :pricebookIds]);
-        return result;                                             
+        taxes.remove(null);
+        return '{"pricebooks":'+pricebooks+',"taxes":['+JSON.serialize(taxes)+']}';                                             
     }
 }   
