@@ -14,7 +14,6 @@
           var action = component.get("c.createOpportunity");
           action.setParams({
             accountId: accountId,
-            postfix: parseInt(component.get("v.accountOpportunitiesCount")) + 1,
           });
           action.setCallback(this, function (response) {
             var newOpportunityId = response.getReturnValue().Id;
@@ -25,7 +24,7 @@
       }
       if (currentStage == 2) {
         var paymentPlan = component.get("v.paymentPlan");
-        if (paymentPlan.length == 0) {
+        if (!paymentPlan.length) {
           isValid = false;
           $A.get("e.c:paymentPlanUndefined").fire();
         }

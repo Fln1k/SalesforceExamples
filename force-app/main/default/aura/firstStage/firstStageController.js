@@ -24,19 +24,21 @@
       });
       action.setCallback(this, function (response) {
         var opportunities = response.getReturnValue();
-        var closedOpportunitiesCounter = 0
+        var closedOpportunitiesCounter = 0;
         var availableOpportunities = [];
         opportunities.forEach(function (opportunity) {
-          if (opportunity.StageName.includes("Closed")){
+          if (opportunity.StageName.includes("Closed")) {
             ++closedOpportunitiesCounter;
-          }
-          else{
-            availableOpportunities.push(opportunity)
+          } else {
+            availableOpportunities.push(opportunity);
           }
         });
-        component.set("v.closedOpportunitiesAmount", closedOpportunitiesCounter);
+        component.set(
+          "v.closedOpportunitiesAmount",
+          closedOpportunitiesCounter
+        );
         var opportunityDisabled;
-        var availableOpportunitiesLength = availableOpportunities.length
+        var availableOpportunitiesLength = availableOpportunities.length;
         if (!availableOpportunitiesLength) {
           opportunityDisabled = true;
         } else {
@@ -44,7 +46,10 @@
             component.set("v.opportunityId", availableOpportunities[0].Id);
           }
           opportunityDisabled = false;
-          component.set("v.accountOpportunitiesCount", availableOpportunitiesLength);
+          component.set(
+            "v.accountOpportunitiesCount",
+            availableOpportunitiesLength
+          );
           component.set(
             "v.opportunityLookupFieldFilter",
             "AccountId='" + id + "' and  (NOT StageName like 'Closed%')"
@@ -56,6 +61,9 @@
     } else {
       opportunityLookupField.set("v.disabled", true);
       opportunityLookupField.set("v.value", "");
+      component.set("v.productsOptions", []);
+      component.set("v.paymentPlan", "");
+      component.set("v.orderType", "");
     }
   },
   showNewAccount: function (component) {

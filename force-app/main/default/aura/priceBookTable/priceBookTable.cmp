@@ -1,0 +1,74 @@
+<aura:component>
+  <!-- Attributes -->
+  <aura:attribute name="options" type="List" default="[]" />
+  <aura:attribute name="subtotals" type="Object" default="{}" />
+  <!-- Layout -->
+  <div class="slds-truncate" style="font-size: x-large; font-family: fantasy">
+    {!v.options.pricebookName}
+  </div>
+  <table class="slds-table slds-table_cell-buffer slds-table_bordered">
+    <thead>
+      <tr class="slds-line-height_reset">
+        <th class="" scope="col" style="width: 6%">
+          <div class="slds-truncate" title="Amount">Amount</div>
+        </th>
+        <th class="" scope="col" style="width: 82%">
+          <div class="slds-truncate" title="Name">Name</div>
+        </th>
+        <th class="" scope="col" style="width: 6%">
+          <div class="slds-truncate" title="Price">Price</div>
+        </th>
+        <th class="" scope="col" style="width: 6%">
+          <div class="slds-truncate" title="Subtotal">
+            Total(with {!v.options.tax}% tax)
+          </div>
+        </th>
+      </tr>
+    </thead>
+    <tbody>
+      <aura:iteration items="{!v.options.entities}" var="option">
+        <tr class="slds-hint-parent">
+          <th data-label="Amount" scope="row">
+            <div class="slds-truncate">
+              <lightning:input
+                id="{!v.options.pricebookName + '::' + option.name + '_amount'}"
+                type="number"
+                value="{!option.amount? option.amount:0}"
+                onchange="{!c.recalculateTotal}"
+              />
+            </div>
+          </th>
+          <th data-label="Name" scope="row">
+            <div class="slds-truncate">{!option.name}</div>
+          </th>
+          <th data-label="Price" scope="row">
+            <div
+              class="slds-truncate"
+              id="{!v.options.pricebookName + '::' + option.name+'_price'}"
+            >
+              {!option.price + v.options.currency}
+            </div>
+          </th>
+          <th data-label="Total" scope="row">
+            <div
+              class="slds-truncate"
+              id="{!v.options.pricebookName + '::' + option.name+'_total'}"
+            >
+              {!option.total? option.total:0}{!v.options.currency}
+            </div>
+          </th>
+        </tr>
+      </aura:iteration>
+      <tr class="slds-hint-parent">
+        <th data-label="Amount" scope="row"></th>
+        <th data-label="Name" scope="row"></th>
+        <th data-label="Price" scope="row"></th>
+        <th data-label="Total" scope="row">
+          <div class="slds-truncate">
+            Subotal: {!v.options.total}{!v.options.currency}
+          </div>
+        </th>
+      </tr>
+    </tbody>
+  </table>
+</aura:component>

@@ -1,6 +1,4 @@
 <aura:component extends="c:customFlowVariables">
-  <!-- Attributes -->
-  <aura:attribute name="paymentPlan" type="String"  default=''/>
   <!-- Layout -->
   <c:stageProgress
     currentStage="{!v.currentStage}"
