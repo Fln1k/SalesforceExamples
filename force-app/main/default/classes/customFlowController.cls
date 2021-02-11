@@ -9,7 +9,8 @@ public with sharing class customFlowController {
     }
     
     @AuraEnabled
-    public static Opportunity createOpportunity(String accountId,string postfix){
+    public static Opportunity createOpportunity(String accountId){
+        Integer postfix=getCountOfAccountOpportunities(accountId).size();
         Opportunity newOpportunity = new Opportunity();
         newOpportunity.CloseDate=date.today().addMonths(2);
         newOpportunity.Name='Opportunity '+postfix;
@@ -33,19 +34,15 @@ public with sharing class customFlowController {
     public static String getPricebookByAccountId(String accountId){
         Account currentAccount = [Select BillingCountry from Account 
                                   WHERE Id=:accountId];
-        Set<Id> pricebookIds = new Set<Id>();
-        Map<Id,Double> taxes = new Map<Id,Double>();
-        for(CountrySetting__c countrySetting : [Select Pricebook__c, Tax__c
-                                                 from CountrySetting__c 
-                                                 WHERE Country__c=:currentAccount.BillingCountry
-                                                ]){
-                                                    pricebookIds.add(countrySetting.Pricebook__c);
-                                                    taxes.put(countrySetting.Pricebook__c,countrySetting.Tax__c); 
-                                                }
-        String pricebooks =  JSON.serialize([SELECT Product2.Name, UnitPrice, Pricebook2.Name,CurrencyIsoCode
-                                        FROM PricebookEntry
-                                        WHERE Pricebook2Id in :pricebookIds]);
-        taxes.remove(null);
-        return '{"pricebooks":'+pricebooks+',"taxes":['+JSON.serialize(taxes)+']}';                                             
+        CountrySetting__c countrySetting = [Select Pricebook__c, Tax__c
+                                            from CountrySetting__c 
+                                            WHERE Name =: currentAccount.BillingCountry
+                                            LIMIT 1
+                                           ];
+        String pricebook =  JSON.serialize([SELECT Product2.Name, UnitPrice, Pricebook2.Name, CurrencyIsoCode,
+                                                 Product2.Family
+                                             FROM PricebookEntry
+                                             WHERE Pricebook2Id =: countrySetting.Pricebook__c]);
+        return '{"pricebook":'+pricebook+',"tax":'+countrySetting.Tax__c+'}';                                             
     }
 }   

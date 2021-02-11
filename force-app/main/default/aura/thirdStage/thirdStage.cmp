@@ -16,7 +16,8 @@
     <c:priceBookTable options="{!pricebook}" subtotals="{!v.subtotals}" />
     <br />
   </aura:iteration>
-  <div style="float: right">
+  <div style="float: right; font-size: initial; font-family: fantasy">
     Total: {!v.total + v.productsOptions[0].currency}
   </div>
+  <br />
 </aura:component>

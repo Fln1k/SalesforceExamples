@@ -3,7 +3,9 @@
   <aura:attribute name="options" type="List" default="[]" />
   <aura:attribute name="subtotals" type="Object" default="{}" />
   <!-- Layout -->
-  <div class="slds-truncate">{!v.options.pricebookName}</div>
+  <div class="slds-truncate" style="font-size: x-large; font-family: fantasy">
+    {!v.options.pricebookName}
+  </div>
   <table class="slds-table slds-table_cell-buffer slds-table_bordered">
     <thead>
       <tr class="slds-line-height_reset">
@@ -52,8 +54,7 @@
               class="slds-truncate"
               id="{!v.options.pricebookName + '::' + option.name+'_total'}"
             >
-              {!option.amount?
-              option.amount*(option.price/100*v.options.tax+option.price):0}{!v.options.currency}
+              {!option.total? option.total:0}{!v.options.currency}
             </div>
           </th>
         </tr>

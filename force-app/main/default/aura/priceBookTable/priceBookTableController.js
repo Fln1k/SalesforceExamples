@@ -6,14 +6,16 @@
     var productPrice = document
       .getElementById(productName + "_price")
       .innerHTML.slice(0, -1);
-    var subTotal = parseFloat(productAmount) * parseFloat(productPrice);
+    var total = parseFloat(productAmount) * parseFloat(productPrice);
+    total = ((total / 100) * tax + total).toFixed(2);
     document.getElementById(productName + "_total").innerHTML =
-      ((subTotal / 100) * tax + subTotal).toFixed(2) +
-      component.get("v.options.currency");
+      total + component.get("v.options.currency");
     productName = productName.split("::")[1];
-    component.get("v.options.entities").filter((obj) => {
+    var currentProduct = component.get("v.options.entities").filter((obj) => {
       return obj.name == productName;
-    })[0].amount = productAmount;
+    })[0];
+    currentProduct.amount = productAmount;
+    currentProduct.total = total;
     $A.enqueueAction(component.get("c.recalculateSubtotalPrice"));
   },
   recalculateSubtotalPrice: function (component, event, helper) {
@@ -27,7 +29,7 @@
       (totalPrice / 100) * component.get("v.options.tax") +
       totalPrice
     ).toFixed(2);
-    component.set("v.options.total",totalPrice);
+    component.set("v.options.total", totalPrice);
     var subtotals = component.get("v.subtotals");
     subtotals[component.get("v.options.pricebookName")] = totalPrice;
     component.set("v.subtotals", subtotals);
