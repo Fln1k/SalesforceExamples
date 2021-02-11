@@ -1,4 +1,5 @@
 <aura:component extends="c:customFlowVariables">
+  <aura:attribute name="additionalComments" type="String" default=""/>
   <!-- Layout -->
   <aura:if isTrue="{!v.currentStage == 1}">
     <c:firstStage
@@ -24,6 +25,6 @@
     subtotals="{!v.subtotals}" />
   </aura:if>
   <aura:if isTrue="{!v.currentStage == 4}">
-    <c:fourthStage />
+    <c:fourthStage additionalComments="{!v.additionalComments}"/>
   </aura:if>
 </aura:component>
