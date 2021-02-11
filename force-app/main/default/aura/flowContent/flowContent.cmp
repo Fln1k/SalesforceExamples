@@ -23,4 +23,7 @@
     productsOptions="{!v.productsOptions}"
     subtotals="{!v.subtotals}" />
   </aura:if>
+  <aura:if isTrue="{!v.currentStage == 4}">
+    <c:fourthStage />
+  </aura:if>
 </aura:component>
