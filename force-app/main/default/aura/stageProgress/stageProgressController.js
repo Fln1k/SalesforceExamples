@@ -6,7 +6,6 @@
       { value: 3, label: "3 stage" },
       { value: 4, label: "4 stage" },
       { value: 5, label: "5 stage" },
-      { value: 6, label: "6 stage" },
     ];
     component.set("v.progressIndicatorStages", opts);
   },
