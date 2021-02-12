@@ -1,0 +1,13 @@
+<aura:component extends="c:customFlowVariables">
+  <!-- Attribute -->
+  <aura:attribute name="country" type="String" default="" />
+  <!-- Layouts -->
+  <div class="slds-align_absolute-center" style="font-size: x-large">
+    Information check
+  </div>
+  <c:accountInformation
+    accountId="{!v.accountId}"
+    opportunityId="{!v.opportunityId}"
+    billingCountry="{!v.country}"
+  />
+</aura:component>

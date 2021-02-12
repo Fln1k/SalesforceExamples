@@ -43,6 +43,6 @@ public with sharing class customFlowController {
                                                  Product2.Family
                                              FROM PricebookEntry
                                              WHERE Pricebook2Id =: countrySetting.Pricebook__c]);
-        return '{"pricebook":'+pricebook+',"tax":'+countrySetting.Tax__c+'}';                                             
+        return '{"pricebook":'+pricebook+',"tax":'+countrySetting.Tax__c+',"country":"'+currentAccount.BillingCountry+'"}';                                             
     }
 }   

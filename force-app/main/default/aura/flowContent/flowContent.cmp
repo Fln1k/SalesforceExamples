@@ -1,6 +1,8 @@
 <aura:component extends="c:customFlowVariables">
-  <aura:attribute name="additionalComments" type="String" default=""/>
+  <aura:attribute name="additionalComments" type="String" default="" />
+  <aura:attribute name="country" type="String" default="" />
   <!-- Layout -->
+  <!-- 1 stage -->
   <aura:if isTrue="{!v.currentStage == 1}">
     <c:firstStage
       accountId="{!v.accountId}"
@@ -12,6 +14,7 @@
       orderType="{!v.orderType}"
     />
   </aura:if>
+  <!-- 2 stage -->
   <aura:if isTrue="{!v.currentStage == 2}">
     <c:secondStage
       closedOpportunitiesAmount="{!v.closedOpportunitiesAmount}"
@@ -19,12 +22,25 @@
       orderType="{!v.orderType}"
     />
   </aura:if>
+  <!-- 3 stage -->
   <aura:if isTrue="{!v.currentStage == 3}">
-    <c:thirdStage accountId="{!v.accountId}"
-    productsOptions="{!v.productsOptions}"
-    subtotals="{!v.subtotals}" />
+    <c:thirdStage
+      accountId="{!v.accountId}"
+      productsOptions="{!v.productsOptions}"
+      subtotals="{!v.subtotals}"
+      country="{!v.country}"
+    />
   </aura:if>
+  <!-- 4 stage -->
   <aura:if isTrue="{!v.currentStage == 4}">
-    <c:fourthStage additionalComments="{!v.additionalComments}"/>
+    <c:fourthStage additionalComments="{!v.additionalComments}" />
+  </aura:if>
+  <!-- 5 stage -->
+  <aura:if isTrue="{!v.currentStage == 5}">
+    <c:fifthStage
+      accountId="{!v.accountId}"
+      opportunityId="{!v.opportunityId}"
+      country="{!v.country}"
+    />
   </aura:if>
 </aura:component>

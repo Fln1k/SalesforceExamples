@@ -14,15 +14,14 @@
           }, {});
         };
         var result = JSON.parse(response.getReturnValue());
-        console.log(result);
         result["pricebook"] = groupBy(
           result["pricebook"],
           "Product2",
           "Family"
         );
-        console.log(result);
         var pricebook = [];
         var subtotals = {};
+        component.set("v.country", result["country"]);
         Object.keys(result["pricebook"]).forEach((pricebookId) => {
           var tempEntities = [];
           var pricebookIdentifier =
