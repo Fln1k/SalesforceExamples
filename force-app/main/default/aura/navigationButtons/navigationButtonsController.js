@@ -29,6 +29,45 @@
           $A.get("e.c:paymentPlanUndefined").fire();
         }
       }
+      if (currentStage == 3) {
+        isValid = false;
+        var pricebooks = component.get("v.productsOptions");
+        var productsToInsert = [];
+        Object.keys(pricebooks).forEach((productFamily) => {
+          pricebooks[productFamily]["entities"].forEach((product) => {
+            if (parseInt(product.amount)) {
+              isValid = true;
+              productsToInsert.push({
+                amount: product.amount,
+                pricebookEntryId: product.entitiyId,
+                price: product.price,
+              });
+            }
+          });
+        });
+        console.log(productsToInsert);
+      }
+      if (currentStage == 5) {
+        console.log(productsToInsert);
+        var action = component.get("c.updateAccountAndContactFields");
+          action.setParams({
+            accountId: component.get("v.accountId"),
+            billingStreet: component.get("v.billingStreet"),
+            billingCity: component.get("v.billingCity"),
+            billingCountry: component.get("v.billingCountry"),
+            billingPostalCode: component.get("v.billingPostalCode"),
+            billingProvince: component.get("v.billingProvince"),
+            shippingStreet: component.get("v.shippingStreet"),
+            shippingCity: component.get("v.shippingCity"),
+            shippingCountry: component.get("v.shippingCountry"),
+            shippingPostalCode: component.get("v.shippingPostalCode"),
+            shippingProvince: component.get("v.shippingProvince"),
+          });
+          action.setCallback(this, function (response) {
+            console.log(response.getReturnValue());
+          });
+          $A.enqueueAction(action);
+      }
     }
     if (isValid) {
       var valueToAssign = currentStage + valueToChange;

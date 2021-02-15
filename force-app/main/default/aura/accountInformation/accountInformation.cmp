@@ -1,25 +1,13 @@
-<aura:component controller="customFlowController">
+<aura:component controller="customFlowController" extends="c:customFlowVariables">
   <!-- Attributes -->
-  <aura:attribute name="billingStreet" type="String" default="Pushkina" />
-  <aura:attribute name="billingCity" type="String" default="Minsk" />
-  <aura:attribute name="billingCountry" type="String" default="Belarus" />
-  <aura:attribute name="billingPostalCode" type="String" default="94105" />
-  <aura:attribute name="billingProvince" type="String" default="CA"/>
   <aura:attribute name="billingCountryOptions" type="List" default="[]" />
-  <aura:attribute name="shippingStreet" type="String" default="Kolotushkina" />
-  <aura:attribute name="shippingCity" type="String" default="Minsk" />
-  <aura:attribute name="shippingCountry" type="String" default="Belarus" />
-  <aura:attribute name="shippingPostalCode" type="String" default="94105" />
-  <aura:attribute name="shippingProvince" type="String" default="CA"/>
   <aura:attribute name="shippingCountryOptions" type="List" default="[]" />
-  <aura:attribute name="accountId" type="Id" default=''/>
-  <aura:attribute name="opportunityId" type="Id" default=''/>
   <!-- Events -->
-  <aura:handler name="init" value="{! this }" action="{! c.init }"/>
+  <aura:handler name="init" value="{! this }" action="{! c.init }" />
   <!-- Layout -->
   <table>
     <tr>
-      <td style="padding-right: 20px;">
+      <td style="padding-right: 20px">
         <c:strike_lookup
           aura:id="accountShowLookupField"
           label="Account"
@@ -42,7 +30,7 @@
       </td>
     </tr>
     <tr>
-      <td style="padding-right: 20px;">
+      <td style="padding-right: 20px">
         <lightning:input
           type="email"
           name="email3"
@@ -60,7 +48,7 @@
       </td>
     </tr>
     <tr>
-      <td style="padding-right: 20px;">
+      <td style="padding-right: 20px">
         <lightning:inputAddress
           addressLabel="Billing adress"
           streetLabel="Street"

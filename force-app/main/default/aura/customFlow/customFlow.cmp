@@ -12,6 +12,17 @@
     opportunityId="{!v.opportunityId}"
     accountOpportunitiesCount="{!v.accountOpportunitiesCount}"
     paymentPlan="{!v.paymentPlan}"
+    productsOptions="{!v.productsOptions}"
+    billingStreet="{!v.billingStreet}"
+    billingCity="{!v.billingCity}"
+    billingCountry="{!v.billingCountry}"
+    billingPostalCode="{!v.billingPostalCode}"
+    billingProvince="{!v.billingProvince}"
+    shippingStreet="{!v.shippingStreet}"
+    shippingCity="{!v.shippingCity}"
+    shippingPostalCode="{!v.shippingPostalCode}"
+    shippingCountry="{!v.shippingCountry}"
+    shippingProvince="{!v.shippingProvince}"
   />
   <br />
   <div class="slds-align_absolute-center">
@@ -23,6 +34,17 @@
       opportunityId="{!v.opportunityId}"
       accountOpportunitiesCount="{!v.accountOpportunitiesCount}"
       paymentPlan="{!v.paymentPlan}"
+      productsOptions="{!v.productsOptions}"
+      billingStreet="{!v.billingStreet}"
+      billingCity="{!v.billingCity}"
+      billingCountry="{!v.billingCountry}"
+      billingPostalCode="{!v.billingPostalCode}"
+      billingProvince="{!v.billingProvince}"
+      shippingStreet="{!v.shippingStreet}"
+      shippingCity="{!v.shippingCity}"
+      shippingPostalCode="{!v.shippingPostalCode}"
+      shippingCountry="{!v.shippingCountry}"
+      shippingProvince="{!v.shippingProvince}"
     />
   </div>
 </aura:component>

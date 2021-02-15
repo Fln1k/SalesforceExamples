@@ -1,6 +1,5 @@
 <aura:component extends="c:customFlowVariables">
   <aura:attribute name="additionalComments" type="String" default="" />
-  <aura:attribute name="country" type="String" default="" />
   <!-- Layout -->
   <!-- 1 stage -->
   <aura:if isTrue="{!v.currentStage == 1}">
@@ -28,7 +27,7 @@
       accountId="{!v.accountId}"
       productsOptions="{!v.productsOptions}"
       subtotals="{!v.subtotals}"
-      country="{!v.country}"
+      shippingCountry="{!v.shippingCountry}"
     />
   </aura:if>
   <!-- 4 stage -->
@@ -40,7 +39,16 @@
     <c:fifthStage
       accountId="{!v.accountId}"
       opportunityId="{!v.opportunityId}"
-      country="{!v.country}"
+      billingStreet="{!v.billingStreet}"
+      billingCity="{!v.billingCity}"
+      billingCountry="{!v.billingCountry}"
+      billingPostalCode="{!v.billingPostalCode}"
+      billingProvince="{!v.billingProvince}"
+      shippingStreet="{!v.shippingStreet}"
+      shippingCity="{!v.shippingCity}"
+      shippingPostalCode="{!v.shippingPostalCode}"
+      shippingCountry="{!v.shippingCountry}"
+      shippingProvince="{!v.shippingProvince}"
     />
   </aura:if>
 </aura:component>

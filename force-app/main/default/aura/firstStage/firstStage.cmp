@@ -28,7 +28,7 @@
           label="{!v.objectName}"
           object="{!v.objectName}"
           value="{!v.accountId}"
-          subtitleField="BillingCountry"
+          subtitleField="ShippingCountry"
           iconName="standard:account"
           placeholder="Account name"
           errorMessage="Select an account please"

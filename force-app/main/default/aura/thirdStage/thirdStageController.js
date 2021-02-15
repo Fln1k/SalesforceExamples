@@ -21,7 +21,7 @@
         );
         var pricebook = [];
         var subtotals = {};
-        component.set("v.country", result["country"]);
+        component.set("v.shippingCountry", result["country"]);
         Object.keys(result["pricebook"]).forEach((pricebookId) => {
           var tempEntities = [];
           var pricebookIdentifier =
@@ -30,6 +30,7 @@
             result["pricebook"][pricebookId][0].CurrencyIsoCode;
           result["pricebook"][pricebookId].forEach((element) => {
             tempEntities.push({
+              entitiyId: element.Id,
               name: element.Product2.Name,
               price: element.UnitPrice,
             });

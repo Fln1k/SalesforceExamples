@@ -21,10 +21,7 @@ export default class LightningExampleInputSearch extends LightningElement {
           this.data = result;
           this.flagIndicatingDataHasBeenLoadedInVariables = true;
         })
-        .catch((error) => {
-          console.log("error");
-          console.log(error);
-        });
+        .catch((error) => {});
     } else {
       alert("Please fill fields with valid data");
     }

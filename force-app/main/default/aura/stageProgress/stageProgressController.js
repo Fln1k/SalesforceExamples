@@ -1,11 +1,12 @@
 ({
   loadStages: function (component, event, helper) {
     var opts = [
-      { value: 1, label: "Account select" },
-      { value: 2, label: "Plan Select" },
-      { value: 3, label: "3 stage" },
-      { value: 4, label: "4 stage" },
-      { value: 5, label: "5 stage" },
+      { value: 1, label: "Account" },
+      { value: 2, label: "Plan" },
+      { value: 3, label: "Products" },
+      { value: 4, label: "Comments" },
+      { value: 5, label: "Info" },
+      { value: 6, label: "Quote" },
     ];
     component.set("v.progressIndicatorStages", opts);
   },

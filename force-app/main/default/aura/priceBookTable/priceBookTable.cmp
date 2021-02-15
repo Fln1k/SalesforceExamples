@@ -20,7 +20,7 @@
         </th>
         <th class="" scope="col" style="width: 6%">
           <div class="slds-truncate" title="Subtotal">
-            Total(with {!v.options.tax}% tax)
+            Total
           </div>
         </th>
       </tr>

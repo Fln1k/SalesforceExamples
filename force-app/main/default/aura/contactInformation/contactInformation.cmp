@@ -1,0 +1,24 @@
+<aura:component>
+  <!-- Attributes -->
+  <aura:attribute name="accountId" type="Id" default="" />
+  <aura:attribute name="contactId" type="Id" default="" />
+  <aura:attribute name="contactLookupFieldFilter" type="String" default="" />
+  <!-- Events -->
+  <aura:handler name="init" value="{!this}" action="{!c.setUpContactFilter}" />
+  <!-- Layout -->
+  <table>
+    <tr>
+      <td style="padding-right: 20px">
+        <c:strike_lookup
+          aura:id="contactLookupField"
+          label="Contact"
+          object="Contact"
+          value="{!v.contactId}"
+          iconName="standard:contact"
+          searchField="Name"
+          filter="{!v.contactLookupFieldFilter}"
+        />
+      </td>
+    </tr>
+  </table>
+</aura:component>

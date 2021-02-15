@@ -1,6 +1,4 @@
 <aura:component extends="c:customFlowVariables">
-  <!-- Attribute -->
-  <aura:attribute name="country" type="String" default="" />
   <!-- Layouts -->
   <div class="slds-align_absolute-center" style="font-size: x-large">
     Information check
@@ -8,6 +6,17 @@
   <c:accountInformation
     accountId="{!v.accountId}"
     opportunityId="{!v.opportunityId}"
-    billingCountry="{!v.country}"
+    billingStreet="{!v.billingStreet}"
+    billingCity="{!v.billingCity}"
+    billingCountry="{!v.billingCountry}"
+    billingPostalCode="{!v.billingPostalCode}"
+    billingProvince="{!v.billingProvince}"
+    shippingStreet="{!v.shippingStreet}"
+    shippingCity="{!v.shippingCity}"
+    shippingPostalCode="{!v.shippingPostalCode}"
+    shippingCountry="{!v.shippingCountry}"
+    shippingProvince="{!v.shippingProvince}"
   />
+  <br />
+  <c:contactInformation accountId="{!v.accountId}" />
 </aura:component>
