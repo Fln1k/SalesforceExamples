@@ -28,6 +28,7 @@
       productsOptions="{!v.productsOptions}"
       subtotals="{!v.subtotals}"
       shippingCountry="{!v.shippingCountry}"
+      currencyIsoCode="{!v.currencyIsoCode}"
     />
   </aura:if>
   <!-- 4 stage -->

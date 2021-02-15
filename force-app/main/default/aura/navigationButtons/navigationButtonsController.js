@@ -31,8 +31,8 @@
       }
       if (currentStage == 3) {
         isValid = false;
-        var pricebooks = component.get("v.productsOptions");
         var productsToInsert = [];
+        var pricebooks = component.get("v.productsOptions");
         Object.keys(pricebooks).forEach((productFamily) => {
           pricebooks[productFamily]["entities"].forEach((product) => {
             if (parseInt(product.amount)) {
@@ -48,25 +48,60 @@
         console.log(productsToInsert);
       }
       if (currentStage == 5) {
-        console.log(productsToInsert);
-        var action = component.get("c.updateAccountAndContactFields");
-          action.setParams({
-            accountId: component.get("v.accountId"),
-            billingStreet: component.get("v.billingStreet"),
-            billingCity: component.get("v.billingCity"),
-            billingCountry: component.get("v.billingCountry"),
-            billingPostalCode: component.get("v.billingPostalCode"),
-            billingProvince: component.get("v.billingProvince"),
-            shippingStreet: component.get("v.shippingStreet"),
-            shippingCity: component.get("v.shippingCity"),
-            shippingCountry: component.get("v.shippingCountry"),
-            shippingPostalCode: component.get("v.shippingPostalCode"),
-            shippingProvince: component.get("v.shippingProvince"),
+        var productsToInsert = [];
+        var pricebooks = component.get("v.productsOptions");
+        Object.keys(pricebooks).forEach((productFamily) => {
+          pricebooks[productFamily]["entities"].forEach((product) => {
+            if (parseInt(product.amount)) {
+              isValid = true;
+              productsToInsert.push({
+                amount: product.amount,
+                pricebookEntryId: product.entitiyId,
+                price: product.price,
+              });
+            }
           });
-          action.setCallback(this, function (response) {
-            console.log(response.getReturnValue());
-          });
-          $A.enqueueAction(action);
+        });
+        var updateAccountInfo = component.get(
+          "c.updateAccountAndContactFields"
+        );
+        var createQote = component.get("c.createQuote");
+        createQote.setParams({
+          opportunityId: component.get("v.opportunityId"),
+          billingStreet: component.get("v.billingStreet"),
+          billingCity: component.get("v.billingCity"),
+          billingCountry: component.get("v.billingCountry"),
+          billingPostalCode: component.get("v.billingPostalCode"),
+          billingProvince: component.get("v.billingProvince"),
+          shippingStreet: component.get("v.shippingStreet"),
+          shippingCity: component.get("v.shippingCity"),
+          shippingCountry: component.get("v.shippingCountry"),
+          shippingPostalCode: component.get("v.shippingPostalCode"),
+          shippingProvince: component.get("v.shippingProvince"),
+          opportunityLineItemsJson: JSON.stringify(productsToInsert),
+          currencyIsoCode: component.get("v.currencyIsoCode"),
+        });
+        createQote.setCallback(this, function (response) {
+          console.log(response.getReturnValue());
+        });
+        updateAccountInfo.setParams({
+          accountId: component.get("v.accountId"),
+          billingStreet: component.get("v.billingStreet"),
+          billingCity: component.get("v.billingCity"),
+          billingCountry: component.get("v.billingCountry"),
+          billingPostalCode: component.get("v.billingPostalCode"),
+          billingProvince: component.get("v.billingProvince"),
+          shippingStreet: component.get("v.shippingStreet"),
+          shippingCity: component.get("v.shippingCity"),
+          shippingCountry: component.get("v.shippingCountry"),
+          shippingPostalCode: component.get("v.shippingPostalCode"),
+          shippingProvince: component.get("v.shippingProvince"),
+        });
+        updateAccountInfo.setCallback(this, function (response) {
+          console.log(response.getReturnValue());
+          $A.enqueueAction(createQote);
+        });
+        $A.enqueueAction(updateAccountInfo);
       }
     }
     if (isValid) {

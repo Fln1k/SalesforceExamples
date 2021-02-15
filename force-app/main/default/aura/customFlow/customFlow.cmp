@@ -23,6 +23,7 @@
     shippingPostalCode="{!v.shippingPostalCode}"
     shippingCountry="{!v.shippingCountry}"
     shippingProvince="{!v.shippingProvince}"
+    currencyIsoCode="{!v.currencyIsoCode}"
   />
   <br />
   <div class="slds-align_absolute-center">
@@ -45,6 +46,7 @@
       shippingPostalCode="{!v.shippingPostalCode}"
       shippingCountry="{!v.shippingCountry}"
       shippingProvince="{!v.shippingProvince}"
+      currencyIsoCode="{!v.currencyIsoCode}"
     />
   </div>
 </aura:component>

@@ -20,5 +20,6 @@
     <aura:attribute name="shippingCountry" type="String" default="" />
     <aura:attribute name="shippingPostalCode" type="String" default="" />
     <aura:attribute name="shippingProvince" type="String" default="" />
+    <aura:attribute name="currencyIsoCode" type="String" default="" />
     <div>{!v.body}</div>
 </aura:component>	

@@ -11,11 +11,22 @@ public with sharing class customFlowController {
     @AuraEnabled
     public static Opportunity createOpportunity(String accountId){
         Integer postfix=getCountOfAccountOpportunities(accountId).size()+1;
+        Account currentAccount = [Select ShippingCountry from Account 
+                                  WHERE Id=:accountId];
+        CountrySetting__c countrySetting = [Select Pricebook__c, Tax__c
+                                            from CountrySetting__c 
+                                            WHERE Name =: currentAccount.ShippingCountry
+                                            LIMIT 1
+                                           ];
+        PricebookEntry pricebookEntry = [SELECT CurrencyIsoCode
+                                        FROM PricebookEntry
+                                        WHERE Pricebook2Id =: countrySetting.Pricebook__c LIMIT 1];
         Opportunity newOpportunity = new Opportunity();
         newOpportunity.CloseDate=date.today().addMonths(2);
         newOpportunity.Name='Opportunity '+postfix;
         newOpportunity.StageName='Prospecting';
         newOpportunity.AccountId = accountId;
+        newOpportunity.CurrencyIsoCode = pricebookEntry.CurrencyIsoCode;
         insert newOpportunity;
         return newOpportunity;
     }
@@ -105,10 +116,50 @@ return 'OK';
     @AuraEnabled
     public static Account getCurrentAccountInfo(String accountId) {
         Account currentAccount = [Select BillingCountry, BillingCity, BillingStreet, BillingPostalCode, BillingState, 
-                                ShippingCountry, ShippingStreet, ShippingCity, ShippingPostalCode, ShippingState
+                                  ShippingCountry, ShippingStreet, ShippingCity, ShippingPostalCode, ShippingState
                                   from Account 
                                   WHERE Id=:accountId];
         
         return currentAccount;
     }
+    
+    @AuraEnabled
+    public static Quote createQuote(string opportunityId, String billingCountry,
+                                    String billingCity, String billingStreet, String billingPostalCode,
+                                    String billingProvince, String shippingStreet,String shippingCity, 
+                                    String shippingCountry, String shippingPostalCode, 
+                                    String shippingProvince, String currencyIsoCode, String opportunityLineItemsJson){
+                                        System.debug(opportunityLineItemsJson);
+                                        List<CustomOpportunityLineItem> customLineItems = CustomOpportunityLineItem.parse(opportunityLineItemsJson);
+                                        Integer QuotesAmount = (new List<Quote>([select Id from Quote where opportunityId=:opportunityId])).size() + 1;
+                                        PricebookEntry pricebookEntry = [SELECT Pricebook2.Id, currencyIsoCode FROM PricebookEntry WHERE id=: customLineItems[0].pricebookEntryId];
+                                        Quote newQuote = new Quote();
+                                        newQuote.name = 'Quote ' + QuotesAmount;
+                                        newQuote.opportunityId = opportunityId;
+                                        newQuote.BillingCountry = billingCountry;
+                                        newQuote.BillingCity = billingCity;
+                                        newQuote.BillingStreet = billingStreet;
+                                        newQuote.BillingPostalCode = billingPostalCode;
+                                        newQuote.BillingState = billingProvince;
+                                        newQuote.ShippingStreet = shippingStreet;
+                                        newQuote.ShippingCity = shippingCity;
+                                        newQuote.ShippingPostalCode = shippingPostalCode;
+                                        newQuote.ShippingState = shippingProvince;
+                                        newQuote.CurrencyIsoCode = pricebookEntry.currencyIsoCode;
+                                        newQuote.Pricebook2Id = pricebookEntry.Pricebook2.id;
+                                        insert newQuote;
+                                        System.debug(newQuote.currencyIsoCode);
+                                        List<QuoteLineItem> quoteLineItems = new List<QuoteLineItem>();
+                                        for (CustomOpportunityLineItem lineItem : customLineItems) {
+                                            QuoteLineItem tempQuoteLineItem = new QuoteLineItem();
+                                            tempQuoteLineItem.QuoteId = newQuote.Id;
+                                            tempQuoteLineItem.PricebookEntryId = lineItem.pricebookEntryId;
+                                            tempQuoteLineItem.Quantity = lineItem.amount;
+                                            tempQuoteLineItem.UnitPrice = lineItem.price;
+                                            quoteLineItems.add(tempQuoteLineItem);
+                                        }
+                                        insert quoteLineItems;
+                                        return newQuote;
+                                    }
+    
 }   

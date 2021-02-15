@@ -19,6 +19,14 @@
           filter="{!v.contactLookupFieldFilter}"
         />
       </td>
+      <td style="padding-right: 20px">
+        <lightning:input
+          type="email"
+          name="email3"
+          placeholder="address@company.com"
+          label="Email"
+        />
+      </td>
     </tr>
   </table>
 </aura:component>

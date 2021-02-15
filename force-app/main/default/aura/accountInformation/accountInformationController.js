@@ -27,7 +27,6 @@
     });
     getAccountInfo.setCallback(this, function (response) {
       var result = response.getReturnValue();
-      console.log(result);
       component.set("v.billingStreet",result.BillingStreet ? result.BillingStreet : "");
       component.set("v.billingCity",result.BillingCity ? result.BillingCity : "");
       component.set("v.billingCountry",result.BillingCountry ? result.BillingCountry : "");

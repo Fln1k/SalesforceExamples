@@ -21,12 +21,13 @@
         );
         var pricebook = [];
         var subtotals = {};
+        var currencyIsoCode = " "
         component.set("v.shippingCountry", result["country"]);
         Object.keys(result["pricebook"]).forEach((pricebookId) => {
           var tempEntities = [];
           var pricebookIdentifier =
             result["pricebook"][pricebookId][0].Product2.Family;
-          var currencyIsoCode =
+          currencyIsoCode =
             result["pricebook"][pricebookId][0].CurrencyIsoCode;
           result["pricebook"][pricebookId].forEach((element) => {
             tempEntities.push({
@@ -44,6 +45,7 @@
             tax: result["tax"],
           });
         });
+        component.set("v.currencyIsoCode", currencyIsoCode)
         component.set("v.subtotals", subtotals);
         component.set("v.productsOptions", pricebook);
       });

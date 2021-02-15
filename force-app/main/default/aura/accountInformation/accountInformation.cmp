@@ -31,24 +31,6 @@
     </tr>
     <tr>
       <td style="padding-right: 20px">
-        <lightning:input
-          type="email"
-          name="email3"
-          placeholder="address@company.com"
-          label="Email"
-        />
-      </td>
-      <td>
-        <lightning:input
-          type="url"
-          label="Web Site"
-          name="input3"
-          placeholder="Enter url here..."
-        />
-      </td>
-    </tr>
-    <tr>
-      <td style="padding-right: 20px">
         <lightning:inputAddress
           addressLabel="Billing adress"
           streetLabel="Street"
