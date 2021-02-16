@@ -50,6 +50,8 @@
       shippingPostalCode="{!v.shippingPostalCode}"
       shippingCountry="{!v.shippingCountry}"
       shippingProvince="{!v.shippingProvince}"
+      contactId="{!v.contactId}"
+      contactEmail="{!v.contactEmail}"
     />
   </aura:if>
 </aura:component>

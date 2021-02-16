@@ -21,5 +21,7 @@
     <aura:attribute name="shippingPostalCode" type="String" default="" />
     <aura:attribute name="shippingProvince" type="String" default="" />
     <aura:attribute name="currencyIsoCode" type="String" default="" />
+    <aura:attribute name="contactId" type="Id" default="" />
+    <aura:attribute name="contactEmail" type="String" default="" />
     <div>{!v.body}</div>
 </aura:component>	

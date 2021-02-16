@@ -45,7 +45,6 @@
             }
           });
         });
-        console.log(productsToInsert);
       }
       if (currentStage == 5) {
         var productsToInsert = [];
@@ -53,7 +52,6 @@
         Object.keys(pricebooks).forEach((productFamily) => {
           pricebooks[productFamily]["entities"].forEach((product) => {
             if (parseInt(product.amount)) {
-              isValid = true;
               productsToInsert.push({
                 amount: product.amount,
                 pricebookEntryId: product.entitiyId,
@@ -62,46 +60,77 @@
             }
           });
         });
-        var updateAccountInfo = component.get(
-          "c.updateAccountAndContactFields"
-        );
-        var createQote = component.get("c.createQuote");
-        createQote.setParams({
+        var variables = {
+          accountId: component.get("v.accountId"),
           opportunityId: component.get("v.opportunityId"),
           billingStreet: component.get("v.billingStreet"),
           billingCity: component.get("v.billingCity"),
           billingCountry: component.get("v.billingCountry"),
           billingPostalCode: component.get("v.billingPostalCode"),
-          billingProvince: component.get("v.billingProvince"),
+          //billingProvince: component.get("v.billingProvince"),
           shippingStreet: component.get("v.shippingStreet"),
           shippingCity: component.get("v.shippingCity"),
           shippingCountry: component.get("v.shippingCountry"),
           shippingPostalCode: component.get("v.shippingPostalCode"),
-          shippingProvince: component.get("v.shippingProvince"),
-          opportunityLineItemsJson: JSON.stringify(productsToInsert),
+          //shippingProvince: component.get("v.shippingProvince"),
           currencyIsoCode: component.get("v.currencyIsoCode"),
+          contactId: component.get("v.contactId"),
+          contactEmail: component.get("v.contactEmail"),
+        };
+        Object.keys(variables).forEach((attribute) => {
+          if (variables[attribute].length == 0) {
+            isValid = false;
+          }
         });
-        createQote.setCallback(this, function (response) {
-          console.log(response.getReturnValue());
-        });
-        updateAccountInfo.setParams({
-          accountId: component.get("v.accountId"),
-          billingStreet: component.get("v.billingStreet"),
-          billingCity: component.get("v.billingCity"),
-          billingCountry: component.get("v.billingCountry"),
-          billingPostalCode: component.get("v.billingPostalCode"),
-          billingProvince: component.get("v.billingProvince"),
-          shippingStreet: component.get("v.shippingStreet"),
-          shippingCity: component.get("v.shippingCity"),
-          shippingCountry: component.get("v.shippingCountry"),
-          shippingPostalCode: component.get("v.shippingPostalCode"),
-          shippingProvince: component.get("v.shippingProvince"),
-        });
-        updateAccountInfo.setCallback(this, function (response) {
-          console.log(response.getReturnValue());
-          $A.enqueueAction(createQote);
-        });
-        $A.enqueueAction(updateAccountInfo);
+        if (isValid) {
+          var updateAccountInfo = component.get("c.updateAccount");
+          var updateContactInfo = component.get("c.updateContact");
+          var createQote = component.get("c.createQuote");
+          createQote.setParams({
+            opportunityId: variables.opportunityId,
+            billingStreet: variables.billingStreet,
+            billingCity: variables.billingCity,
+            billingCountry: variables.billingCountry,
+            billingPostalCode: variables.billingPostalCode,
+            billingProvince: variables.billingProvince,
+            shippingStreet: variables.shippingStreet,
+            shippingCity: variables.shippingCity,
+            shippingCountry: variables.shippingCountry,
+            shippingPostalCode: variables.shippingPostalCode,
+            shippingProvince: variables.shippingProvince,
+            opportunityLineItemsJson: JSON.stringify(productsToInsert),
+            currencyIsoCode: variables.currencyIsoCode,
+          });
+          createQote.setCallback(this, function (response) {
+            console.log(response.getReturnValue());
+          });
+          updateContactInfo.setParams({
+            contactId: variables.contactId,
+            contactEmail: variables.contactEmail,
+          });
+          updateContactInfo.setCallback(this, function (response) {
+            console.log(response.getReturnValue());
+            $A.enqueueAction(createQote);
+          });
+          updateAccountInfo.setParams({
+            accountId: variables.accountId,
+            billingStreet: variables.billingStreet,
+            billingCity: variables.billingCity,
+            billingCountry: variables.billingCountry,
+            billingPostalCode: variables.billingPostalCode,
+            billingProvince: variables.billingProvince,
+            shippingStreet: variables.shippingStreet,
+            shippingCity: variables.shippingCity,
+            shippingCountry: variables.shippingCountry,
+            shippingPostalCode: variables.shippingPostalCode,
+            shippingProvince: variables.shippingProvince,
+          });
+          updateAccountInfo.setCallback(this, function (response) {
+            console.log(response.getReturnValue());
+            $A.enqueueAction(updateContactInfo);
+          });
+          $A.enqueueAction(updateAccountInfo);
+        }
       }
     }
     if (isValid) {

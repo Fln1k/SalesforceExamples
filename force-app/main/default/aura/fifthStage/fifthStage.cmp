@@ -18,5 +18,9 @@
     shippingProvince="{!v.shippingProvince}"
   />
   <br />
-  <c:contactInformation accountId="{!v.accountId}" />
+  <c:contactInformation
+    accountId="{!v.accountId}"
+    contactId="{!v.contactId}"
+    contactEmail="{!v.contactEmail}"
+  />
 </aura:component>

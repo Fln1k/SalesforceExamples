@@ -1,11 +1,36 @@
 public with sharing class customFlowController {
     @AuraEnabled
-    public static Account createAccount(String name, String country)    {
+    public static Account createAccount(String name, String country) {
         Account acc = new Account();
         acc.Name = name;
         acc.ShippingCountry = country;
         insert acc;
         return acc;
+    }
+    
+    @AuraEnabled
+    public static Contact createContact(String name, String accountId) {
+        Account currentAccount = [Select ShippingCountry from Account 
+                                  WHERE Id=:accountId];
+        CountrySetting__c countrySetting = [Select Pricebook__c, Tax__c
+                                            from CountrySetting__c 
+                                            WHERE Name =: currentAccount.ShippingCountry
+                                            LIMIT 1
+                                           ];
+        PricebookEntry pricebookEntry = [SELECT CurrencyIsoCode
+                                         FROM PricebookEntry
+                                         WHERE Pricebook2Id =: countrySetting.Pricebook__c LIMIT 1];
+        Contact con = new Contact();
+        con.LastName = name;
+        con.AccountId = accountId;
+        con.CurrencyIsoCode = pricebookEntry.CurrencyIsoCode;
+        insert con;
+        return con;
+    }
+    
+    @AuraEnabled
+    public static Contact getContact(string contactId){
+        return [SELECT Id, Email from Contact Where Id=:contactId LIMIT 1];
     }
     
     @AuraEnabled
@@ -19,8 +44,8 @@ public with sharing class customFlowController {
                                             LIMIT 1
                                            ];
         PricebookEntry pricebookEntry = [SELECT CurrencyIsoCode
-                                        FROM PricebookEntry
-                                        WHERE Pricebook2Id =: countrySetting.Pricebook__c LIMIT 1];
+                                         FROM PricebookEntry
+                                         WHERE Pricebook2Id =: countrySetting.Pricebook__c LIMIT 1];
         Opportunity newOpportunity = new Opportunity();
         newOpportunity.CloseDate=date.today().addMonths(2);
         newOpportunity.Name='Opportunity '+postfix;
@@ -56,50 +81,38 @@ public with sharing class customFlowController {
                                             WHERE Pricebook2Id =: countrySetting.Pricebook__c]);
         return '{"pricebook":'+pricebook+',"tax":'+countrySetting.Tax__c+',"country":"'+currentAccount.ShippingCountry+'"}';                                             
     }
-    
-    /*@AuraEnabled
-public static string createOppLineItems(String opportunityId, String productsJson){
-List<OpportunityLineItem> productToDelete = [SELECT Id From OpportunityLineItem WHERE OpportunityId=:opportunityId];
-List<CustomOpportunityLineItem> products = CustomOpportunityLineItem.parse(productsJson); 
-savepoint beforeUpdateSavepoint = database.setsavepoint();
-try{
-DELETE productToDelete;
-
-OpportunityLineItem oli = new OpportunityLineItem(
-OpportunityId = opportunityId,
-Quantity = 5,
-PricebookEntryId = pbEntry.Id,
-TotalPrice = quantity * pbEntry.UnitPrice
-);
-}
-catch(Exception e){
-database.rollback(beforeUpdateSavepoint);
-}
-return 'OK';
-}*/
+    @AuraEnabled
+    public static Contact updateContact(String contactId, String contactEmail){
+        Contact currentContact = [Select Email
+                                  from Contact 
+                                  WHERE Id=:contactId LIMIT 1];
+        currentContact.Email = contactEmail;
+        update currentContact;
+        return currentContact;
+    }
     
     @AuraEnabled
-    public static Account updateAccountAndContactFields(String accountId, String contactId, String billingCountry,
-                                                        String billingCity, String billingStreet, String billingPostalCode,
-                                                        String billingProvince, String shippingStreet,String shippingCity, 
-                                                        String shippingCountry, String shippingPostalCode, 
-                                                        String shippingProvince) {
-                                                            Account currentAccount = [Select BillingCountry, BillingCity, BillingStreet, BillingPostalCode, BillingState, 
-                                                                                      ShippingStreet, ShippingCity, ShippingPostalCode, ShippingState
-                                                                                      from Account 
-                                                                                      WHERE Id=:accountId];
-                                                            currentAccount.BillingCountry = billingCountry;
-                                                            currentAccount.BillingCity = billingCity;
-                                                            currentAccount.BillingStreet = billingStreet;
-                                                            currentAccount.BillingPostalCode = billingPostalCode;
-                                                            currentAccount.BillingState = billingProvince;
-                                                            currentAccount.ShippingStreet = shippingStreet;
-                                                            currentAccount.ShippingCity = shippingCity;
-                                                            currentAccount.ShippingPostalCode = shippingPostalCode;
-                                                            currentAccount.ShippingState = shippingProvince;
-                                                            update currentAccount;
-                                                            return currentAccount;
-                                                        }
+    public static Account updateAccount(String accountId, String billingCountry,
+                                        String billingCity, String billingStreet, String billingPostalCode,
+                                        String billingProvince, String shippingStreet,String shippingCity, 
+                                        String shippingCountry, String shippingPostalCode, 
+                                        String shippingProvince) {
+                                            Account currentAccount = [Select BillingCountry, BillingCity, BillingStreet, BillingPostalCode, BillingState, 
+                                                                      ShippingStreet, ShippingCity, ShippingPostalCode, ShippingState
+                                                                      from Account 
+                                                                      WHERE Id=:accountId];
+                                            currentAccount.BillingCountry = billingCountry;
+                                            currentAccount.BillingCity = billingCity;
+                                            currentAccount.BillingStreet = billingStreet;
+                                            currentAccount.BillingPostalCode = billingPostalCode;
+                                            currentAccount.BillingState = billingProvince;
+                                            currentAccount.ShippingStreet = shippingStreet;
+                                            currentAccount.ShippingCity = shippingCity;
+                                            currentAccount.ShippingPostalCode = shippingPostalCode;
+                                            currentAccount.ShippingState = shippingProvince;
+                                            update currentAccount;
+                                            return currentAccount;
+                                        }
     
     @AuraEnabled
     public static Account getCurrentAccountInfo(String accountId) {
@@ -121,6 +134,7 @@ return 'OK';
                                         List<CustomOpportunityLineItem> customLineItems = CustomOpportunityLineItem.parse(opportunityLineItemsJson);
                                         Integer QuotesAmount = (new List<Quote>([select Id from Quote where opportunityId=:opportunityId])).size() + 1;
                                         PricebookEntry pricebookEntry = [SELECT Pricebook2.Id,  currencyIsoCode FROM PricebookEntry WHERE id=: customLineItems[0].pricebookEntryId];
+                                        CountrySetting__c countrySetting = [SELECT Tax__c FROM CountrySetting__c WHERE Pricebook__c=:pricebookEntry.Pricebook2.id];
                                         Quote newQuote = new Quote();
                                         newQuote.name = 'Quote ' + QuotesAmount;
                                         newQuote.opportunityId = opportunityId;
@@ -135,6 +149,7 @@ return 'OK';
                                         newQuote.ShippingState = shippingProvince;
                                         newQuote.CurrencyIsoCode = pricebookEntry.currencyIsoCode;
                                         newQuote.Pricebook2Id = pricebookEntry.Pricebook2.id;
+                                        newQuote.Tax = countrySetting.Tax__c;
                                         insert newQuote;
                                         System.debug(newQuote.currencyIsoCode);
                                         List<QuoteLineItem> quoteLineItems = new List<QuoteLineItem>();

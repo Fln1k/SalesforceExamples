@@ -24,6 +24,8 @@
     shippingCountry="{!v.shippingCountry}"
     shippingProvince="{!v.shippingProvince}"
     currencyIsoCode="{!v.currencyIsoCode}"
+    contactId="{!v.contactId}"
+    contactEmail="{!v.contactEmail}"
   />
   <br />
   <div class="slds-align_absolute-center">
@@ -47,6 +49,8 @@
       shippingCountry="{!v.shippingCountry}"
       shippingProvince="{!v.shippingProvince}"
       currencyIsoCode="{!v.currencyIsoCode}"
+      contactId="{!v.contactId}"
+      contactEmail="{!v.contactEmail}"
     />
   </div>
 </aura:component>

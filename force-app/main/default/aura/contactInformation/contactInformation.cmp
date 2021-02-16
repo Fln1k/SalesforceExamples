@@ -1,14 +1,15 @@
-<aura:component>
+<aura:component extends="c:customFlowVariables" controller="customFlowController">
   <!-- Attributes -->
-  <aura:attribute name="accountId" type="Id" default="" />
-  <aura:attribute name="contactId" type="Id" default="" />
   <aura:attribute name="contactLookupFieldFilter" type="String" default="" />
   <!-- Events -->
   <aura:handler name="init" value="{!this}" action="{!c.setUpContactFilter}" />
+  <aura:handler event="c:assignContactId" action="{!c.handleAssignContactId}" />
+  <aura:handler name="change" value="{!v.contactId}" action="{!c.handleContactChange}" />
   <!-- Layout -->
+  <lightning:overlayLibrary aura:id="newContactOverlay" />
   <table>
     <tr>
-      <td style="padding-right: 20px">
+      <td style="padding-right: 20px; vertical-align: bottom">
         <c:strike_lookup
           aura:id="contactLookupField"
           label="Contact"
@@ -19,12 +20,22 @@
           filter="{!v.contactLookupFieldFilter}"
         />
       </td>
-      <td style="padding-right: 20px">
+      <td style="padding-right: 20px; vertical-align: bottom">
+        <lightning:button
+          name="modal"
+          label="New"
+          onclick="{!c.showNewContact}"
+        />
+      </td>
+    </tr>
+    <tr>
+      <td style="padding-right: 20px; vertical-align: bottom">
         <lightning:input
           type="email"
           name="email3"
           placeholder="address@company.com"
           label="Email"
+          value="{!v.contactEmail}"
         />
       </td>
     </tr>
