@@ -24,6 +24,7 @@
       canNext = true;
     } else {
       canNext = false;
+      canBack = false;
     }
     component.set("v.canBack", canBack);
     component.set("v.canNext", canNext);

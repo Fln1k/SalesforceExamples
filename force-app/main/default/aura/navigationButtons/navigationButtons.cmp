@@ -38,8 +38,8 @@
   </aura:renderIf>
   <aura:renderIf isTrue="{!(!v.canNext)}">
     <lightning:button
-      aura:id="Finsih"
-      label="Finsih"
+      aura:id="CloseDeal"
+      label="Close deal"
       variant="brand"
       value="0"
       onclick="{!c.changeStageFunction}"

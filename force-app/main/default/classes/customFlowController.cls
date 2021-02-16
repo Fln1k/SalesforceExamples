@@ -84,18 +84,6 @@ return 'OK';
                                                         String billingProvince, String shippingStreet,String shippingCity, 
                                                         String shippingCountry, String shippingPostalCode, 
                                                         String shippingProvince) {
-                                                            System.debug('accountId : ' + accountId);
-                                                            System.debug('contactId : ' + contactId);
-                                                            System.debug('billingCountry : ' + billingCountry);
-                                                            System.debug('billingCity : ' + billingCity);
-                                                            System.debug('billingStreet : ' + billingStreet);
-                                                            System.debug('billingPostalCode : ' + billingPostalCode);
-                                                            System.debug('billingProvince : ' + billingProvince);
-                                                            System.debug('shippingStreet : ' + shippingStreet);
-                                                            System.debug('shippingCity : ' + shippingCity);
-                                                            System.debug('shippingCountry : ' + shippingCountry);
-                                                            System.debug('shippingPostalCode : ' + shippingPostalCode);
-                                                            System.debug('shippingProvince : ' + shippingProvince);
                                                             Account currentAccount = [Select BillingCountry, BillingCity, BillingStreet, BillingPostalCode, BillingState, 
                                                                                       ShippingStreet, ShippingCity, ShippingPostalCode, ShippingState
                                                                                       from Account 
@@ -132,7 +120,7 @@ return 'OK';
                                         System.debug(opportunityLineItemsJson);
                                         List<CustomOpportunityLineItem> customLineItems = CustomOpportunityLineItem.parse(opportunityLineItemsJson);
                                         Integer QuotesAmount = (new List<Quote>([select Id from Quote where opportunityId=:opportunityId])).size() + 1;
-                                        PricebookEntry pricebookEntry = [SELECT Pricebook2.Id, currencyIsoCode FROM PricebookEntry WHERE id=: customLineItems[0].pricebookEntryId];
+                                        PricebookEntry pricebookEntry = [SELECT Pricebook2.Id,  currencyIsoCode FROM PricebookEntry WHERE id=: customLineItems[0].pricebookEntryId];
                                         Quote newQuote = new Quote();
                                         newQuote.name = 'Quote ' + QuotesAmount;
                                         newQuote.opportunityId = opportunityId;
