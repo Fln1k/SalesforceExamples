@@ -54,4 +54,7 @@
       contactEmail="{!v.contactEmail}"
     />
   </aura:if>
+  <aura:if isTrue="{!v.currentStage == 6}">
+    <lightning:fileCard fileId="069XXXXXXXXXXXX" description="Sample Description"/>
+  </aura:if>
 </aura:component>
