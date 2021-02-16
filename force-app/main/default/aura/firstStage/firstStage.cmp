@@ -1,0 +1,63 @@
+<aura:component controller="customFlowController"  extends="c:customFlowVariables">
+  <!-- Attributes -->
+  <aura:attribute name="objectName" type="String" default="Account" />
+  <aura:attribute name="opportunityLookupFieldFilter" type="String" default=""/>
+  <!-- Events -->
+  <aura:handler name="init" value="{!this}" action="{!c.setUpOpportunityFilter}" />
+  <aura:handler
+    name="change"
+    value="{!v.accountId}"
+    action="{!c.accountLookupFieldValueChange}"
+  />
+  <aura:handler
+  name="change"
+  value="{!v.opportunityId}"
+  action="{!c.opportunityLookupFieldValueChange}"
+/>
+  <aura:handler event="c:assignAccountId" action="{!c.handleAssignAccountId}" />
+  <aura:handler event="c:errorMessageOnAccountLookup" action="{!c.handleErrorMessageOnAccountLookup}" />
+  <!-- Layout -->
+  <!-- modal -->  
+  <lightning:overlayLibrary aura:id="newAccountOverlay" />
+  <!-- page -->
+  <table>
+    <tr>
+      <td style="width: 70%; vertical-align: bottom; padding-right: 10px">
+        <c:strike_lookup
+          aura:id="accountLookupField"
+          label="{!v.objectName}"
+          object="{!v.objectName}"
+          value="{!v.accountId}"
+          subtitleField="ShippingCountry"
+          iconName="standard:account"
+          placeholder="Account name"
+          errorMessage="Select an account please"
+          searchField="Name"
+          required="true"
+        />
+      </td>
+      <td style="width: 25%; vertical-align: bottom">
+        <lightning:button
+          name="modal"
+          label="New"
+          onclick="{!c.showNewAccount}"
+        />
+      </td>
+    </tr>
+    <tr>
+      <td style="width: 70%; vertical-align: bottom; padding-right: 10px">
+        <c:strike_lookup
+          aura:id="opportunityLookupField"
+          label="Opportunity"
+          object="Opportunity"
+          placeholder="Opportunity name"
+          value="{!v.opportunityId}"
+          searchField="Name"
+          disabled="true"
+          iconName="standard:opportunity"
+          filter="{!v.opportunityLookupFieldFilter}"
+        />
+      </td>
+    </tr>
+  </table>
+</aura:component>

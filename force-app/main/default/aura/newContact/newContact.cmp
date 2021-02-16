@@ -1,0 +1,31 @@
+<aura:component access="global" controller="customFlowController">
+  <!-- Attributes -->
+  <aura:attribute name="newContactNameField" type="String" default="" />
+  <aura:attribute name="accountId" type="Id" default="" />
+  <!-- Layout -->
+  <lightning:overlayLibrary aura:id="newContactOverlay" />
+  <div>
+    <lightning:input
+      aura:id="newContactField"
+      label="Name"
+      name="Name"
+      placeholder="Name"
+      required="true"
+      value="{!v.newContactNameField}"
+    />
+  </div>
+  <br />
+  <div class="slds-align_absolute-center">
+    <lightning:button
+      aura:id="cancelNewContact"
+      label="Cancel"
+      onclick="{!c.closeModal}"
+    />
+    <lightning:button
+      aura:id="Save"
+      label="Save"
+      variant="brand"
+      onclick="{!c.saveContact}"
+    />
+  </div>
+</aura:component>

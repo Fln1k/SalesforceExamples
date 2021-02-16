@@ -1,0 +1,48 @@
+<aura:component extends="c:customFlowVariables">
+  <!-- Attributes -->
+  <aura:attribute name="firstCheckboxGroup" type="List" />
+  <aura:attribute name="secondCheckboxGroup" type="List" />
+  <aura:attribute name="thirdCheckboxGroup" type="List" />
+  <aura:attribute name="disabledOptions" type="List" />
+
+  <!-- Events -->
+  <aura:handler name="init" value="{!this}" action="{!c.loadCheckboxGroups}" />
+  <aura:handler
+    name="change"
+    value="{!v.orderType}"
+    action="{!c.configureThirdCombobox}"
+  />
+  <aura:handler
+    event="c:paymentPlanUndefined"
+    action="{!c.handlePaymentPlanUndefined}"
+  />
+  <!-- Layout -->
+  <table>
+    <tr>
+      <td style="vertical-align: baseline">
+        <c:checkboxGroup
+          aura:id="accountTypeGroup"
+          options="{!v.firstCheckboxGroup}"
+          title="Customer Type"
+        />
+      </td>
+      <td style="vertical-align: baseline">
+        <c:checkboxGroup
+          aura:id="orderTypeGroup"
+          options="{!v.secondCheckboxGroup}"
+          title="Order Type"
+          value="{!v.orderType}"
+        />
+      </td>
+      <td style="vertical-align: baseline">
+        <c:checkboxGroup
+          aura:id="paymentTypeGroup"
+          options="{!v.thirdCheckboxGroup}"
+          title="Payment Plan"
+          value="{!v.paymentPlan}"
+          disabledOptions="{!v.disabledOptions}"
+        />
+      </td>
+    </tr>
+  </table>
+</aura:component>

@@ -1,0 +1,67 @@
+<aura:component controller="customFlowController" extends="c:customFlowVariables">
+  <!-- Attributes -->
+  <aura:attribute name="billingCountryOptions" type="List" default="[]" />
+  <aura:attribute name="shippingCountryOptions" type="List" default="[]" />
+  <!-- Events -->
+  <aura:handler name="init" value="{! this }" action="{! c.init }" />
+  <!-- Layout -->
+  <table>
+    <tr>
+      <td style="padding-right: 20px">
+        <c:strike_lookup
+          aura:id="accountShowLookupField"
+          label="Account"
+          object="Account"
+          value="{!v.accountId}"
+          iconName="standard:account"
+          searchField="Name"
+          disabled="true"
+        />
+      </td>
+      <td>
+        <c:strike_lookup
+          aura:id="opportunityLookupField"
+          label="Opportunity"
+          object="Opportunity"
+          value="{!v.opportunityId}"
+          searchField="Name"
+          disabled="true"
+        />
+      </td>
+    </tr>
+    <tr>
+      <td style="padding-right: 20px">
+        <lightning:inputAddress
+          addressLabel="Billing adress"
+          streetLabel="Street"
+          cityLabel="City"
+          countryLabel="Country"
+          provinceLabel="Province/State"
+          postalCodeLabel="PostalCode"
+          street="{! v.billingStreet }"
+          city="{! v.billingCity }"
+          country="{! v.billingCountry }"
+          countryOptions="{! v.billingCountryOptions }"
+          postalCode="{!v.billingPostalCode}"
+          province="{!v.billingProvince}"
+        />
+      </td>
+      <td>
+        <lightning:inputAddress
+          addressLabel="Shipping adress"
+          streetLabel="Street"
+          cityLabel="City"
+          countryLabel="Country"
+          provinceLabel="Province/State"
+          postalCodeLabel="PostalCode"
+          street="{! v.shippingStreet }"
+          city="{! v.shippingCity }"
+          country="{! v.shippingCountry }"
+          countryOptions="{! v.shippingCountryOptions }"
+          postalCode="{!v.shippingPostalCode}"
+          province="{!v.shippingProvince}"
+        />
+      </td>
+    </tr>
+  </table>
+</aura:component>

@@ -1,0 +1,34 @@
+<aura:component>
+  <!-- Attribute -->
+  <aura:attribute name="options" type="List" />
+  <aura:attribute name="title" type="String" default="" />
+  <aura:attribute name="value" type="String" default="" />
+  <aura:attribute name="disabledOptions" type="List" />
+  <aura:attribute name="isError" type="Boolean" default="false" />
+
+  <!-- Methods -->
+  <aura:method name="showError" action="{!c.showError}" access="PUBLIC" />
+  <!-- Events -->
+  <aura:handler
+    name="change"
+    value="{!v.disabledOptions}"
+    action="{!c.disableCheckboxes}"
+  />
+  <!-- Layout -->
+  {!v.title} <br />
+  <aura:iteration items="{!v.options}" var="checkbox">
+    <lightning:input
+      aura:id="checkbox"
+      type="checkbox"
+      value="{!checkbox.value}"
+      label="{! checkbox.label}"
+      fieldLevelHelp="{! checkbox.helpText ? checkbox.helpText:''}"
+      onchange="{!c.checkboxOnChange}"
+      checked="{! checkbox.checked ? checkbox.checked:false}"
+      disabled="{! checkbox.disabled ? checkbox.disabled:false}"
+    />
+  </aura:iteration>
+  <aura:if isTrue="{!v.isError}">
+    <div style="color: red">Select option</div>
+    </aura:if>
+</aura:component>

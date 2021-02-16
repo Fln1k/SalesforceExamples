@@ -1,0 +1,5 @@
+<aura:component>
+    <aura:attribute name="additionalComments" type="String" default=""/>
+    <div class="slds-align_absolute-center" style="font-size: x-large">Extra comments</div>
+    <lightning:textarea value="{!v.additionalComments}" label="Enter any additional information here" />
+</aura:component>	

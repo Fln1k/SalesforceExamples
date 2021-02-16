@@ -1,0 +1,52 @@
+<aura:component access="global" controller="customFlowController">
+  <!-- Attributes -->
+  <aura:attribute name="newAccountNameField" type="String" default="" />
+  <aura:attribute name="newAccountCountryField" type="String" default="" />
+  <aura:attribute name="IsSpinner" type="Boolean" />
+  <aura:attribute name="countryOptions" type="List"/>
+  <!-- Events -->
+  <aura:registerEvent name="assignAccountIdEvent" type="c:assignAccountId" />
+  <aura:handler name="init" value="{!this}" action="{!c.init}" />
+  <!-- Layout -->
+  <lightning:overlayLibrary aura:id="newAccountOverlay" />
+  <div>
+    <lightning:input
+      aura:id="newAccountField"
+      label="Name"
+      name="Name"
+      placeholder="Name"
+      required="true"
+      value="{!v.newAccountNameField}"
+    />
+    <aura:if isTrue="{!v.IsSpinner}">
+      <div class="slds-is-relative">
+        <lightning:spinner alternativeText="Creating new account" />
+      </div>
+    </aura:if>
+    <lightning:select
+      aura:id="newAccountField"
+      name="select"
+      label="Select country"
+      required="true"
+      value="{!v.newAccountCountryField}"
+    >
+      <aura:iteration items="{!v.countryOptions}" var="country">
+        <option value="{!country.label}" text="{!country.label}" />
+      </aura:iteration>
+    </lightning:select>
+  </div>
+  <br />
+  <div class="slds-align_absolute-center">
+    <lightning:button
+      aura:id="cancelNewAccount"
+      label="Cancel"
+      onclick="{!c.closeModal}"
+    />
+    <lightning:button
+      aura:id="Save"
+      label="Save"
+      variant="brand"
+      onclick="{!c.saveAccount}"
+    />
+  </div>
+</aura:component>

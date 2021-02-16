@@ -1,0 +1,11 @@
+<aura:component access="global">
+  <!-- Events -->
+  <aura:handler
+    name="closeModalEvent"
+    event="c:closeModal"
+    action="{!c.closeModal}"
+  />
+  <!-- Layout -->
+  <lightning:overlayLibrary aura:id="modalOverlay"/>
+  <c:customFlow />
+</aura:component>
