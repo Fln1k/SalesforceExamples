@@ -1,0 +1,17 @@
+<aura:component controller="customFlowController">
+  <!-- Attribute -->
+  <aura:attribute name="quoteId" type="Id" default="" />
+  <aura:attribute name="quoteDocumentLink" type="String" default="" />
+  <!-- Events -->
+  <aura:handler
+    name="change"
+    value="{!v.quoteId}"
+    action="{!c.getDocLink}"
+  />
+  <!-- Layout -->
+  <iframe
+    src="{!v.quoteDocumentLink}"
+    style="width: 100%; height: 500px;"
+    frameborder="0"
+  ></iframe>
+</aura:component>

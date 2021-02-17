@@ -55,6 +55,6 @@
     />
   </aura:if>
   <aura:if isTrue="{!v.currentStage == 6}">
-    <lightning:fileCard fileId="069XXXXXXXXXXXX" description="Sample Description"/>
+    <c:sixStage quoteId="{!v.quoteId}" />
   </aura:if>
 </aura:component>

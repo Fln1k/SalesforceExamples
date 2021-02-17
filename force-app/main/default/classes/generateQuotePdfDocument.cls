@@ -22,7 +22,6 @@ Public class generateQuotePdfDocument{
             for(Id quoteId :quoteIds) {
                 //Construct the quote URL to generate PDF
                 quoteUrl += 'id=' + quoteId;
-                quoteUrl += '&headerHeight=197&footerHeight=10';
                 quoteUrl += '&summlid=' + quoteTemplateId;
                 
                 //call the quote url
@@ -48,6 +47,5 @@ Public class generateQuotePdfDocument{
         if(!lstQuoteDoc.isEmpty() && lstQuoteDoc.size() > 0) {
             Database.insert(lstQuoteDoc);
         }
-        
     }
 }

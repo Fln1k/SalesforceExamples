@@ -26,6 +26,7 @@
     currencyIsoCode="{!v.currencyIsoCode}"
     contactId="{!v.contactId}"
     contactEmail="{!v.contactEmail}"
+    quoteId="{!v.quoteId}"
   />
   <br />
   <div class="slds-align_absolute-center">
@@ -51,6 +52,7 @@
       currencyIsoCode="{!v.currencyIsoCode}"
       contactId="{!v.contactId}"
       contactEmail="{!v.contactEmail}"
+      quoteId="{!v.quoteId}"
     />
   </div>
 </aura:component>

@@ -85,8 +85,8 @@
         if (isValid) {
           var updateAccountInfo = component.get("c.updateAccount");
           var updateContactInfo = component.get("c.updateContact");
-          var createQote = component.get("c.createQuote");
-          createQote.setParams({
+          var createQuote = component.get("c.createQuote");
+          createQuote.setParams({
             opportunityId: variables.opportunityId,
             billingStreet: variables.billingStreet,
             billingCity: variables.billingCity,
@@ -101,8 +101,10 @@
             opportunityLineItemsJson: JSON.stringify(productsToInsert),
             currencyIsoCode: variables.currencyIsoCode,
           });
-          createQote.setCallback(this, function (response) {
-            console.log(response.getReturnValue());
+          createQuote.setCallback(this, function (response) {
+            var result = response.getReturnValue();
+            console.log(result);
+            component.set("v.quoteId", result.Id);
           });
           updateContactInfo.setParams({
             contactId: variables.contactId,
@@ -110,7 +112,7 @@
           });
           updateContactInfo.setCallback(this, function (response) {
             console.log(response.getReturnValue());
-            $A.enqueueAction(createQote);
+            $A.enqueueAction(createQuote);
           });
           updateAccountInfo.setParams({
             accountId: variables.accountId,
