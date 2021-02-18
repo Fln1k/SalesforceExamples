@@ -27,17 +27,53 @@
     });
     getAccountInfo.setCallback(this, function (response) {
       var result = response.getReturnValue();
-      component.set("v.billingStreet",result.BillingStreet ? result.BillingStreet : "");
-      component.set("v.billingCity",result.BillingCity ? result.BillingCity : "");
-      component.set("v.billingCountry",result.BillingCountry ? result.BillingCountry : "");
-      component.set("v.billingPostalCode",result.BillingPostalCode ? result.BillingPostalCode : "");
-      component.set("v.billingProvince",result.BillingProvince ? result.BillingProvince : "");
-      component.set("v.shippingStreet",result.ShippingStreet ? result.ShippingStreet : "");
-      component.set("v.shippingCity",result.ShippingCity ? result.ShippingCity : "");
-      component.set("v.shippingCountry",result.ShippingCountry ? result.ShippingCountry : "");
-      component.set("v.shippingPostalCode",result.ShippingPostalCode ? result.ShippingPostalCode : "");
-      component.set("v.shippingProvince",result.ShippingProvince ? result.ShippingProvince : "");
+      component.set(
+        "v.billingStreet",
+        result.BillingStreet ? result.BillingStreet : ""
+      );
+      component.set(
+        "v.billingCity",
+        result.BillingCity ? result.BillingCity : ""
+      );
+      component.set(
+        "v.billingCountry",
+        result.BillingCountry ? result.BillingCountry : ""
+      );
+      component.set(
+        "v.billingPostalCode",
+        result.BillingPostalCode ? result.BillingPostalCode : ""
+      );
+      component.set(
+        "v.billingProvince",
+        result.BillingProvince ? result.BillingProvince : ""
+      );
+      component.set(
+        "v.shippingStreet",
+        result.ShippingStreet ? result.ShippingStreet : ""
+      );
+      component.set(
+        "v.shippingCity",
+        result.ShippingCity ? result.ShippingCity : ""
+      );
+      component.set(
+        "v.shippingCountry",
+        result.ShippingCountry ? result.ShippingCountry : ""
+      );
+      component.set(
+        "v.shippingPostalCode",
+        result.ShippingPostalCode ? result.ShippingPostalCode : ""
+      );
+      component.set(
+        "v.shippingProvince",
+        result.ShippingProvince ? result.ShippingProvince : ""
+      );
     });
     $A.enqueueAction(getAccountInfo);
+  },
+  handleErrorCheck: function (component, event, helper) {
+    component.find("requiredInput").reduce(function (validSoFar, inputCmp) {
+      inputCmp.showHelpMessageIfInvalid();
+      return validSoFar && !inputCmp.get("v.validity").valueMissing;
+    }, true);
   },
 });

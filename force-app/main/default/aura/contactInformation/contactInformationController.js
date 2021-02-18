@@ -28,15 +28,26 @@
 
   handleContactChange: function (component, event, helper) {
     var contactId = component.get("v.contactId");
-    var getContact = component.get("c.getContact");
-    getContact.setParams({
-      contactId: contactId,
-    });
-    getContact.setCallback(this, function (response) {
-      var result = response.getReturnValue();
-      component.set("v.contactEmail",result.Email);
-      
-    });
-    $A.enqueueAction(getContact);
-  }
+    if (contactId.length > 0) {
+      var getContact = component.get("c.getContact");
+      getContact.setParams({
+        contactId: contactId,
+      });
+      getContact.setCallback(this, function (response) {
+        var result = response.getReturnValue();
+        component.set("v.contactEmail", result.Email);
+      });
+      $A.enqueueAction(getContact);
+    } else {
+      component.set("v.contactEmail", "");
+    }
+  },
+  handleErrorCheck: function (component, event, helper) {
+    if (component.get("v.contactId").length == 0) {
+      component.find("contactLookupField").set("v.error", true);
+    }
+    if (component.get("v.contactEmail").length == 0) {
+      component.find("emailInputField").showHelpMessageIfInvalid();
+    }
+  },
 });

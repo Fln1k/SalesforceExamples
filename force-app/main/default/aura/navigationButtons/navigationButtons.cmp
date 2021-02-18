@@ -3,6 +3,7 @@
   controller="customFlowController"
 >
   <!-- Events -->
+  <aura:registerEvent name="checkValidationOnTheFifthStageEvent" type="c:checkValidationOnTheFifthStage" />
   <aura:registerEvent name="closeModalEvent" type="c:closeModal" />
   <aura:registerEvent
     name="errorMessageOnAccountLookupEvent"

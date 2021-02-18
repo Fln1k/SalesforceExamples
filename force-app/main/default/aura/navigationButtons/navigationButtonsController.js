@@ -133,6 +133,8 @@
             $A.enqueueAction(updateContactInfo);
           });
           $A.enqueueAction(updateAccountInfo);
+        } else {
+          $A.get("e.c:checkValidationOnTheFifthStage").fire();
         }
       }
     }

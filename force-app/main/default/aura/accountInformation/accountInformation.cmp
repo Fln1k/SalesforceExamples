@@ -1,8 +1,12 @@
-<aura:component controller="customFlowController" extends="c:customFlowVariables">
+<aura:component
+  controller="customFlowController"
+  extends="c:customFlowVariables"
+>
   <!-- Attributes -->
   <aura:attribute name="billingCountryOptions" type="List" default="[]" />
   <aura:attribute name="shippingCountryOptions" type="List" default="[]" />
   <!-- Events -->
+  <aura:handler event="c:checkValidationOnTheFifthStage" action="{!c.handleErrorCheck}" />
   <aura:handler name="init" value="{! this }" action="{! c.init }" />
   <!-- Layout -->
   <table>
@@ -32,6 +36,7 @@
     <tr>
       <td style="padding-right: 20px">
         <lightning:inputAddress
+          aura:id="requiredInput"
           addressLabel="Billing adress"
           streetLabel="Street"
           cityLabel="City"
@@ -44,10 +49,12 @@
           countryOptions="{! v.billingCountryOptions }"
           postalCode="{!v.billingPostalCode}"
           province="{!v.billingProvince}"
+          required="true"
         />
       </td>
       <td>
         <lightning:inputAddress
+          aura:id="requiredInput"
           addressLabel="Shipping adress"
           streetLabel="Street"
           cityLabel="City"
@@ -60,6 +67,7 @@
           countryOptions="{! v.shippingCountryOptions }"
           postalCode="{!v.shippingPostalCode}"
           province="{!v.shippingProvince}"
+          required="true"
         />
       </td>
     </tr>
