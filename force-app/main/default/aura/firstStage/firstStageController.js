@@ -64,6 +64,7 @@
       component.set("v.productsOptions", []);
       component.set("v.paymentPlan", "");
       component.set("v.orderType", "");
+      component.set("v.canMoveToEnd", false);
     }
   },
   showNewAccount: function (component) {

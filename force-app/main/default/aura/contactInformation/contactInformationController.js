@@ -1,9 +1,4 @@
 ({
-  setUpContactFilter: function (component, event, helper) {
-    var accountId = component.get("v.accountId");
-    console.log("AccountId='" + accountId + "'");
-    component.set("v.contactLookupFieldFilter", "");
-  },
   showNewContact: function (component) {
     console.log("catch show new contact");
     $A.createComponent(

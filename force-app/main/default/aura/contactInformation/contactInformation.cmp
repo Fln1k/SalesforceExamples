@@ -2,7 +2,6 @@
   <!-- Attributes -->
   <aura:attribute name="contactLookupFieldFilter" type="String" default="" />
   <!-- Events -->
-  <aura:handler name="init" value="{!this}" action="{!c.setUpContactFilter}" />
   <aura:handler event="c:assignContactId" action="{!c.handleAssignContactId}" />
   <aura:handler name="change" value="{!v.contactId}" action="{!c.handleContactChange}" />
   <!-- Layout -->
@@ -17,7 +16,7 @@
           value="{!v.contactId}"
           iconName="standard:contact"
           searchField="Name"
-          filter="{!v.contactLookupFieldFilter}"
+          filter="{! 'AccountId=\''+v.accountId+'\''}"
         />
       </td>
       <td style="padding-right: 20px; vertical-align: bottom">
