@@ -11,6 +11,8 @@
       productsOptions="{!v.productsOptions}"
       paymentPlan="{!v.paymentPlan}"
       orderType="{!v.orderType}"
+      quoteId="{!v.quoteId}"
+      canMoveToEnd="{!v.canMoveToEnd}"
     />
   </aura:if>
   <!-- 2 stage -->

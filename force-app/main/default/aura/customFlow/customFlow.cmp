@@ -4,6 +4,8 @@
     currentStage="{!v.currentStage}"
     canBack="{!v.canBack}"
     canNext="{!v.canNext}"
+    opportunityId="{!v.opportunityId}"
+    canMoveToEnd="{!v.canMoveToEnd}"
   />
   <br />
   <c:flowContent
@@ -27,6 +29,7 @@
     contactId="{!v.contactId}"
     contactEmail="{!v.contactEmail}"
     quoteId="{!v.quoteId}"
+    canMoveToEnd="{!v.canMoveToEnd}"
   />
   <br />
   <div class="slds-align_absolute-center">
@@ -34,6 +37,7 @@
       currentStage="{!v.currentStage}"
       canBack="{!v.canBack}"
       canNext="{!v.canNext}"
+      canMoveToEnd="{!v.canMoveToEnd}"
       accountId="{!v.accountId}"
       opportunityId="{!v.opportunityId}"
       accountOpportunitiesCount="{!v.accountOpportunitiesCount}"

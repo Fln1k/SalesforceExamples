@@ -18,7 +18,7 @@
     component.find("accountLookupField").set("v.error", false);
     var opportunityLookupField = component.find("opportunityLookupField");
     if (id.length > 0) {
-      var action = component.get("c.getCountOfAccountOpportunities");
+      var action = component.get("c.getAccountOpportunities");
       action.setParams({
         Id: id,
       });
@@ -83,6 +83,18 @@
     });
   },
   opportunityLookupFieldValueChange: function (component, event, helper) {
+    var getQuote = component.get("c.getOpportunityQuote");
+    getQuote.setParams({
+      opportunityId: event.getParam("value"),
+    });
+    getQuote.setCallback(this, function (response) {
+      var result = response.getReturnValue();
+      if (result.length) {
+        component.set("v.quoteId", result[0].Id);
+        component.set("v.canMoveToEnd", true);
+      }
+    });
+    $A.enqueueAction(getQuote);
     var accountId = component.get("v.accountId");
     if (accountId.length) {
       component.set(

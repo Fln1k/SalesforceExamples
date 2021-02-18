@@ -36,12 +36,21 @@
       onclick="{!c.changeStageFunction}"
     />
   </aura:renderIf>
+  <aura:renderIf isTrue="{!v.canMoveToEnd}">
+    <lightning:button
+      aura:id="LoadLastQuote"
+      label="Load Previous Quote"
+      variant="brand"
+      value="5"
+      onclick="{!c.changeStageFunction}"
+    />
+  </aura:renderIf>
   <aura:renderIf isTrue="{!(!v.canNext)}">
     <lightning:button
       aura:id="CloseDeal"
       label="Close deal"
       variant="brand"
-      value="0"
+      value="1"
       onclick="{!c.changeStageFunction}"
     />
   </aura:renderIf>
