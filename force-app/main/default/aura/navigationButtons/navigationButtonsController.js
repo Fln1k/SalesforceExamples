@@ -45,6 +45,9 @@
             }
           });
         });
+        if (!isValid) {
+          $A.get("e.c:showEmptyProductListErrorMessage").fire();
+        }
       }
       if (currentStage == 5) {
         var productsToInsert = [];
@@ -53,6 +56,7 @@
           pricebooks[productFamily]["entities"].forEach((product) => {
             if (parseInt(product.amount)) {
               productsToInsert.push({
+                name: product.name,
                 amount: product.amount,
                 pricebookEntryId: product.entitiyId,
                 price: product.price,
@@ -67,12 +71,10 @@
           billingCity: component.get("v.billingCity"),
           billingCountry: component.get("v.billingCountry"),
           billingPostalCode: component.get("v.billingPostalCode"),
-          //billingProvince: component.get("v.billingProvince"),
           shippingStreet: component.get("v.shippingStreet"),
           shippingCity: component.get("v.shippingCity"),
           shippingCountry: component.get("v.shippingCountry"),
           shippingPostalCode: component.get("v.shippingPostalCode"),
-          //shippingProvince: component.get("v.shippingProvince"),
           currencyIsoCode: component.get("v.currencyIsoCode"),
           contactId: component.get("v.contactId"),
           contactEmail: component.get("v.contactEmail"),
@@ -85,32 +87,32 @@
         if (isValid) {
           var updateAccountInfo = component.get("c.updateAccount");
           var updateContactInfo = component.get("c.updateContact");
-          var createQote = component.get("c.createQuote");
-          createQote.setParams({
+          var createQuote = component.get("c.createQuote");
+          createQuote.setParams({
             opportunityId: variables.opportunityId,
             billingStreet: variables.billingStreet,
             billingCity: variables.billingCity,
             billingCountry: variables.billingCountry,
             billingPostalCode: variables.billingPostalCode,
-            billingProvince: variables.billingProvince,
+            billingProvince: component.get("v.billingProvince"),
             shippingStreet: variables.shippingStreet,
             shippingCity: variables.shippingCity,
             shippingCountry: variables.shippingCountry,
             shippingPostalCode: variables.shippingPostalCode,
-            shippingProvince: variables.shippingProvince,
+            shippingProvince: component.get("v.shippingProvince"),
             opportunityLineItemsJson: JSON.stringify(productsToInsert),
             currencyIsoCode: variables.currencyIsoCode,
           });
-          createQote.setCallback(this, function (response) {
-            console.log(response.getReturnValue());
+          createQuote.setCallback(this, function (response) {
+            var result = response.getReturnValue();
+            component.set("v.quoteId", result.Id);
           });
           updateContactInfo.setParams({
             contactId: variables.contactId,
             contactEmail: variables.contactEmail,
           });
           updateContactInfo.setCallback(this, function (response) {
-            console.log(response.getReturnValue());
-            $A.enqueueAction(createQote);
+            $A.enqueueAction(createQuote);
           });
           updateAccountInfo.setParams({
             accountId: variables.accountId,
@@ -118,18 +120,19 @@
             billingCity: variables.billingCity,
             billingCountry: variables.billingCountry,
             billingPostalCode: variables.billingPostalCode,
-            billingProvince: variables.billingProvince,
+            billingProvince: component.get("v.billingProvince"),
             shippingStreet: variables.shippingStreet,
             shippingCity: variables.shippingCity,
             shippingCountry: variables.shippingCountry,
             shippingPostalCode: variables.shippingPostalCode,
-            shippingProvince: variables.shippingProvince,
+            shippingProvince: component.get("v.shippingProvince"),
           });
           updateAccountInfo.setCallback(this, function (response) {
-            console.log(response.getReturnValue());
             $A.enqueueAction(updateContactInfo);
           });
           $A.enqueueAction(updateAccountInfo);
+        } else {
+          $A.get("e.c:checkValidationOnTheFifthStage").fire();
         }
       }
     }

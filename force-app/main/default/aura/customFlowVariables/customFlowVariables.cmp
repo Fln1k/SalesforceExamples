@@ -1,27 +1,29 @@
 <aura:component extensible="true">
-    <aura:attribute name="currentStage" type="Integer" default="1"/>
-    <aura:attribute name="accountId" type="Id" default=''/>
-    <aura:attribute name="opportunityId" type="Id" default=''/>
-    <aura:attribute name="closedOpportunitiesAmount" type="Integer" default="0"/>
-    <aura:attribute name="accountOpportunitiesCount" type="Integer" default="0"/>
-    <aura:attribute name="canBack" type="Boolean" default="false"/>
-    <aura:attribute name="canNext" type="Boolean" default="true"/>
-    <aura:attribute name="productsOptions" type="List" default='[]'/>
-    <aura:attribute name="paymentPlan" type="String" default="" />
-    <aura:attribute name="orderType" type="String" default="" />
-    <aura:attribute name="subtotals" type="Object" default="{}" />
-    <aura:attribute name="billingStreet" type="String" default="" />
-    <aura:attribute name="billingCity" type="String" default="" />
-    <aura:attribute name="billingCountry" type="String" default="" />
-    <aura:attribute name="billingPostalCode" type="String" default="" />
-    <aura:attribute name="billingProvince" type="String" default="" />
-    <aura:attribute name="shippingStreet" type="String" default="" />
-    <aura:attribute name="shippingCity" type="String" default="" />
-    <aura:attribute name="shippingCountry" type="String" default="" />
-    <aura:attribute name="shippingPostalCode" type="String" default="" />
-    <aura:attribute name="shippingProvince" type="String" default="" />
-    <aura:attribute name="currencyIsoCode" type="String" default="" />
-    <aura:attribute name="contactId" type="Id" default="" />
-    <aura:attribute name="contactEmail" type="String" default="" />
-    <div>{!v.body}</div>
-</aura:component>	
+  <aura:attribute name="currentStage" type="Integer" default="1" />
+  <aura:attribute name="accountId" type="Id" default="" />
+  <aura:attribute name="opportunityId" type="Id" default="" />
+  <aura:attribute name="closedOpportunitiesAmount" type="Integer" default="0" />
+  <aura:attribute name="accountOpportunitiesCount" type="Integer" default="0" />
+  <aura:attribute name="canBack" type="Boolean" default="false" />
+  <aura:attribute name="canNext" type="Boolean" default="true" />
+  <aura:attribute name="canMoveToEnd" type="Boolean" default="false" />
+  <aura:attribute name="productsOptions" type="List" default="[]" />
+  <aura:attribute name="paymentPlan" type="String" default="" />
+  <aura:attribute name="orderType" type="String" default="" />
+  <aura:attribute name="subtotals" type="Object" default="{}" />
+  <aura:attribute name="billingStreet" type="String" default="" />
+  <aura:attribute name="billingCity" type="String" default="" />
+  <aura:attribute name="billingCountry" type="String" default="" />
+  <aura:attribute name="billingPostalCode" type="String" default="" />
+  <aura:attribute name="billingProvince" type="String" default="" />
+  <aura:attribute name="shippingStreet" type="String" default="" />
+  <aura:attribute name="shippingCity" type="String" default="" />
+  <aura:attribute name="shippingCountry" type="String" default="" />
+  <aura:attribute name="shippingPostalCode" type="String" default="" />
+  <aura:attribute name="shippingProvince" type="String" default="" />
+  <aura:attribute name="currencyIsoCode" type="String" default="" />
+  <aura:attribute name="contactId" type="Id" default="" />
+  <aura:attribute name="contactEmail" type="String" default="" />
+  <aura:attribute name="quoteId" type="Id" default="" />
+  <div>{!v.body}</div>
+</aura:component>

@@ -1,11 +1,5 @@
 ({
-  setUpContactFilter: function (component, event, helper) {
-    var accountId = component.get("v.accountId");
-    console.log("AccountId='" + accountId + "'");
-    component.set("v.contactLookupFieldFilter", "");
-  },
   showNewContact: function (component) {
-    console.log("catch show new contact");
     $A.createComponent(
       "c:newContact",
       { accountId: component.get("v.accountId") },
@@ -33,15 +27,30 @@
 
   handleContactChange: function (component, event, helper) {
     var contactId = component.get("v.contactId");
-    var getContact = component.get("c.getContact");
-    getContact.setParams({
-      contactId: contactId,
-    });
-    getContact.setCallback(this, function (response) {
-      var result = response.getReturnValue();
-      component.set("v.contactEmail",result.Email);
-      
-    });
-    $A.enqueueAction(getContact);
-  }
+    if (contactId.length > 0) {
+      var getContact = component.get("c.getContact");
+      getContact.setParams({
+        contactId: contactId,
+      });
+      getContact.setCallback(this, function (response) {
+        var result = response.getReturnValue();
+        component.set("v.contactEmail", result.Email);
+        component.set("v.contactEmailFieldDisabled", false);
+        component.find("emailInputField").showHelpMessageIfInvalid();
+      });
+      $A.enqueueAction(getContact);
+    } else {
+      component.set("v.contactEmail", "");
+      component.set("v.contactEmailFieldDisabled", true);
+      component.find("emailInputField").showHelpMessageIfInvalid();
+    }
+  },
+  handleErrorCheck: function (component, event, helper) {
+    if (component.get("v.contactId").length == 0) {
+      component.find("contactLookupField").set("v.error", true);
+    }
+    if (component.get("v.contactEmail").length == 0) {
+      component.find("emailInputField").showHelpMessageIfInvalid();
+    }
+  },
 });

@@ -1,4 +1,5 @@
-@RestResource(urlMapping = '/CustomRestService/*')
+@RestResource(urlMapping = 
+'/CustomRestService/*')
 global with sharing class CustomRestService{
 	@HttpGet
 	global static String getAccountContactIds(){

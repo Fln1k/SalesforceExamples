@@ -1,9 +1,34 @@
-<aura:component controller="customFlowController" extends="c:customFlowVariables">
+<aura:component
+  controller="customFlowController"
+  extends="c:customFlowVariables"
+>
   <!-- Attributes -->
   <aura:attribute name="billingCountryOptions" type="List" default="[]" />
   <aura:attribute name="shippingCountryOptions" type="List" default="[]" />
+  <aura:attribute name="billingStateOptions" type="List" default="[]" />
+  <aura:attribute name="shippingStateOptions" type="List" default="[]" />
+  <aura:attribute name="stateOptions" type="Object" default="{}" />
+  <aura:attribute name="previousShippingCountry" type="String" default=""/>
+  <aura:attribute name="previousShippingState" type="String" default=""/>
+  <aura:attribute name="previousBillingState" type="String" default=""/>
+  <aura:attribute name="previousBillingCountry" type="String" default=""/>
+  <aura:attribute name="billingCountryValue" type="String" default=""/>
+  <aura:attribute name="shippingCountryValue" type="String" default=""/>
+  <aura:attribute name="billingProvinceValue" type="String"/>
+  <aura:attribute name="shippingProvinceValue" type="String"/>
   <!-- Events -->
+  <aura:handler event="c:checkValidationOnTheFifthStage" action="{!c.handleErrorCheck}" />
   <aura:handler name="init" value="{! this }" action="{! c.init }" />
+  <aura:handler
+  name="change"
+  value="{!v.billingProvinceValue}"
+  action="{!c.updateBillingProvinces}"
+/>
+<aura:handler
+name="change"
+value="{!v.shippingProvinceValue}"
+action="{!c.updateShippingProvinces}"
+/>
   <!-- Layout -->
   <table>
     <tr>
@@ -32,6 +57,7 @@
     <tr>
       <td style="padding-right: 20px">
         <lightning:inputAddress
+          aura:id="requiredInput"
           addressLabel="Billing adress"
           streetLabel="Street"
           cityLabel="City"
@@ -40,14 +66,18 @@
           postalCodeLabel="PostalCode"
           street="{! v.billingStreet }"
           city="{! v.billingCity }"
-          country="{! v.billingCountry }"
+          country="{! v.billingCountryValue }"
           countryOptions="{! v.billingCountryOptions }"
+          provinceOptions="{! v.billingStateOptions }"
           postalCode="{!v.billingPostalCode}"
-          province="{!v.billingProvince}"
+          province="{!v.billingProvinceValue}"
+          required="true"
+          onchange="{! c.updateBillingProvinces }"
         />
       </td>
       <td>
         <lightning:inputAddress
+          aura:id="requiredInput"
           addressLabel="Shipping adress"
           streetLabel="Street"
           cityLabel="City"
@@ -58,8 +88,11 @@
           city="{! v.shippingCity }"
           country="{! v.shippingCountry }"
           countryOptions="{! v.shippingCountryOptions }"
+          provinceOptions="{! v.shippingStateOptions }"
           postalCode="{!v.shippingPostalCode}"
-          province="{!v.shippingProvince}"
+          province="{!v.shippingProvinceValue}"
+          required="true"
+          onchange="{! c.updateShippingProvinces }"
         />
       </td>
     </tr>

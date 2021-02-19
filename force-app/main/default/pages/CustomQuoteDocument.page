@@ -1,0 +1,18 @@
+<apex:page controller="CustomQuoteDocumentController" renderAs="pdf">
+  <apex:form>
+    <apex:pageBlock>
+      Name:
+      <b>{!quote.Name}</b>
+      <br/>
+      <apex:pageBlockTable value="{!quoteLineItems}" var="qli" border="2">
+        <apex:column value="{!qli.PricebookEntry.Product2.Name}" />
+        <apex:column value="{!qli.Quantity}" />
+        <apex:column value="{!qli.UnitPrice}" />
+        <apex:column value="{!qli.TotalPrice}" />
+      </apex:pageBlockTable>
+      <br /> Total Price:{!quote.Subtotal}
+      <br/> Tax:{!quote.Tax}
+      <br/> Grand Price:{!quote.TotalPrice+quote.Tax}
+    </apex:pageBlock>
+  </apex:form>
+</apex:page>
