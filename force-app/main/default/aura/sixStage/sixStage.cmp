@@ -5,20 +5,23 @@
   <aura:attribute name="IsSpinner" type="Boolean" />
   <!-- Events -->
   <aura:handler name="init" value="{!this}" action="{!c.getDocLink}" />
-  <aura:handler
-    name="change"
-    value="{!v.quoteId}"
-    action="{!c.getDocLink}"
-  />
+  <aura:handler name="change" value="{!v.quoteId}" action="{!c.getDocLink}" />
   <!-- Layout -->
   <aura:if isTrue="{!v.IsSpinner}">
     <div class="slds-is-relative">
-      <lightning:spinner alternativeText="Creating new account" />
+      <div
+        class="slds-align_absolute-center"
+        style="width: 100%; height: 500px"
+      >
+        <lightning:spinner alternativeText="Creating new account" />
+      </div>
     </div>
   </aura:if>
-  <iframe
-    src="{!v.quoteDocumentLink}"
-    style="width: 100%; height: 500px;"
-    frameborder="0"
-  ></iframe>
+  <aura:if isTrue="{! !(v.IsSpinner)}">
+    <iframe
+      src="{!v.quoteDocumentLink}"
+      style="width: 100%; height: 500px"
+      frameborder="0"
+    ></iframe>
+  </aura:if>
 </aura:component>

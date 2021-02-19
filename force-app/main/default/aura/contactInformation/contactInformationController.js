@@ -1,6 +1,5 @@
 ({
   showNewContact: function (component) {
-    console.log("catch show new contact");
     $A.createComponent(
       "c:newContact",
       { accountId: component.get("v.accountId") },

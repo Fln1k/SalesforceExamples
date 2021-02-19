@@ -127,6 +127,7 @@ public with sharing class customFlowController{
 		Account currentAccount = [Select BillingCountry, BillingCity, BillingStreet, BillingPostalCode, BillingState, ShippingStreet, ShippingCity, ShippingPostalCode, ShippingState
 		                          from Account
 		                          WHERE Id = :accountId];
+								  
 		currentAccount.BillingCountry = billingCountry;
 		currentAccount.BillingCity = billingCity;
 		currentAccount.BillingStreet = billingStreet;
@@ -161,6 +162,7 @@ public with sharing class customFlowController{
 		CountrySetting__c countrySetting = [SELECT Tax__c
 		                                    from CountrySetting__c
 		                                    WHERE Pricebook__c = :pricebookEntry.Pricebook2.id];
+											
 		Quote newQuote = new Quote();
 		newQuote.name = 'Quote ' + QuotesAmount;
 		newQuote.opportunityId = opportunityId;
@@ -169,6 +171,7 @@ public with sharing class customFlowController{
 		newQuote.BillingStreet = billingStreet;
 		newQuote.BillingPostalCode = billingPostalCode;
 		newQuote.BillingState = billingProvince;
+		newQuote.ShippingCountry = shippingCountry;
 		newQuote.ShippingStreet = shippingStreet;
 		newQuote.ShippingCity = shippingCity;
 		newQuote.ShippingPostalCode = shippingPostalCode;
@@ -176,6 +179,7 @@ public with sharing class customFlowController{
 		newQuote.CurrencyIsoCode = pricebookEntry.currencyIsoCode;
 		newQuote.Pricebook2Id = pricebookEntry.Pricebook2.id;
 		insert newQuote;
+
 		List<QuoteLineItem> quoteLineItems = new List<QuoteLineItem>();
 		Double totalPrice = 0.0;
 		for (CustomOpportunityLineItem lineItem : customLineItems){
@@ -188,8 +192,10 @@ public with sharing class customFlowController{
 			quoteLineItems.add(tempQuoteLineItem);
 		}
 		insert quoteLineItems;
+
 		newQuote.Tax = totalPrice / 100 * countrySetting.Tax__c;
 		update newQuote;
+
 		return newQuote;
 	}
 

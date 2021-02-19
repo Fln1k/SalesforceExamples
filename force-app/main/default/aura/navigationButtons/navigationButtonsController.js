@@ -80,11 +80,15 @@
           contactEmail: component.get("v.contactEmail"),
         };
         Object.keys(variables).forEach((attribute) => {
-          console.log(attribute+"--->"+variables[attribute])
+          console.log(attribute + "--->" + variables[attribute]);
           if (variables[attribute].length == 0) {
             isValid = false;
           }
         });
+        console.log("billingProvince--->" + component.get("v.billingProvince"));
+        console.log(
+          "shippingProvince--->" + component.get("v.shippingProvince")
+        );
         if (isValid) {
           var updateAccountInfo = component.get("c.updateAccount");
           var updateContactInfo = component.get("c.updateContact");
