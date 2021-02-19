@@ -14,7 +14,6 @@
         accountId: component.get("v.accountId"),
       });
       action.setCallback(this, function (response) {
-        console.log(response.getReturnValue());
         var assignLookupIdEvent = $A.get("e.c:assignContactId");
         assignLookupIdEvent.setParams({ id: response.getReturnValue().Id });
         assignLookupIdEvent.fire();
