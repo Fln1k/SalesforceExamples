@@ -79,7 +79,21 @@ public with sharing class customFlowController{
 
 	@AuraEnabled
 	public static String getAvailableCountries(){
-		return JSON.serialize(User.Countrycode.getDescribe().getPicklistValues());
+		String stateString = 'Contact.MailingStateCode';
+		String countryString = 'Contact.MailingCountryCode';
+
+		List<String> splitStateString = stateString.split('\\.');
+		Schema.SobjectField stateField = Schema.getGlobalDescribe().get(splitStateString[0]).getDescribe().fields.getMap().get(splitStateString[1]);
+		List<String> splitCountryString = countryString.split('\\.');
+		Schema.SobjectField countryField = Schema.getGlobalDescribe().get(splitCountryString[0]).getDescribe().fields.getMap().get(splitCountryString[1]);
+
+		DependentPicklists dp = new DependentPicklists();
+
+		Map<String, List<String>> dependency = dp.controllingToDependentValues(countryField, stateField);
+		List<Schema.PicklistEntry> states = User.statecode.getDescribe().getPicklistValues();
+		List<Schema.PicklistEntry> countries = User.Countrycode.getDescribe().getPicklistValues();
+
+		return '{"countries":' + JSON.serialize(countries)+',"states":' + JSON.serialize(states)+',"dependency":' + JSON.serialize(dependency)+'}';
 	}
 
 	@AuraEnabled
@@ -170,7 +184,7 @@ public with sharing class customFlowController{
 			tempQuoteLineItem.PricebookEntryId = lineItem.pricebookEntryId;
 			tempQuoteLineItem.Quantity = lineItem.amount;
 			tempQuoteLineItem.UnitPrice = lineItem.price;
-			totalPrice += (lineItem.price*lineItem.amount);
+			totalPrice += (lineItem.price * lineItem.amount);
 			quoteLineItems.add(tempQuoteLineItem);
 		}
 		insert quoteLineItems;
@@ -196,8 +210,11 @@ public with sharing class customFlowController{
 
 	@AuraEnabled
 	public static void closeOpportunity(string opportunityId){
-		Opportunity opp = [SELECT Id FROM Opportunity WHERE Id=:opportunityId LIMIT 1];
-		opp.StageName='Closed Won';
+		Opportunity opp = [SELECT Id
+		                   FROM Opportunity
+		                   WHERE Id = :opportunityId
+		                   LIMIT 1];
+		opp.StageName = 'Closed Won';
 		update opp;
 	}
 }

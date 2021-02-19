@@ -4,6 +4,7 @@
 >
   <!-- Events -->
   <aura:registerEvent name="checkValidationOnTheFifthStageEvent" type="c:checkValidationOnTheFifthStage" />
+  <aura:registerEvent name="showEmptyProductListErrorMessageEvent" type="c:showEmptyProductListErrorMessage" />
   <aura:registerEvent name="closeModalEvent" type="c:closeModal" />
   <aura:registerEvent
     name="errorMessageOnAccountLookupEvent"

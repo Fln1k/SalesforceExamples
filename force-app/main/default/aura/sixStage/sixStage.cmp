@@ -2,6 +2,7 @@
   <!-- Attribute -->
   <aura:attribute name="quoteId" type="Id" default="" />
   <aura:attribute name="quoteDocumentLink" type="String" default="" />
+  <aura:attribute name="IsSpinner" type="Boolean" />
   <!-- Events -->
   <aura:handler name="init" value="{!this}" action="{!c.getDocLink}" />
   <aura:handler
@@ -10,6 +11,11 @@
     action="{!c.getDocLink}"
   />
   <!-- Layout -->
+  <aura:if isTrue="{!v.IsSpinner}">
+    <div class="slds-is-relative">
+      <lightning:spinner alternativeText="Creating new account" />
+    </div>
+  </aura:if>
   <iframe
     src="{!v.quoteDocumentLink}"
     style="width: 100%; height: 500px;"

@@ -4,7 +4,7 @@
     var action = component.get("c.getAvailableCountries");
     action.setCallback(this, function (response) {
       var result = JSON.parse(response.getReturnValue());
-      result.forEach((element) => {
+      result["countries"].forEach((element) => {
         countryOptions.push({
           label: element.label,
           value: element.value,

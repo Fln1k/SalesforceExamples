@@ -45,6 +45,9 @@
             }
           });
         });
+        if (!isValid) {
+          $A.get("e.c:showEmptyProductListErrorMessage").fire();
+        }
       }
       if (currentStage == 5) {
         var productsToInsert = [];
@@ -68,17 +71,16 @@
           billingCity: component.get("v.billingCity"),
           billingCountry: component.get("v.billingCountry"),
           billingPostalCode: component.get("v.billingPostalCode"),
-          //billingProvince: component.get("v.billingProvince"),
           shippingStreet: component.get("v.shippingStreet"),
           shippingCity: component.get("v.shippingCity"),
           shippingCountry: component.get("v.shippingCountry"),
           shippingPostalCode: component.get("v.shippingPostalCode"),
-          //shippingProvince: component.get("v.shippingProvince"),
           currencyIsoCode: component.get("v.currencyIsoCode"),
           contactId: component.get("v.contactId"),
           contactEmail: component.get("v.contactEmail"),
         };
         Object.keys(variables).forEach((attribute) => {
+          console.log(attribute+"--->"+variables[attribute])
           if (variables[attribute].length == 0) {
             isValid = false;
           }
@@ -93,12 +95,12 @@
             billingCity: variables.billingCity,
             billingCountry: variables.billingCountry,
             billingPostalCode: variables.billingPostalCode,
-            billingProvince: variables.billingProvince,
+            billingProvince: component.get("v.billingProvince"),
             shippingStreet: variables.shippingStreet,
             shippingCity: variables.shippingCity,
             shippingCountry: variables.shippingCountry,
             shippingPostalCode: variables.shippingPostalCode,
-            shippingProvince: variables.shippingProvince,
+            shippingProvince: component.get("v.shippingProvince"),
             opportunityLineItemsJson: JSON.stringify(productsToInsert),
             currencyIsoCode: variables.currencyIsoCode,
           });
@@ -121,12 +123,12 @@
             billingCity: variables.billingCity,
             billingCountry: variables.billingCountry,
             billingPostalCode: variables.billingPostalCode,
-            billingProvince: variables.billingProvince,
+            billingProvince: component.get("v.billingProvince"),
             shippingStreet: variables.shippingStreet,
             shippingCity: variables.shippingCity,
             shippingCountry: variables.shippingCountry,
             shippingPostalCode: variables.shippingPostalCode,
-            shippingProvince: variables.shippingProvince,
+            shippingProvince: component.get("v.shippingProvince"),
           });
           updateAccountInfo.setCallback(this, function (response) {
             console.log(response.getReturnValue());

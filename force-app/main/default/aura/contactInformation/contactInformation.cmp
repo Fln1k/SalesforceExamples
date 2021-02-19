@@ -1,6 +1,7 @@
 <aura:component extends="c:customFlowVariables" controller="customFlowController">
   <!-- Attributes -->
   <aura:attribute name="contactLookupFieldFilter" type="String" default="" />
+  <aura:attribute name="contactEmailFieldDisabled" type="Boolean" default="true" />
   <!-- Events -->
   <aura:handler event="c:checkValidationOnTheFifthStage" action="{!c.handleErrorCheck}" />
   <aura:handler event="c:assignContactId" action="{!c.handleAssignContactId}" />
@@ -39,6 +40,7 @@
           label="Email"
           value="{!v.contactEmail}"
           required="true"
+          disabled="{!v.contactEmailFieldDisabled}"
         />
       </td>
     </tr>

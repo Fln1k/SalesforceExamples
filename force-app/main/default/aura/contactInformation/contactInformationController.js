@@ -36,10 +36,14 @@
       getContact.setCallback(this, function (response) {
         var result = response.getReturnValue();
         component.set("v.contactEmail", result.Email);
+        component.set("v.contactEmailFieldDisabled", false);
+        component.find("emailInputField").showHelpMessageIfInvalid();
       });
       $A.enqueueAction(getContact);
     } else {
       component.set("v.contactEmail", "");
+      component.set("v.contactEmailFieldDisabled", true);
+      component.find("emailInputField").showHelpMessageIfInvalid();
     }
   },
   handleErrorCheck: function (component, event, helper) {
