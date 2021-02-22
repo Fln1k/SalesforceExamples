@@ -53,4 +53,16 @@
       component.find("emailInputField").showHelpMessageIfInvalid();
     }
   },
+  updateContactCall: function (component, event, helper) {
+    var updateContactInfo = component.get("c.updateContact");
+    updateContactInfo.setParams({
+      contactId: component.get("v.contactId"),
+      contactEmail: component.get("v.contactEmail"),
+    });
+    updateContactInfo.setCallback(this, function (response) {
+      console.log("Contact updated");
+      console.log(response.getReturnValue());
+    });
+    $A.enqueueAction(updateContactInfo);
+  },
 });

@@ -1,4 +1,4 @@
-<aura:component extends="c:customFlowVariables" controller="customFlowController">
+<aura:component extends="c:customFlowVariables" controller="OpportunityController">
   <!-- Attributes -->
   <aura:attribute name="progressIndicatorStages" type="List" />
   <!-- Events -->

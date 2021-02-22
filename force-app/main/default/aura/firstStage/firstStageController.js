@@ -20,7 +20,7 @@
     if (id.length > 0) {
       var action = component.get("c.getAccountOpportunities");
       action.setParams({
-        Id: id,
+        accountId: id,
       });
       action.setCallback(this, function (response) {
         var opportunities = response.getReturnValue();
@@ -96,12 +96,5 @@
       }
     });
     $A.enqueueAction(getQuote);
-    var accountId = component.get("v.accountId");
-    if (accountId.length) {
-      component.set(
-        "v.opportunityLookupFieldFilter",
-        "AccountId='" + accountId + "' and  (NOT StageName like 'Closed%')"
-      );
-    }
   },
 });

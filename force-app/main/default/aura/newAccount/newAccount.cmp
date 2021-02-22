@@ -1,4 +1,4 @@
-<aura:component access="global" controller="customFlowController">
+<aura:component access="global" controller="AccountController">
   <!-- Attributes -->
   <aura:attribute name="newAccountNameField" type="String" default="" />
   <aura:attribute name="newAccountCountryField" type="String" default="" />

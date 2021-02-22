@@ -63,7 +63,6 @@
     component.set("v.total", total.toFixed(2));
   },
   handleShowEmptyError: function (component, event, helper) {
-    component.set("v.showErrors",true);
-    component.set("v.errorMessage","choose at least 1 product please");
+    alert("select at least 1 product");
   }
 });

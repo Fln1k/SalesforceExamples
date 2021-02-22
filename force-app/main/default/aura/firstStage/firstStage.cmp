@@ -1,4 +1,4 @@
-<aura:component controller="customFlowController"  extends="c:customFlowVariables">
+<aura:component controller="AccountController"  extends="c:customFlowVariables">
   <!-- Attributes -->
   <aura:attribute name="objectName" type="String" default="Account" />
   <aura:attribute name="opportunityLookupFieldFilter" type="String" default=""/>
