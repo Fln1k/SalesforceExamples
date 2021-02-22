@@ -6,13 +6,13 @@
     <c:firstStage
       accountId="{!v.accountId}"
       opportunityId="{!v.opportunityId}"
+      canMoveToEnd="{!v.canMoveToEnd}"
       accountOpportunitiesCount="{!v.accountOpportunitiesCount}"
       closedOpportunitiesAmount="{!v.closedOpportunitiesAmount}"
       productsOptions="{!v.productsOptions}"
       paymentPlan="{!v.paymentPlan}"
       orderType="{!v.orderType}"
       quoteId="{!v.quoteId}"
-      canMoveToEnd="{!v.canMoveToEnd}"
     />
   </aura:if>
   <!-- 2 stage -->

@@ -9,11 +9,6 @@
     value="{!v.accountId}"
     action="{!c.accountLookupFieldValueChange}"
   />
-  <aura:handler
-  name="change"
-  value="{!v.opportunityId}"
-  action="{!c.opportunityLookupFieldValueChange}"
-/>
   <aura:handler event="c:assignAccountId" action="{!c.handleAssignAccountId}" />
   <aura:handler event="c:errorMessageOnAccountLookup" action="{!c.handleErrorMessageOnAccountLookup}" />
   <!-- Layout -->
@@ -46,17 +41,11 @@
     </tr>
     <tr>
       <td style="width: 70%; vertical-align: bottom; padding-right: 10px">
-        <c:strike_lookup
-          aura:id="opportunityLookupField"
-          label="Opportunity"
-          object="Opportunity"
-          placeholder="Opportunity name"
-          value="{!v.opportunityId}"
-          searchField="Name"
-          disabled="true"
-          iconName="standard:opportunity"
-          filter="{!v.opportunityLookupFieldFilter}"
-        />
+        <c:opportunityInfo 
+        opportunityLookupFieldFilter="{!v.opportunityLookupFieldFilter}"
+        opportunityId="{!v.opportunityId}"
+        canMoveToEnd="{!v.canMoveToEnd}"
+        quoteId="{!v.quoteId}"/>
       </td>
     </tr>
   </table>

@@ -1,0 +1,26 @@
+<aura:component extends="c:customFlowVariables" controller="OpportunityController">
+  <!-- Attributes -->
+  <aura:attribute
+    name="opportunityLookupFieldFilter"
+    type="String"
+    default=""
+  />
+  <!-- Events -->
+  <aura:handler
+    name="change"
+    value="{!v.opportunityId}"
+    action="{!c.opportunityLookupFieldValueChange}"
+  />
+  <!-- Layout -->
+  <c:strike_lookup
+    aura:id="opportunityLookupField"
+    label="Opportunity"
+    object="Opportunity"
+    placeholder="Opportunity name"
+    value="{!v.opportunityId}"
+    searchField="Name"
+    disabled="true"
+    iconName="standard:opportunity"
+    filter="{!v.opportunityLookupFieldFilter}"
+  />
+</aura:component>
