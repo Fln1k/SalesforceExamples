@@ -36,7 +36,9 @@
       action.setCallback(this, function (response) {
         var assignLookupIdEvent = $A.get("e.c:assignAccountId");
         assignLookupIdEvent.setParams({ id: response.getReturnValue().Id });
+        //////////////////////////////////////
         assignLookupIdEvent.fire();
+        /////////////////////////////////////////////
         component.set("v.newAccountNameField", "");
         component.set("v.newAccountCountryField", "");
         component.set("v.IsSpinner", false);

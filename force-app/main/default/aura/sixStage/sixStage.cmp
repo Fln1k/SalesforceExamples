@@ -1,4 +1,4 @@
-<aura:component controller="customFlowController">
+<aura:component controller="QuoteController" extends="c:customFlowVariables">
   <!-- Attribute -->
   <aura:attribute name="quoteId" type="Id" default="" />
   <aura:attribute name="quoteDocumentLink" type="String" default="" />

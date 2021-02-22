@@ -50,20 +50,6 @@
         }
       }
       if (currentStage == 5) {
-        var productsToInsert = [];
-        var pricebooks = component.get("v.productsOptions");
-        Object.keys(pricebooks).forEach((productFamily) => {
-          pricebooks[productFamily]["entities"].forEach((product) => {
-            if (parseInt(product.amount)) {
-              productsToInsert.push({
-                name: product.name,
-                amount: product.amount,
-                pricebookEntryId: product.entitiyId,
-                price: product.price,
-              });
-            }
-          });
-        });
         var variables = {
           accountId: component.get("v.accountId"),
           opportunityId: component.get("v.opportunityId"),
@@ -85,54 +71,15 @@
           }
         });
         if (isValid) {
-          var updateAccountInfo = component.get("c.updateAccount");
-          var updateContactInfo = component.get("c.updateContact");
-          var createQuote = component.get("c.createQuote");
-          createQuote.setParams({
-            opportunityId: variables.opportunityId,
-            billingStreet: variables.billingStreet,
-            billingCity: variables.billingCity,
-            billingCountry: variables.billingCountry,
-            billingPostalCode: variables.billingPostalCode,
-            billingProvince: component.get("v.billingProvince"),
-            shippingStreet: variables.shippingStreet,
-            shippingCity: variables.shippingCity,
-            shippingCountry: variables.shippingCountry,
-            shippingPostalCode: variables.shippingPostalCode,
-            shippingProvince: component.get("v.shippingProvince"),
-            opportunityLineItemsJson: JSON.stringify(productsToInsert),
-            currencyIsoCode: variables.currencyIsoCode,
-          });
-          createQuote.setCallback(this, function (response) {
-            var result = response.getReturnValue();
-            component.set("v.quoteId", result.Id);
-          });
-          updateContactInfo.setParams({
-            contactId: variables.contactId,
-            contactEmail: variables.contactEmail,
-          });
-          updateContactInfo.setCallback(this, function (response) {
-            $A.enqueueAction(createQuote);
-          });
-          updateAccountInfo.setParams({
-            accountId: variables.accountId,
-            billingStreet: variables.billingStreet,
-            billingCity: variables.billingCity,
-            billingCountry: variables.billingCountry,
-            billingPostalCode: variables.billingPostalCode,
-            billingProvince: component.get("v.billingProvince"),
-            shippingStreet: variables.shippingStreet,
-            shippingCity: variables.shippingCity,
-            shippingCountry: variables.shippingCountry,
-            shippingPostalCode: variables.shippingPostalCode,
-            shippingProvince: component.get("v.shippingProvince"),
-          });
-          updateAccountInfo.setCallback(this, function (response) {
-            $A.enqueueAction(updateContactInfo);
-          });
-          $A.enqueueAction(updateAccountInfo);
+          console.log("before account update");
+          $A.get("e.c:updateAccountInformation").fire();
+          console.log("after account update");
+          console.log("before contact update");         
+          $A.get("e.c:updateContactInformation").fire();
+          console.log("after contact update");
         } else {
-          $A.get("e.c:checkValidationOnTheFifthStage").fire();
+          console.log("something was wrong");
+          $A.get("e.c:checkValidationOnTheFifthStage").fire();          
         }
       }
     }

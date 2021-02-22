@@ -1,4 +1,4 @@
-<aura:component access="global" controller="customFlowController">
+<aura:component access="global" controller="ContactController">
   <!-- Attributes -->
   <aura:attribute name="newContactNameField" type="String" default="" />
   <aura:attribute name="accountId" type="Id" default="" />

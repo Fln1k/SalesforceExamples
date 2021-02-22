@@ -156,4 +156,26 @@
       component.set("v.previousShippingState", country);
     }
   },
+
+  updateAccountCall: function (component, event, helper) {
+    var updateAccountInfo = component.get("c.updateAccount");
+    updateAccountInfo.setParams({
+      accountId: component.get("v.accountId"),
+      billingStreet: component.get("v.billingStreet"),
+      billingCity: component.get("v.billingCity"),
+      billingCountry: component.get("v.billingCountry"),
+      billingPostalCode: component.get("v.billingPostalCode"),
+      billingProvince: component.get("v.billingProvince"),
+      shippingStreet: component.get("v.shippingStreet"),
+      shippingCity: component.get("v.shippingCity"),
+      shippingCountry: component.get("v.shippingProvince"),
+      shippingPostalCode: component.get("v.shippingPostalCode"),
+      shippingProvince: component.get("v.shippingProvince"),
+    });
+    updateAccountInfo.setCallback(this, function (response) {
+      console.log("Account updated");
+      console.log(response.getReturnValue());
+    });
+    $A.enqueueAction(updateAccountInfo);
+  }
 });

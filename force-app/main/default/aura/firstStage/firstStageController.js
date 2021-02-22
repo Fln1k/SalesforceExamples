@@ -20,7 +20,7 @@
     if (id.length > 0) {
       var action = component.get("c.getAccountOpportunities");
       action.setParams({
-        Id: id,
+        accountId: id,
       });
       action.setCallback(this, function (response) {
         var opportunities = response.getReturnValue();
@@ -82,26 +82,5 @@
           .then(function (overlay) {});
       }
     });
-  },
-  opportunityLookupFieldValueChange: function (component, event, helper) {
-    var getQuote = component.get("c.getOpportunityQuote");
-    getQuote.setParams({
-      opportunityId: event.getParam("value"),
-    });
-    getQuote.setCallback(this, function (response) {
-      var result = response.getReturnValue();
-      if (result.length) {
-        component.set("v.quoteId", result[0].Id);
-        component.set("v.canMoveToEnd", true);
-      }
-    });
-    $A.enqueueAction(getQuote);
-    var accountId = component.get("v.accountId");
-    if (accountId.length) {
-      component.set(
-        "v.opportunityLookupFieldFilter",
-        "AccountId='" + accountId + "' and  (NOT StageName like 'Closed%')"
-      );
-    }
   },
 });
