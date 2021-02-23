@@ -1,5 +1,10 @@
 <aura:component extends="c:customFlowVariables">
   <aura:attribute name="additionalComments" type="String" default="" />
+  <aura:attribute
+    name="opportunityLookupFieldFilter"
+    type="String"
+    default=""
+  />
   <!-- Layout -->
   <!-- 1 stage -->
   <aura:if isTrue="{!v.currentStage == 1}">
@@ -13,6 +18,7 @@
       paymentPlan="{!v.paymentPlan}"
       orderType="{!v.orderType}"
       quoteId="{!v.quoteId}"
+      opportunityLookupFieldFilter="{!v.opportunityLookupFieldFilter}"
     />
   </aura:if>
   <!-- 2 stage -->
@@ -56,6 +62,7 @@
       contactEmail="{!v.contactEmail}"
     />
   </aura:if>
+  <!-- 6 stage -->
   <aura:if isTrue="{!v.currentStage == 6}">
     <c:sixStage
       quoteId="{!v.quoteId}"

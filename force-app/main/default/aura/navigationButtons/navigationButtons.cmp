@@ -8,7 +8,7 @@
   <aura:registerEvent name="closeModalEvent" type="c:closeModal" />
   <aura:registerEvent name="updateAccountInformationEvent" type="c:updateAccountInformation" />
   <aura:registerEvent name="updateContactInformationEvent" type="c:updateContactInformation" />
-  
+  <aura:registerEvent name="createNewOpportunityEvent" type="c:createNewOpportunity" />
   <aura:registerEvent
     name="errorMessageOnAccountLookupEvent"
     type="c:errorMessageOnAccountLookup"

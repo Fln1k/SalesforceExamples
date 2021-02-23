@@ -11,15 +11,8 @@
           $A.get("e.c:errorMessageOnAccountLookup").fire();
         }
         if (!component.get("v.opportunityId").length) {
-          var action = component.get("c.createOpportunity");
-          action.setParams({
-            accountId: accountId,
-          });
-          action.setCallback(this, function (response) {
-            var newOpportunityId = response.getReturnValue().Id;
-            component.set("v.opportunityId", newOpportunityId);
-          });
-          $A.enqueueAction(action);
+          $A.get("e.c:createNewOpportunity").fire();
+          component.set("v.quoteId", "");
         }
       }
       if (currentStage == 2) {
@@ -31,17 +24,11 @@
       }
       if (currentStage == 3) {
         isValid = false;
-        var productsToInsert = [];
         var pricebooks = component.get("v.productsOptions");
         Object.keys(pricebooks).forEach((productFamily) => {
           pricebooks[productFamily]["entities"].forEach((product) => {
             if (parseInt(product.amount)) {
               isValid = true;
-              productsToInsert.push({
-                amount: product.amount,
-                pricebookEntryId: product.entitiyId,
-                price: product.price,
-              });
             }
           });
         });
@@ -71,21 +58,18 @@
           }
         });
         if (isValid) {
-          console.log("before account update");
           $A.get("e.c:updateAccountInformation").fire();
-          console.log("after account update");
-          console.log("before contact update");         
           $A.get("e.c:updateContactInformation").fire();
-          console.log("after contact update");
         } else {
-          console.log("something was wrong");
-          $A.get("e.c:checkValidationOnTheFifthStage").fire();          
+          $A.get("e.c:checkValidationOnTheFifthStage").fire();
         }
       }
     }
     if (isValid) {
       var valueToAssign = currentStage + valueToChange;
-      component.set("v.currentStage", valueToAssign);
+      setTimeout(function request() {
+        component.set("v.currentStage", valueToAssign);
+      }, 1000);
     }
   },
   closeModalFunction: function (component, event, helper) {

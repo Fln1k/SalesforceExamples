@@ -42,6 +42,7 @@
           billingProvinceValue = state.value;
         }
       });
+      console.log(stateOptions);
       component.set("v.stateOptions", stateOptions);
       component.set("v.shippingCountryOptions", shippingCountryOptions);
       component.set("v.billingCountryOptions", billingCountryOptions);
@@ -109,7 +110,6 @@
   updateBillingProvinces: function (component, event, helper) {
     var country = component.get("v.billingCountryValue");
     var state = component.get("v.billingProvinceValue");
-
     if (component.get("v.previousBillingCountry") !== country) {
       component.set(
         "v.billingStateOptions",
@@ -125,13 +125,17 @@
       component.set("v.previousBillingCountry", country);
     }
     if (component.get("v.previousBillingState") !== state) {
-      component.set(
-        "v.billingProvince",
-        component.get("v.stateOptions")[country].filter((obj) => {
-          return obj.value == state;
-        })[0].label
-      );
-      component.set("v.previousBillingState", country);
+      if (component.get("v.previousBillingState").length > 0) {
+        component.set(
+          "v.billingProvince",
+          component.get("v.stateOptions")[country].filter((obj) => {
+            return obj.value == state;
+          })[0].label
+        );
+      } else {
+        component.set("v.billingProvince", "");
+      }
+      component.set("v.previousBillingState", state);
     }
   },
 
@@ -147,13 +151,17 @@
       component.set("v.previousShippingCountry", country);
     }
     if (component.get("v.previousShippingState") !== state) {
-      component.set(
-        "v.shippingProvince",
-        component.get("v.stateOptions")[country].filter((obj) => {
-          return obj.value == state;
-        })[0].label
-      );
-      component.set("v.previousShippingState", country);
+      if (component.get("v.previousShippingState").length > 0) {
+        component.set(
+          "v.shippingProvince",
+          component.get("v.stateOptions")[country].filter((obj) => {
+            return obj.value == state;
+          })[0].label
+        );
+      } else {
+        component.set("v.shippingProvince", "");
+      }
+      component.set("v.previousShippingState", state);
     }
   },
 
@@ -177,5 +185,5 @@
       console.log(response.getReturnValue());
     });
     $A.enqueueAction(updateAccountInfo);
-  }
+  },
 });

@@ -2,8 +2,6 @@
   getDocLink: function (component, event, helper) {
     var quoteId = component.get("v.quoteId");
     component.set("v.IsSpinner", true);
-    console.log(quoteId);
-    console.log(quoteId.length);
     if (quoteId.length > 0) {
       var getDocument = component.get("c.generaeteQuotePDF");
       getDocument.setParams({
@@ -53,7 +51,6 @@
       createQuote.setCallback(this, function (response) {
         var result = response.getReturnValue();
         component.set("v.quoteId", result.Id);
-        console.log(result);
       });
       $A.enqueueAction(createQuote);
     }

@@ -19,7 +19,6 @@
       canBack = true;
       component.set("v.canMoveToEnd", false);
     } else {
-      component.set("v.canMoveToEnd", true);
       canBack = false;
     }
     if (currentStage < parseInt(options.slice(-1).pop().value)) {
