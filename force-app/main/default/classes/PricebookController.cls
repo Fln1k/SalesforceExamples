@@ -16,4 +16,13 @@ public with sharing class PricebookController {
 		                                   WITH security_enforced]);
 		return '{"pricebook":' + pricebook + ',"tax":' + countrySetting.Tax__c + ',"country":"' + currentAccount.ShippingCountry + '"}';
 	}
+
+	@AuraEnabled
+	public static String getQuoteEntries(String quoteId){
+		String pricebook = JSON.serialize([SELECT Id, Quantity, PricebookEntry.Product2.Name
+		                                   FROM QuoteLineItem
+		                                   WHERE QuoteId = :quoteId
+		                                   WITH security_enforced]);
+		return '{"entities":' + pricebook+'}';
+	}
 }

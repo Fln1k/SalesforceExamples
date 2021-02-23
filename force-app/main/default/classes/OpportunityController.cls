@@ -1,4 +1,4 @@
-public with sharing class OpportunityController {
+public with sharing class OpportunityController{
 	@AuraEnabled
 	public static Opportunity createOpportunity(String accountId){
 		Integer postfix = AccountController.getAccountOpportunities(accountId).size()+1;
@@ -36,7 +36,16 @@ public with sharing class OpportunityController {
 		                        LIMIT 1]);
 	}
 
-    @AuraEnabled
+	@AuraEnabled
+	public static Opportunity getOpportunityAccount(string opportunityId){
+		return ([SELECT Id, AccountId
+		         FROM Opportunity
+		         WHERE Id = :opportunityId
+		         WITH security_enforced
+		         LIMIT 1]);
+	}
+
+	@AuraEnabled
 	public static void closeOpportunity(string opportunityId){
 		Opportunity opp = [SELECT Id
 		                   FROM Opportunity

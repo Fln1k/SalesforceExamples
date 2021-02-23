@@ -37,6 +37,8 @@
       subtotals="{!v.subtotals}"
       shippingCountry="{!v.shippingCountry}"
       currencyIsoCode="{!v.currencyIsoCode}"
+      quoteId="{!v.quoteId}"
+      canMoveToEnd="{!v.canMoveToEnd}"
     />
   </aura:if>
   <!-- 4 stage -->

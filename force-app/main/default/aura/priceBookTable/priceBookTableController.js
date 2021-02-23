@@ -26,12 +26,15 @@
       }
     });
     totalPrice = (
-      (totalPrice / 100) * component.get("v.options.tax") +
-      totalPrice
+      totalPrice *
+      (1 + parseFloat(component.get("v.options.tax") / 100))
     ).toFixed(2);
-    component.set("v.options.total", totalPrice);
     var subtotals = component.get("v.subtotals");
+    console.log(component.get("v.options.pricebookName"));
     subtotals[component.get("v.options.pricebookName")] = totalPrice;
     component.set("v.subtotals", subtotals);
+    //HERE IS ERROR OCCURED
+    component.set("v.options.total", totalPrice);
+    //////////////////
   },
 });

@@ -1,11 +1,13 @@
 <aura:component controller="PricebookController">
   <!-- Attributes -->
   <aura:attribute name="accountId" type="Id" default="" />
+  <aura:attribute name="quoteId" type="Id" default="" />
   <aura:attribute name="productsOptions" type="List" default="[]" />
   <aura:attribute name="total" type="Double" default="0.0" />
   <aura:attribute name="subtotals" type="Object" default="{}" />
   <aura:attribute name="shippingCountry" type="String" default="" />
   <aura:attribute name="currencyIsoCode" type="String" />
+  <aura:attribute name="canMoveToEnd" type="Boolean" default="false" />
   <!-- Events -->
   <aura:handler name="init" value="{!this}" action="{!c.init}" />
   <aura:handler
