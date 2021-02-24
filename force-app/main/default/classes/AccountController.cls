@@ -8,7 +8,7 @@ public with sharing class AccountController{
 		return acc;
 	}
 
-    @AuraEnabled
+	@AuraEnabled
 	public static List<Opportunity> getAccountOpportunities(string accountId){
 		return new List<Opportunity>([select Id, StageName
 		                              from Opportunity
@@ -16,10 +16,10 @@ public with sharing class AccountController{
 		                              WITH security_enforced]);
 	}
 
-    @AuraEnabled
+	@AuraEnabled
 	public static Account getCurrentAccountInfo(String accountId){
-		Account currentAccount = [SELECT BillingCountry, BillingCity, BillingStreet, BillingPostalCode, BillingState, 
-		ShippingCountry, ShippingStreet, ShippingCity, ShippingPostalCode, ShippingState
+		Account currentAccount = [SELECT BillingCountry, BillingCity, BillingStreet, BillingPostalCode, 
+		BillingState, ShippingCountry, ShippingStreet, ShippingCity, ShippingPostalCode, ShippingState
 		                          FROM Account
 		                          WHERE Id = :accountId
 		                          WITH security_enforced];
@@ -27,30 +27,13 @@ public with sharing class AccountController{
 		return currentAccount;
 	}
 
-    @AuraEnabled
-	public static Account updateAccount(String accountId, String billingCountry, String billingCity, 
-	String billingStreet, String billingPostalCode, String billingProvince, String shippingStreet, String shippingCity, 
-	String shippingCountry, String shippingPostalCode, String shippingProvince){
-		Account currentAccount = [SELECT BillingCountry, BillingCity, BillingStreet, BillingPostalCode, BillingState, 
-		ShippingStreet, ShippingCity, ShippingPostalCode, ShippingState
-		                          FROM Account
-		                          WHERE Id = :accountId
-		                          WITH security_enforced];
-
-		currentAccount.BillingCountry = billingCountry;
-		currentAccount.BillingCity = billingCity;
-		currentAccount.BillingStreet = billingStreet;
-		currentAccount.BillingPostalCode = billingPostalCode;
-		currentAccount.BillingState = billingProvince;
-		currentAccount.ShippingStreet = shippingStreet;
-		currentAccount.ShippingCity = shippingCity;
-		currentAccount.ShippingPostalCode = shippingPostalCode;
-		currentAccount.ShippingState = shippingProvince;
-		update currentAccount;
-		return currentAccount;
+	@AuraEnabled
+	public static Account updateAccount(Account account){
+		update account;
+		return account;
 	}
 
-    @AuraEnabled
+	@AuraEnabled
 	public static String getAvailableCountries(){
 		String stateString = 'Contact.MailingStateCode';
 		String countryString = 'Contact.MailingCountryCode';

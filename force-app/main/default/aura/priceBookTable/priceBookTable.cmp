@@ -2,6 +2,12 @@
   <!-- Attributes -->
   <aura:attribute name="options" type="List" default="[]" />
   <aura:attribute name="subtotals" type="Object" default="{}" />
+  <!-- Events -->
+  <aura:handler
+    name="change"
+    value="{!v.options}"
+    action="{! c.recalculateTotal }"
+  />
   <!-- Layout -->
   <div class="slds-truncate" style="font-size: x-large; font-family: fantasy">
     {!v.options.pricebookName}
@@ -19,9 +25,7 @@
           <div class="slds-truncate" title="Price">Price</div>
         </th>
         <th class="" scope="col" style="width: 6%">
-          <div class="slds-truncate" title="Subtotal">
-            Total
-          </div>
+          <div class="slds-truncate" title="Subtotal">Total</div>
         </th>
       </tr>
     </thead>

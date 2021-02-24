@@ -2,6 +2,10 @@
   implements="forceCommunity:availableForAllPageTypes,flexipage:availableForAllPageTypes,flexipage:availableForRecordHome,force:hasRecordId"
   access="global"
 >
-<lightning:overlayLibrary aura:id="modalOverlay"/>
-<lightning:button variant="brand" label="Show Modal" onclick="{!c.handleShowModal}"/>
+  <lightning:overlayLibrary aura:id="modalOverlay" />
+  <lightning:button
+    variant="brand"
+    label="Show Modal"
+    onclick="{!c.handleShowModal}"
+  />
 </aura:component>

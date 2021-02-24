@@ -3,20 +3,35 @@
   controller="OpportunityController"
 >
   <!-- Events -->
-  <aura:registerEvent name="checkValidationOnTheFifthStageEvent" type="c:checkValidationOnTheFifthStage" />
-  <aura:registerEvent name="showEmptyProductListErrorMessageEvent" type="c:showEmptyProductListErrorMessage" />
+  <aura:registerEvent
+    name="checkValidationOnTheFifthStageEvent"
+    type="c:checkValidationOnTheFifthStage"
+  />
+  <aura:registerEvent
+    name="showEmptyProductListErrorMessageEvent"
+    type="c:showEmptyProductListErrorMessage"
+  />
   <aura:registerEvent name="closeModalEvent" type="c:closeModal" />
-  <aura:registerEvent name="updateAccountInformationEvent" type="c:updateAccountInformation" />
-  <aura:registerEvent name="updateContactInformationEvent" type="c:updateContactInformation" />
-  
+  <aura:registerEvent
+    name="updateAccountInformationEvent"
+    type="c:updateAccountInformation"
+  />
+  <aura:registerEvent
+    name="updateContactInformationEvent"
+    type="c:updateContactInformation"
+  />
+  <aura:registerEvent
+    name="createNewOpportunityEvent"
+    type="c:createNewOpportunity"
+  />
   <aura:registerEvent
     name="errorMessageOnAccountLookupEvent"
     type="c:errorMessageOnAccountLookup"
   />
   <aura:registerEvent
-  name="paymentPlanUndefinedEvent"
-  type="c:paymentPlanUndefined"
-/>
+    name="paymentPlanUndefinedEvent"
+    type="c:paymentPlanUndefined"
+  />
   <!-- Latyout -->
   <br />
   <lightning:button

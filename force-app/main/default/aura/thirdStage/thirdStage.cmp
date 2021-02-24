@@ -1,11 +1,12 @@
-<aura:component controller="PricebookController">
+<aura:component
+  controller="PricebookController"
+  extends="c:customFlowVariables"
+>
   <!-- Attributes -->
-  <aura:attribute name="accountId" type="Id" default="" />
   <aura:attribute name="productsOptions" type="List" default="[]" />
   <aura:attribute name="total" type="Double" default="0.0" />
   <aura:attribute name="subtotals" type="Object" default="{}" />
-  <aura:attribute name="shippingCountry" type="String" default="" />
-  <aura:attribute name="currencyIsoCode" type="String" />
+  <aura:attribute name="IsSpinner" type="Boolean" />
   <!-- Events -->
   <aura:handler name="init" value="{!this}" action="{!c.init}" />
   <aura:handler
@@ -17,12 +18,18 @@
     value="{!v.subtotals}"
     action="{!c.recalculateTotal}"
   />
+  <aura:if isTrue="{!v.IsSpinner}">
+    <br />
+    <div class="slds-is-relative">
+      <lightning:spinner alternativeText="Creating new account" />
+    </div>
+  </aura:if>
   <aura:iteration items="{!v.productsOptions}" var="pricebook">
     <c:priceBookTable options="{!pricebook}" subtotals="{!v.subtotals}" />
     <br />
   </aura:iteration>
   <div style="float: right; font-size: initial; font-family: fantasy">
-    Total: {!v.total + v.productsOptions[0].currency}
+    Total: {!(v.total ? v.total:0) + v.productsOptions[0].currency}
   </div>
   <br />
 </aura:component>

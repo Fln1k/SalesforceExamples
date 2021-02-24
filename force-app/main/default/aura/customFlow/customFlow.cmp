@@ -5,6 +5,7 @@
     canBack="{!v.canBack}"
     canNext="{!v.canNext}"
     opportunityId="{!v.opportunityId}"
+    quoteId="{!v.quoteId}"
     canMoveToEnd="{!v.canMoveToEnd}"
   />
   <br />

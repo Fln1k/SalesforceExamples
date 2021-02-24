@@ -1,4 +1,9 @@
 <aura:component access="global">
+  <!-- Attributes -->
+  <aura:attribute name="currentStage" type="Integer" default="0" />
+  <aura:attribute name="accountId" type="Id" default="" />
+  <aura:attribute name="opportunityId" type="Id" default="" />
+  <aura:attribute name="quoteId" type="Id" default="" />
   <!-- Events -->
   <aura:handler
     name="closeModalEvent"
@@ -6,6 +11,11 @@
     action="{!c.closeModal}"
   />
   <!-- Layout -->
-  <lightning:overlayLibrary aura:id="modalOverlay"/>
-  <c:customFlow />
+  <lightning:overlayLibrary aura:id="modalOverlay" />
+  <c:customFlow
+    currentStage="{!v.currentStage}"
+    opportunityId="{!v.opportunityId}"
+    accountId="{!v.accountId}"
+    quoteId="{!v.quoteId}"
+  />
 </aura:component>

@@ -19,7 +19,6 @@
       canBack = true;
       component.set("v.canMoveToEnd", false);
     } else {
-      component.set("v.canMoveToEnd", true);
       canBack = false;
     }
     if (currentStage < parseInt(options.slice(-1).pop().value)) {
@@ -29,10 +28,11 @@
       canBack = false;
       component.set("v.canMoveToEnd", false);
     }
-    if(currentStage > parseInt(options.slice(-1).pop().value)){
+    if (currentStage > parseInt(options.slice(-1).pop().value)) {
       var closeOpportunity = component.get("c.closeOpportunity");
       closeOpportunity.setParams({
         opportunityId: component.get("v.opportunityId"),
+        quoteId: component.get("v.quoteId"),
       });
       $A.enqueueAction(closeOpportunity);
       component.getEvent("closeModalEvent").fire();

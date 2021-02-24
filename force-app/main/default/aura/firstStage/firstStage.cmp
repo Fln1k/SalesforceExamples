@@ -1,20 +1,29 @@
-<aura:component controller="AccountController"  extends="c:customFlowVariables">
+<aura:component controller="AccountController" extends="c:customFlowVariables">
   <!-- Attributes -->
   <aura:attribute name="objectName" type="String" default="Account" />
-  <aura:attribute name="opportunityLookupFieldFilter" type="String" default=""/>
+  <aura:attribute
+    name="opportunityLookupFieldFilter"
+    type="String"
+    default=""
+  />
+  <aura:attribute
+    name="opportunityFieldDisabled"
+    type="Boolean"
+    default="true"
+  />
   <!-- Events -->
-  <aura:handler name="init" value="{!this}" action="{!c.setUpOpportunityFilter}" />
   <aura:handler
     name="change"
     value="{!v.accountId}"
     action="{!c.accountLookupFieldValueChange}"
   />
   <aura:handler event="c:assignAccountId" action="{!c.handleAssignAccountId}" />
-  <aura:handler event="c:errorMessageOnAccountLookup" action="{!c.handleErrorMessageOnAccountLookup}" />
+  <aura:handler
+    event="c:errorMessageOnAccountLookup"
+    action="{!c.handleErrorMessageOnAccountLookup}"
+  />
   <!-- Layout -->
-  <!-- modal -->  
   <lightning:overlayLibrary aura:id="newAccountOverlay" />
-  <!-- page -->
   <table>
     <tr>
       <td style="width: 70%; vertical-align: bottom; padding-right: 10px">
@@ -41,11 +50,14 @@
     </tr>
     <tr>
       <td style="width: 70%; vertical-align: bottom; padding-right: 10px">
-        <c:opportunityInfo 
-        opportunityLookupFieldFilter="{!v.opportunityLookupFieldFilter}"
-        opportunityId="{!v.opportunityId}"
-        canMoveToEnd="{!v.canMoveToEnd}"
-        quoteId="{!v.quoteId}"/>
+        <c:opportunityInfo
+          accountId="{!v.accountId}"
+          opportunityLookupFieldFilter="{!v.opportunityLookupFieldFilter}"
+          opportunityId="{!v.opportunityId}"
+          canMoveToEnd="{!v.canMoveToEnd}"
+          quoteId="{!v.quoteId}"
+          disabled="{!v.opportunityFieldDisabled}"
+        />
       </td>
     </tr>
   </table>

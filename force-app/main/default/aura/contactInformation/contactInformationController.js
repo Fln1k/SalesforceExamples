@@ -21,7 +21,6 @@
   },
   handleAssignContactId: function (component, event, helper) {
     var contactId = event.getParam("id");
-    component.find("contactLookupField").set("v.value", "");
     component.set("v.contactId", contactId);
   },
 
@@ -58,10 +57,6 @@
     updateContactInfo.setParams({
       contactId: component.get("v.contactId"),
       contactEmail: component.get("v.contactEmail"),
-    });
-    updateContactInfo.setCallback(this, function (response) {
-      console.log("Contact updated");
-      console.log(response.getReturnValue());
     });
     $A.enqueueAction(updateContactInfo);
   },

@@ -1,0 +1,21 @@
+<aura:component
+  implements="force:lightningQuickActionWithoutHeader,force:hasRecordId"
+  extends="c:customFlowVariables"
+  controller="OpportunityController"
+>
+  <!-- Attributes -->
+  <aura:attribute name="currentStage" type="Integer" default="0" />
+  <aura:attribute name="opportunityId" type="Id" default="" />
+  <!-- Events -->
+  <aura:handler name="init" value="{!this}" action="{!c.init}" />
+  <!-- Layout -->
+  <div class="modal-header slds-modal__header slds-size_1-of-1">
+    <h2 class="title slds-text-heading--medium">Custom Flow</h2>
+  </div>
+  <br />
+  <c:modal
+    currentStage="{!v.currentStage}"
+    opportunityId="{!v.opportunityId}"
+    quoteId="{!v.recordId}"
+  />
+</aura:component>

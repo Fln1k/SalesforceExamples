@@ -1,13 +1,5 @@
 ({
-  setUpOpportunityFilter: function (component, event, helper) {
-    var opportunityLookupField = component.find("opportunityLookupField");
-    var accountId = component.get("v.accountId");
-    if (accountId.length) {
-      opportunityLookupField.set("v.disabled", false);
-    }
-  },
   handleAssignAccountId: function (component, event, helper) {
-    component.find("accountLookupField").set("v.value", "");
     component.set("v.accountId", event.getParam("id"));
   },
   handleErrorMessageOnAccountLookup: function (component, event, helper) {
@@ -16,7 +8,6 @@
   accountLookupFieldValueChange: function (component, event, helper) {
     var id = event.getParam("value");
     component.find("accountLookupField").set("v.error", false);
-    var opportunityLookupField = component.find("opportunityLookupField");
     if (id.length > 0) {
       var action = component.get("c.getAccountOpportunities");
       action.setParams({
@@ -37,7 +28,7 @@
           "v.closedOpportunitiesAmount",
           closedOpportunitiesCounter
         );
-        var opportunityDisabled;
+        var opportunityDisabled = false;
         var availableOpportunitiesLength = availableOpportunities.length;
         if (!availableOpportunitiesLength) {
           opportunityDisabled = true;
@@ -55,12 +46,12 @@
             "AccountId='" + id + "' and  (NOT StageName like 'Closed%')"
           );
         }
-        opportunityLookupField.set("v.disabled", opportunityDisabled);
+        component.set("v.opportunityFieldDisabled", opportunityDisabled);
       });
       $A.enqueueAction(action);
     } else {
-      opportunityLookupField.set("v.disabled", true);
-      opportunityLookupField.set("v.value", "");
+      component.set("v.opportunityFieldDisabled", true);
+      component.set("v.opportunityId", "");
       component.set("v.productsOptions", []);
       component.set("v.paymentPlan", "");
       component.set("v.orderType", "");

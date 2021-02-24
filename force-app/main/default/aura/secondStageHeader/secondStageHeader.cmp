@@ -1,3 +1,1 @@
-<aura:component>
-some second stage header content
-</aura:component>
+<aura:component> some second stage header content </aura:component>
