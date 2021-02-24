@@ -34,19 +34,23 @@
       });
       var createQuote = component.get("c.createQuote");
       createQuote.setParams({
-        opportunityId: component.get("v.opportunityId"),
-        billingStreet: component.get("v.billingStreet"),
-        billingCity: component.get("v.billingCity"),
-        billingCountry: component.get("v.billingCountry"),
-        billingPostalCode: component.get("v.billingPostalCode"),
-        billingProvince: component.get("v.billingProvince"),
-        shippingStreet: component.get("v.shippingStreet"),
-        shippingCity: component.get("v.shippingCity"),
-        shippingCountry: component.get("v.shippingCountry"),
-        shippingPostalCode: component.get("v.shippingPostalCode"),
-        shippingProvince: component.get("v.shippingProvince"),
+        quote: {
+          OpportunityId: component.get("v.opportunityId"),
+          BillingStreet: component.get("v.billingStreet"),
+          BillingCity: component.get("v.billingCity"),
+          BillingCountry: component.get("v.billingCountry"),
+          BillingPostalCode: component.get("v.billingPostalCode"),
+          BillingState: component.get("v.billingProvince"),
+          ShippingCountry: component.get("v.shippingCountry"),
+          ShippingStreet: component.get("v.shippingStreet"),
+          ShippingCity: component.get("v.shippingCity"),
+          ShippingPostalCode: component.get("v.shippingPostalCode"),
+          ShippingState: component.get("v.shippingProvince"),
+          CurrencyIsoCode: component.get("v.currencyIsoCode"),
+        },
         opportunityLineItemsJson: JSON.stringify(productsToInsert),
-        currencyIsoCode: component.get("v.currencyIsoCode"),
+        tax: component.get("v.tax"),
+        pricebookId: component.get("v.pricebookId"),
       });
       createQuote.setCallback(this, function (response) {
         var result = response.getReturnValue();

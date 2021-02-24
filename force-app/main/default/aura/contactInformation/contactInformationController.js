@@ -21,7 +21,6 @@
   },
   handleAssignContactId: function (component, event, helper) {
     var contactId = event.getParam("id");
-    component.find("contactLookupField").set("v.value", "");
     component.set("v.contactId", contactId);
   },
 

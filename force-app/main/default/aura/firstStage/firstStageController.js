@@ -1,6 +1,5 @@
 ({
   handleAssignAccountId: function (component, event, helper) {
-    component.find("accountLookupField").set("v.value", "");
     component.set("v.accountId", event.getParam("id"));
   },
   handleErrorMessageOnAccountLookup: function (component, event, helper) {

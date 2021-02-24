@@ -39,6 +39,8 @@
       currencyIsoCode="{!v.currencyIsoCode}"
       quoteId="{!v.quoteId}"
       canMoveToEnd="{!v.canMoveToEnd}"
+      tax="{!v.tax}"
+      pricebookId="{!v.pricebookId}"
     />
   </aura:if>
   <!-- 4 stage -->
@@ -83,6 +85,8 @@
       contactId="{!v.contactId}"
       currencyIsoCode="{!v.currencyIsoCode}"
       productsOptions="{!v.productsOptions}"
+      tax="{!v.tax}"
+      pricebookId="{!v.pricebookId}"
     />
   </aura:if>
 </aura:component>

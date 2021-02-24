@@ -18,7 +18,8 @@ public with sharing class AccountController{
 
 	@AuraEnabled
 	public static Account getCurrentAccountInfo(String accountId){
-		Account currentAccount = [SELECT BillingCountry, BillingCity, BillingStreet, BillingPostalCode, BillingState, ShippingCountry, ShippingStreet, ShippingCity, ShippingPostalCode, ShippingState
+		Account currentAccount = [SELECT BillingCountry, BillingCity, BillingStreet, BillingPostalCode, 
+		BillingState, ShippingCountry, ShippingStreet, ShippingCity, ShippingPostalCode, ShippingState
 		                          FROM Account
 		                          WHERE Id = :accountId
 		                          WITH security_enforced];
@@ -27,23 +28,9 @@ public with sharing class AccountController{
 	}
 
 	@AuraEnabled
-	public static Account updateAccount(String accountId, String billingCountry, String billingCity, String billingStreet, String billingPostalCode, String billingProvince, String shippingStreet, String shippingCity, String shippingCountry, String shippingPostalCode, String shippingProvince){
-		Account currentAccount = [SELECT BillingCountry, BillingCity, BillingStreet, BillingPostalCode, BillingState, ShippingStreet, ShippingCity, ShippingPostalCode, ShippingState
-		                          FROM Account
-		                          WHERE Id = :accountId
-		                          WITH security_enforced];
-
-		currentAccount.BillingCountry = billingCountry;
-		currentAccount.BillingCity = billingCity;
-		currentAccount.BillingStreet = billingStreet;
-		currentAccount.BillingPostalCode = billingPostalCode;
-		currentAccount.BillingState = billingProvince;
-		currentAccount.ShippingStreet = shippingStreet;
-		currentAccount.ShippingCity = shippingCity;
-		currentAccount.ShippingPostalCode = shippingPostalCode;
-		currentAccount.ShippingState = shippingProvince;
-		update currentAccount;
-		return currentAccount;
+	public static Account updateAccount(Account account){
+		update account;
+		return account;
 	}
 
 	@AuraEnabled

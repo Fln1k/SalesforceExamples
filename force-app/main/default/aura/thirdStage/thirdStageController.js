@@ -84,6 +84,8 @@
             tax: result["tax"],
           });
         });
+        component.set("v.pricebookId", result["pricebookId"]);
+        component.set("v.tax", result["tax"]);
         component.set("v.currencyIsoCode", currencyIsoCode);
         component.set("v.subtotals", subtotals);
         component.set("v.productsOptions", pricebook);
