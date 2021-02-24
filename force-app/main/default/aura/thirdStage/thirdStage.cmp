@@ -8,6 +8,7 @@
   <aura:attribute name="shippingCountry" type="String" default="" />
   <aura:attribute name="currencyIsoCode" type="String" />
   <aura:attribute name="canMoveToEnd" type="Boolean" default="false" />
+  <aura:attribute name="IsSpinner" type="Boolean" />
   <!-- Events -->
   <aura:handler name="init" value="{!this}" action="{!c.init}" />
   <aura:handler
@@ -19,6 +20,12 @@
     value="{!v.subtotals}"
     action="{!c.recalculateTotal}"
   />
+  <aura:if isTrue="{!v.IsSpinner}">
+    <br />
+    <div class="slds-is-relative">
+      <lightning:spinner alternativeText="Creating new account" />
+    </div>
+  </aura:if>
   <aura:iteration items="{!v.productsOptions}" var="pricebook">
     <c:priceBookTable options="{!pricebook}" subtotals="{!v.subtotals}" />
     <br />

@@ -1,10 +1,10 @@
 ({
   init: function (component, event, helper) {
+    component.set("v.IsSpinner", true);
     if (component.get("v.productsOptions").length == 0) {
       var currencyCodes = { USD: "$", EUR: "€" };
       var quoteId = component.get("v.quoteId");
-      var quoteLineItems;
-
+      var quoteLineItems = {};
       if (quoteId.length) {
         var getQuoteLineItems = component.get("c.getQuoteEntries");
         getQuoteLineItems.setParams({
@@ -86,8 +86,8 @@
         });
         component.set("v.currencyIsoCode", currencyIsoCode);
         component.set("v.subtotals", subtotals);
-        console.log(pricebook);
         component.set("v.productsOptions", pricebook);
+        component.set("v.IsSpinner", false);
       });
       $A.enqueueAction(action);
     } else {

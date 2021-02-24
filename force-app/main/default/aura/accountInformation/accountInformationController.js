@@ -42,7 +42,6 @@
           billingProvinceValue = state.value;
         }
       });
-      console.log(stateOptions);
       component.set("v.stateOptions", stateOptions);
       component.set("v.shippingCountryOptions", shippingCountryOptions);
       component.set("v.billingCountryOptions", billingCountryOptions);
@@ -179,10 +178,6 @@
       shippingCountry: component.get("v.shippingProvince"),
       shippingPostalCode: component.get("v.shippingPostalCode"),
       shippingProvince: component.get("v.shippingProvince"),
-    });
-    updateAccountInfo.setCallback(this, function (response) {
-      console.log("Account updated");
-      console.log(response.getReturnValue());
     });
     $A.enqueueAction(updateAccountInfo);
   },

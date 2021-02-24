@@ -3,7 +3,7 @@
   <aura:attribute name="newAccountNameField" type="String" default="" />
   <aura:attribute name="newAccountCountryField" type="String" default="" />
   <aura:attribute name="IsSpinner" type="Boolean" />
-  <aura:attribute name="countryOptions" type="List"/>
+  <aura:attribute name="countryOptions" type="List" />
   <!-- Events -->
   <aura:registerEvent name="assignAccountIdEvent" type="c:assignAccountId" />
   <aura:handler name="init" value="{!this}" action="{!c.init}" />

@@ -5,9 +5,7 @@
 >
   <!-- Attributes -->
   <aura:attribute name="currentStage" type="Integer" default="0" />
-  <aura:attribute name="accountId" type="Id" default="" />
   <aura:attribute name="opportunityId" type="Id" default="" />
-  <aura:attribute name="IsSpinner" type="Boolean" />
   <!-- Events -->
   <aura:handler name="init" value="{!this}" action="{!c.init}" />
   <!-- Layout -->
@@ -15,15 +13,9 @@
     <h2 class="title slds-text-heading--medium">Custom Flow</h2>
   </div>
   <br />
-  <aura:if isTrue="{!v.IsSpinner}">
-    <div>
-      <lightning:spinner alternativeText="Creating new account" />
-    </div>
-  </aura:if>
   <c:modal
     currentStage="{!v.currentStage}"
     opportunityId="{!v.opportunityId}"
-    accountId="{!v.accountId}"
     quoteId="{!v.recordId}"
   />
 </aura:component>

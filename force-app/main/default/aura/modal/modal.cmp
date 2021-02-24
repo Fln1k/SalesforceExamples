@@ -1,6 +1,6 @@
 <aura:component access="global">
   <!-- Attributes -->
-  <aura:attribute name="currentStage" type="Integer" default="1" />
+  <aura:attribute name="currentStage" type="Integer" default="0" />
   <aura:attribute name="accountId" type="Id" default="" />
   <aura:attribute name="opportunityId" type="Id" default="" />
   <aura:attribute name="quoteId" type="Id" default="" />

@@ -13,8 +13,8 @@
     });
     getQuote.setCallback(this, function (response) {
       var result = response.getReturnValue();
-      if (result.length) {
-        component.set("v.quoteId", result[0].Id);
+      if (result) {
+        component.set("v.quoteId", result.Id);
         component.set("v.canMoveToEnd", true);
       }
     });

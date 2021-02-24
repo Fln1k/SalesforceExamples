@@ -17,7 +17,7 @@ public with sharing class ContactController{
 		        LIMIT 1];
 	}
 
-    @AuraEnabled
+	@AuraEnabled
 	public static Contact updateContact(String contactId, String contactEmail){
 		Contact currentContact = [SELECT Email
 		                          FROM Contact

@@ -59,10 +59,6 @@
       contactId: component.get("v.contactId"),
       contactEmail: component.get("v.contactEmail"),
     });
-    updateContactInfo.setCallback(this, function (response) {
-      console.log("Contact updated");
-      console.log(response.getReturnValue());
-    });
     $A.enqueueAction(updateContactInfo);
   },
 });

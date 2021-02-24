@@ -1,5 +1,5 @@
-public with sharing class PricebookController {
-    @AuraEnabled
+public with sharing class PricebookController{
+	@AuraEnabled
 	public static String getPricebookByAccountId(String accountId){
 		Account currentAccount = [Select ShippingCountry
 		                          from Account
@@ -23,6 +23,6 @@ public with sharing class PricebookController {
 		                                   FROM QuoteLineItem
 		                                   WHERE QuoteId = :quoteId
 		                                   WITH security_enforced]);
-		return '{"entities":' + pricebook+'}';
+		return '{"entities":' + pricebook + '}';
 	}
 }

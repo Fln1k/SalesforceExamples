@@ -1,9 +1,6 @@
-public with sharing class QuoteController {
-    @AuraEnabled
-	public static Quote createQuote(string opportunityId, String billingCountry, String billingCity, 
-	String billingStreet, String billingPostalCode, String billingProvince, String shippingStreet, String shippingCity, 
-	String shippingCountry, String shippingPostalCode, String shippingProvince, String currencyIsoCode, 
-	String opportunityLineItemsJson){
+public with sharing class QuoteController{
+	@AuraEnabled
+	public static Quote createQuote(string opportunityId, String billingCountry, String billingCity, String billingStreet, String billingPostalCode, String billingProvince, String shippingStreet, String shippingCity, String shippingCountry, String shippingPostalCode, String shippingProvince, String currencyIsoCode, String opportunityLineItemsJson){
 		List<CustomOpportunityLineItem> customLineItems = CustomOpportunityLineItem.parse(opportunityLineItemsJson);
 		Integer QuotesAmount = (new List<Quote>([SELECT Id
 		                                         FROM Quote

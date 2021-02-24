@@ -1,14 +1,21 @@
-<aura:component extends="c:customFlowVariables" controller="OpportunityController">
+<aura:component
+  extends="c:customFlowVariables"
+  controller="OpportunityController"
+>
   <!-- Attributes -->
   <aura:attribute name="progressIndicatorStages" type="List" />
   <!-- Events -->
   <aura:registerEvent name="closeModalEvent" type="c:closeModal" />
-  <aura:handler name="change" value="{!v.currentStage}" action="{!c.changeCurrentStageHandler}" />
+  <aura:handler
+    name="change"
+    value="{!v.currentStage}"
+    action="{!c.changeCurrentStageHandler}"
+  />
   <aura:handler name="init" value="{!this}" action="{!c.loadStages}" />
   <!-- Layout -->
   <lightning:progressIndicator
-  aura:id="progressIndicator"
-   currentStep="{!v.currentStage}"
+    aura:id="progressIndicator"
+    currentStep="{!v.currentStage}"
     type="path"
     variant="base"
   >

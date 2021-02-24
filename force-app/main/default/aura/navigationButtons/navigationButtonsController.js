@@ -9,9 +9,10 @@
         if (!accountId.length) {
           isValid = false;
           $A.get("e.c:errorMessageOnAccountLookup").fire();
-        }
-        if (!component.get("v.opportunityId").length) {
-          $A.get("e.c:createNewOpportunity").fire();
+        } else {
+          if (!component.get("v.opportunityId").length) {
+            $A.get("e.c:createNewOpportunity").fire();
+          }
           component.set("v.quoteId", "");
         }
       }

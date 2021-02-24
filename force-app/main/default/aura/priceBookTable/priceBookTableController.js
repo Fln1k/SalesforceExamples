@@ -30,7 +30,6 @@
       (1 + parseFloat(component.get("v.options.tax") / 100))
     ).toFixed(2);
     var subtotals = component.get("v.subtotals");
-    console.log(component.get("v.options.pricebookName"));
     subtotals[component.get("v.options.pricebookName")] = totalPrice;
     component.set("v.subtotals", subtotals);
     //HERE IS ERROR OCCURED

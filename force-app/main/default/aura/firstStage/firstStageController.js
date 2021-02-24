@@ -29,7 +29,7 @@
           "v.closedOpportunitiesAmount",
           closedOpportunitiesCounter
         );
-        var opportunityDisabled;
+        var opportunityDisabled = false;
         var availableOpportunitiesLength = availableOpportunities.length;
         if (!availableOpportunitiesLength) {
           opportunityDisabled = true;
