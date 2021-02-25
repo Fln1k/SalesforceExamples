@@ -1,0 +1,346 @@
+{
+  "summary": {
+    "outcome": "Failed",
+    "testsRan": 17,
+    "passing": 16,
+    "failing": 1,
+    "skipped": 0,
+    "passRate": "94%",
+    "failRate": "6%",
+    "skipRate": "0%",
+    "testStartTime": "Thu Feb 25 2021 11:28:09 AM",
+    "testExecutionTimeInMs": 1584,
+    "testTotalTimeInMs": 1584,
+    "commandTimeInMs": 1831,
+    "hostname": "https://resilient-bear-33i6xj-dev-ed.my.salesforce.com",
+    "orgId": "00D5g000003eE9iEAE",
+    "username": "sergeitrigubovfleps@resilient-bear-33i6xj.com",
+    "testRunId": "7075g000004kycc",
+    "userId": "0055g0000038aLCAAY"
+  },
+  "tests": [
+    {
+      "id": "07M5g000000ccg6EAA",
+      "queueItemId": "7095g000000bxioAAA",
+      "stackTrace": null,
+      "message": null,
+      "asyncApexJobId": "7075g000004kyccAAA",
+      "methodName": "getForecast",
+      "outcome": "Pass",
+      "apexLogId": "07L5g000000P98hEAC",
+      "apexClass": {
+        "id": "01p5g000004RFYLAA4",
+        "name": "WeatherControllerTest",
+        "namespacePrefix": null,
+        "fullName": "WeatherControllerTest"
+      },
+      "runTime": 39,
+      "testTimestamp": "2021-02-25T08:28:09.000+0000",
+      "fullName": "WeatherControllerTest.getForecast"
+    },
+    {
+      "id": "07M5g000000ccgBEAQ",
+      "queueItemId": "7095g000000bxipAAA",
+      "stackTrace": null,
+      "message": null,
+      "asyncApexJobId": "7075g000004kyccAAA",
+      "methodName": "testExecute",
+      "outcome": "Pass",
+      "apexLogId": "07L5g000000P98mEAC",
+      "apexClass": {
+        "id": "01p5g0000060c0uAAA",
+        "name": "StateCodesTest",
+        "namespacePrefix": "StateCodes",
+        "fullName": "StateCodes__StateCodesTest"
+      },
+      "runTime": 99,
+      "testTimestamp": "2021-02-25T08:28:09.000+0000",
+      "fullName": "StateCodes__StateCodesTest.testExecute"
+    },
+    {
+      "id": "07M5g000000ccgCEAQ",
+      "queueItemId": "7095g000000bxipAAA",
+      "stackTrace": null,
+      "message": null,
+      "asyncApexJobId": "7075g000004kyccAAA",
+      "methodName": "testStart",
+      "outcome": "Pass",
+      "apexLogId": "07L5g000000P98mEAC",
+      "apexClass": {
+        "id": "01p5g0000060c0uAAA",
+        "name": "StateCodesTest",
+        "namespacePrefix": "StateCodes",
+        "fullName": "StateCodes__StateCodesTest"
+      },
+      "runTime": 48,
+      "testTimestamp": "2021-02-25T08:28:09.000+0000",
+      "fullName": "StateCodes__StateCodesTest.testStart"
+    },
+    {
+      "id": "07M5g000000ccgaEAA",
+      "queueItemId": "7095g000000bxiqAAA",
+      "stackTrace": null,
+      "message": null,
+      "asyncApexJobId": "7075g000004kyccAAA",
+      "methodName": "createAccountsAndContactsAndReturnListOfIds",
+      "outcome": "Pass",
+      "apexLogId": "07L5g000000P98wEAC",
+      "apexClass": {
+        "id": "01p5g000004RBxMAAW",
+        "name": "CustomRestServiceTest",
+        "namespacePrefix": null,
+        "fullName": "CustomRestServiceTest"
+      },
+      "runTime": 116,
+      "testTimestamp": "2021-02-25T08:28:13.000+0000",
+      "fullName": "CustomRestServiceTest.createAccountsAndContactsAndReturnListOfIds"
+    },
+    {
+      "id": "07M5g000000ccgbEAA",
+      "queueItemId": "7095g000000bxiqAAA",
+      "stackTrace": null,
+      "message": null,
+      "asyncApexJobId": "7075g000004kyccAAA",
+      "methodName": "getListOfAccountAndContactIdsByCreationDate",
+      "outcome": "Pass",
+      "apexLogId": "07L5g000000P98wEAC",
+      "apexClass": {
+        "id": "01p5g000004RBxMAAW",
+        "name": "CustomRestServiceTest",
+        "namespacePrefix": null,
+        "fullName": "CustomRestServiceTest"
+      },
+      "runTime": 69,
+      "testTimestamp": "2021-02-25T08:28:13.000+0000",
+      "fullName": "CustomRestServiceTest.getListOfAccountAndContactIdsByCreationDate"
+    },
+    {
+      "id": "07M5g000000ccgLEAQ",
+      "queueItemId": "7095g000000bxisAAA",
+      "stackTrace": null,
+      "message": null,
+      "asyncApexJobId": "7075g000004kyccAAA",
+      "methodName": "createAccountTest",
+      "outcome": "Pass",
+      "apexLogId": "07L5g000000P98cEAC",
+      "apexClass": {
+        "id": "01p5g000007nR18AAE",
+        "name": "AccountControllerTest",
+        "namespacePrefix": null,
+        "fullName": "AccountControllerTest"
+      },
+      "runTime": 33,
+      "testTimestamp": "2021-02-25T08:28:09.000+0000",
+      "fullName": "AccountControllerTest.createAccountTest"
+    },
+    {
+      "id": "07M5g000000ccgMEAQ",
+      "queueItemId": "7095g000000bxisAAA",
+      "stackTrace": null,
+      "message": null,
+      "asyncApexJobId": "7075g000004kyccAAA",
+      "methodName": "getAccountOpportunitiesTest",
+      "outcome": "Pass",
+      "apexLogId": "07L5g000000P98cEAC",
+      "apexClass": {
+        "id": "01p5g000007nR18AAE",
+        "name": "AccountControllerTest",
+        "namespacePrefix": null,
+        "fullName": "AccountControllerTest"
+      },
+      "runTime": 26,
+      "testTimestamp": "2021-02-25T08:28:09.000+0000",
+      "fullName": "AccountControllerTest.getAccountOpportunitiesTest"
+    },
+    {
+      "id": "07M5g000000ccgNEAQ",
+      "queueItemId": "7095g000000bxisAAA",
+      "stackTrace": null,
+      "message": null,
+      "asyncApexJobId": "7075g000004kyccAAA",
+      "methodName": "getCurrentAccountInfoTest",
+      "outcome": "Pass",
+      "apexLogId": "07L5g000000P98cEAC",
+      "apexClass": {
+        "id": "01p5g000007nR18AAE",
+        "name": "AccountControllerTest",
+        "namespacePrefix": null,
+        "fullName": "AccountControllerTest"
+      },
+      "runTime": 41,
+      "testTimestamp": "2021-02-25T08:28:09.000+0000",
+      "fullName": "AccountControllerTest.getCurrentAccountInfoTest"
+    },
+    {
+      "id": "07M5g000000ccgOEAQ",
+      "queueItemId": "7095g000000bxisAAA",
+      "stackTrace": null,
+      "message": null,
+      "asyncApexJobId": "7075g000004kyccAAA",
+      "methodName": "updateAccountTest",
+      "outcome": "Pass",
+      "apexLogId": "07L5g000000P98cEAC",
+      "apexClass": {
+        "id": "01p5g000007nR18AAE",
+        "name": "AccountControllerTest",
+        "namespacePrefix": null,
+        "fullName": "AccountControllerTest"
+      },
+      "runTime": 27,
+      "testTimestamp": "2021-02-25T08:28:10.000+0000",
+      "fullName": "AccountControllerTest.updateAccountTest"
+    },
+    {
+      "id": "07M5g000000ccgGEAQ",
+      "queueItemId": "7095g000000bxitAAA",
+      "stackTrace": null,
+      "message": null,
+      "asyncApexJobId": "7075g000004kyccAAA",
+      "methodName": "test_getData",
+      "outcome": "Pass",
+      "apexLogId": "07L5g000000P90IEAS",
+      "apexClass": {
+        "id": "01p5g000005xFpNAAU",
+        "name": "strike_tst_lookupController",
+        "namespacePrefix": null,
+        "fullName": "strike_tst_lookupController"
+      },
+      "runTime": 241,
+      "testTimestamp": "2021-02-25T08:28:09.000+0000",
+      "fullName": "strike_tst_lookupController.test_getData"
+    },
+    {
+      "id": "07M5g000000ccgHEAQ",
+      "queueItemId": "7095g000000bxitAAA",
+      "stackTrace": "Class.strike_tst_lookupController.test_getData_addressField: line 90, column 1",
+      "message": "System.DmlException: Insert failed. First exception on row 0; first error: FIELD_INTEGRITY_EXCEPTION, There's a problem with this country, even though it may appear correct. Please select a country/territory from the list of valid countries.: [BillingCountry]",
+      "asyncApexJobId": "7075g000004kyccAAA",
+      "methodName": "test_getData_addressField",
+      "outcome": "Fail",
+      "apexLogId": "07L5g000000P90IEAS",
+      "apexClass": {
+        "id": "01p5g000005xFpNAAU",
+        "name": "strike_tst_lookupController",
+        "namespacePrefix": null,
+        "fullName": "strike_tst_lookupController"
+      },
+      "runTime": 8,
+      "testTimestamp": "2021-02-25T08:28:09.000+0000",
+      "fullName": "strike_tst_lookupController.test_getData_addressField"
+    },
+    {
+      "id": "07M5g000000ccgIEAQ",
+      "queueItemId": "7095g000000bxitAAA",
+      "stackTrace": null,
+      "message": null,
+      "asyncApexJobId": "7075g000004kyccAAA",
+      "methodName": "test_getData_reference",
+      "outcome": "Pass",
+      "apexLogId": "07L5g000000P90IEAS",
+      "apexClass": {
+        "id": "01p5g000005xFpNAAU",
+        "name": "strike_tst_lookupController",
+        "namespacePrefix": null,
+        "fullName": "strike_tst_lookupController"
+      },
+      "runTime": 174,
+      "testTimestamp": "2021-02-25T08:28:09.000+0000",
+      "fullName": "strike_tst_lookupController.test_getData_reference"
+    },
+    {
+      "id": "07M5g000000ccgJEAQ",
+      "queueItemId": "7095g000000bxitAAA",
+      "stackTrace": null,
+      "message": null,
+      "asyncApexJobId": "7075g000004kyccAAA",
+      "methodName": "test_getData_subtitleField",
+      "outcome": "Pass",
+      "apexLogId": "07L5g000000P90IEAS",
+      "apexClass": {
+        "id": "01p5g000005xFpNAAU",
+        "name": "strike_tst_lookupController",
+        "namespacePrefix": null,
+        "fullName": "strike_tst_lookupController"
+      },
+      "runTime": 77,
+      "testTimestamp": "2021-02-25T08:28:10.000+0000",
+      "fullName": "strike_tst_lookupController.test_getData_subtitleField"
+    },
+    {
+      "id": "07M5g000000ccgKEAQ",
+      "queueItemId": "7095g000000bxitAAA",
+      "stackTrace": null,
+      "message": null,
+      "asyncApexJobId": "7075g000004kyccAAA",
+      "methodName": "test_getRecentRecords",
+      "outcome": "Pass",
+      "apexLogId": "07L5g000000P90IEAS",
+      "apexClass": {
+        "id": "01p5g000005xFpNAAU",
+        "name": "strike_tst_lookupController",
+        "namespacePrefix": null,
+        "fullName": "strike_tst_lookupController"
+      },
+      "runTime": 41,
+      "testTimestamp": "2021-02-25T08:28:10.000+0000",
+      "fullName": "strike_tst_lookupController.test_getRecentRecords"
+    },
+    {
+      "id": "07M5g000000ccgQEAQ",
+      "queueItemId": "7095g000000bxitAAA",
+      "stackTrace": null,
+      "message": null,
+      "asyncApexJobId": "7075g000004kyccAAA",
+      "methodName": "test_getRecordLabel",
+      "outcome": "Pass",
+      "apexLogId": "07L5g000000P90IEAS",
+      "apexClass": {
+        "id": "01p5g000005xFpNAAU",
+        "name": "strike_tst_lookupController",
+        "namespacePrefix": null,
+        "fullName": "strike_tst_lookupController"
+      },
+      "runTime": 381,
+      "testTimestamp": "2021-02-25T08:28:10.000+0000",
+      "fullName": "strike_tst_lookupController.test_getRecordLabel"
+    },
+    {
+      "id": "07M5g000000ccgVEAQ",
+      "queueItemId": "7095g000000bxiuAAA",
+      "stackTrace": null,
+      "message": null,
+      "asyncApexJobId": "7075g000004kyccAAA",
+      "methodName": "testGetCurrentUser",
+      "outcome": "Pass",
+      "apexLogId": "07L5g000000P98rEAC",
+      "apexClass": {
+        "id": "01p5g000005N3z6AAC",
+        "name": "tt_UtilControllerTest",
+        "namespacePrefix": "trlhdtips",
+        "fullName": "trlhdtips__tt_UtilControllerTest"
+      },
+      "runTime": 20,
+      "testTimestamp": "2021-02-25T08:28:12.000+0000",
+      "fullName": "trlhdtips__tt_UtilControllerTest.testGetCurrentUser"
+    },
+    {
+      "id": "07M5g000000ccgWEAQ",
+      "queueItemId": "7095g000000bxiuAAA",
+      "stackTrace": null,
+      "message": null,
+      "asyncApexJobId": "7075g000004kyccAAA",
+      "methodName": "testResetMyPassword",
+      "outcome": "Pass",
+      "apexLogId": "07L5g000000P98rEAC",
+      "apexClass": {
+        "id": "01p5g000005N3z6AAC",
+        "name": "tt_UtilControllerTest",
+        "namespacePrefix": "trlhdtips",
+        "fullName": "trlhdtips__tt_UtilControllerTest"
+      },
+      "runTime": 144,
+      "testTimestamp": "2021-02-25T08:28:12.000+0000",
+      "fullName": "trlhdtips__tt_UtilControllerTest.testResetMyPassword"
+    }
+  ]
+}

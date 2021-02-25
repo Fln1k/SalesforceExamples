@@ -1,0 +1,99 @@
+{
+  "summary": {
+    "outcome": "Failed",
+    "testsRan": 4,
+    "passing": 3,
+    "failing": 1,
+    "skipped": 0,
+    "passRate": "75%",
+    "failRate": "25%",
+    "skipRate": "0%",
+    "testStartTime": "Thu Feb 25 2021 11:26:42 AM",
+    "testExecutionTimeInMs": 146,
+    "testTotalTimeInMs": 146,
+    "commandTimeInMs": 1782,
+    "hostname": "https://resilient-bear-33i6xj-dev-ed.my.salesforce.com",
+    "orgId": "00D5g000003eE9iEAE",
+    "username": "sergeitrigubovfleps@resilient-bear-33i6xj.com",
+    "testRunId": "7075g000004kyxR",
+    "userId": "0055g0000038aLCAAY"
+  },
+  "tests": [
+    {
+      "id": "07M5g000000ccg1EAA",
+      "queueItemId": "7095g000000bxijAAA",
+      "stackTrace": null,
+      "message": null,
+      "asyncApexJobId": "7075g000004kyxRAAQ",
+      "methodName": "createAccountTest",
+      "outcome": "Pass",
+      "apexLogId": "07L5g000000P91EEAS",
+      "apexClass": {
+        "id": "01p5g000007nR18AAE",
+        "name": "AccountControllerTest",
+        "namespacePrefix": null,
+        "fullName": "AccountControllerTest"
+      },
+      "runTime": 32,
+      "testTimestamp": "2021-02-25T08:26:43.000+0000",
+      "fullName": "AccountControllerTest.createAccountTest"
+    },
+    {
+      "id": "07M5g000000ccg2EAA",
+      "queueItemId": "7095g000000bxijAAA",
+      "stackTrace": null,
+      "message": null,
+      "asyncApexJobId": "7075g000004kyxRAAQ",
+      "methodName": "getAccountOpportunitiesTest",
+      "outcome": "Pass",
+      "apexLogId": "07L5g000000P91EEAS",
+      "apexClass": {
+        "id": "01p5g000007nR18AAE",
+        "name": "AccountControllerTest",
+        "namespacePrefix": null,
+        "fullName": "AccountControllerTest"
+      },
+      "runTime": 32,
+      "testTimestamp": "2021-02-25T08:26:43.000+0000",
+      "fullName": "AccountControllerTest.getAccountOpportunitiesTest"
+    },
+    {
+      "id": "07M5g000000ccg3EAA",
+      "queueItemId": "7095g000000bxijAAA",
+      "stackTrace": "Class.AccountControllerTest.getCurrentAccountInfoTest: line 75, column 1",
+      "message": "System.AssertException: Assertion Failed: Account BillingState doesn't matches: Expected: , Actual: null",
+      "asyncApexJobId": "7075g000004kyxRAAQ",
+      "methodName": "getCurrentAccountInfoTest",
+      "outcome": "Fail",
+      "apexLogId": "07L5g000000P91EEAS",
+      "apexClass": {
+        "id": "01p5g000007nR18AAE",
+        "name": "AccountControllerTest",
+        "namespacePrefix": null,
+        "fullName": "AccountControllerTest"
+      },
+      "runTime": 48,
+      "testTimestamp": "2021-02-25T08:26:43.000+0000",
+      "fullName": "AccountControllerTest.getCurrentAccountInfoTest"
+    },
+    {
+      "id": "07M5g000000ccg4EAA",
+      "queueItemId": "7095g000000bxijAAA",
+      "stackTrace": null,
+      "message": null,
+      "asyncApexJobId": "7075g000004kyxRAAQ",
+      "methodName": "updateAccountTest",
+      "outcome": "Pass",
+      "apexLogId": "07L5g000000P91EEAS",
+      "apexClass": {
+        "id": "01p5g000007nR18AAE",
+        "name": "AccountControllerTest",
+        "namespacePrefix": null,
+        "fullName": "AccountControllerTest"
+      },
+      "runTime": 34,
+      "testTimestamp": "2021-02-25T08:26:43.000+0000",
+      "fullName": "AccountControllerTest.updateAccountTest"
+    }
+  ]
+}

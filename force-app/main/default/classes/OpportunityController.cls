@@ -41,7 +41,7 @@ public with sharing class OpportunityController{
 	}
 
 	@AuraEnabled
-	public static Opportunity getOpportunityAccount(string opportunityId){
+	public static Opportunity getOpportunity(string opportunityId){
 		return ([SELECT Id, AccountId
 		         FROM Opportunity
 		         WHERE Id = :opportunityId
