@@ -5,61 +5,92 @@ public class WeatherForecast{
 	public class Condition{
 	}
 
-	@AuraEnabled public  Location location;
-	@AuraEnabled public  Current current;
-	@AuraEnabled public  Forecast forecast;
-	@AuraEnabled public  Alerts alerts;
-
-	public class Hour {
-		@AuraEnabled public  String forecastTime;
-		@AuraEnabled public  Double temp_c;
-		@AuraEnabled public  Condition condition;
-		@AuraEnabled public  Double wind_kph;
-		@AuraEnabled public  Double feelslike_c;
+	@AuraEnabled
+	public Location location;
+	@AuraEnabled
+	public Current current;
+	@AuraEnabled
+	public Forecast forecast;
+	@AuraEnabled
+	public Alerts alerts;
+	public class Hour{
+		@AuraEnabled
+		public String forecastTime;
+		@AuraEnabled
+		public Double temp_c;
+		@AuraEnabled
+		public Condition condition;
+		@AuraEnabled
+		public Double wind_kph;
+		@AuraEnabled
+		public Double feelslike_c;
 	}
 
-	public class Forecast {
-		@AuraEnabled public  List<Forecastday> forecastday;
+	public class Forecast{
+		@AuraEnabled
+		public List<Forecastday> forecastday;
 	}
 
-	public class Forecastday {
-		@AuraEnabled public  String forecastDate;
-		@AuraEnabled public  Day day;
-		@AuraEnabled public  Condition astro;
-		@AuraEnabled public  List<Hour> hour;
+	public class Forecastday{
+		@AuraEnabled
+		public String forecastDate;
+		@AuraEnabled
+		public Day day;
+		@AuraEnabled
+		public Condition astro;
+		@AuraEnabled
+		public List<Hour> hour;
 	}
 
-	public class Alerts {
-		@AuraEnabled public  List<Condition> alert;
+	public class Alerts{
+		@AuraEnabled
+		public List<Condition> alert;
 	}
 
-	public class Current {
-		@AuraEnabled public  Double temp_c;
-		@AuraEnabled public  Condition condition;
-		@AuraEnabled public  Double wind_kph;
-		@AuraEnabled public  Double feelslike_c;
-		@AuraEnabled public  Double uv;
+	public class Current{
+		@AuraEnabled
+		public Double temp_c;
+		@AuraEnabled
+		public Condition condition;
+		@AuraEnabled
+		public Double wind_kph;
+		@AuraEnabled
+		public Double feelslike_c;
+		@AuraEnabled
+		public Double uv;
 	}
 
-	public class Day {
-		@AuraEnabled public  Double maxtemp_c;
-		@AuraEnabled public  Double mintemp_c;
-		@AuraEnabled public  Double avgtemp_c;
-		@AuraEnabled public  Condition condition;
+	public class Day{
+		@AuraEnabled
+		public Double maxtemp_c;
+		@AuraEnabled
+		public Double mintemp_c;
+		@AuraEnabled
+		public Double avgtemp_c;
+		@AuraEnabled
+		public Condition condition;
 	}
 
-	public class Location {
-		@AuraEnabled public  String name;
-		@AuraEnabled public  String region;
-		@AuraEnabled public  String country;
-		@AuraEnabled public  Double lat;
-		@AuraEnabled public  Double lon;
-		@AuraEnabled public  String tz_id;
-		@AuraEnabled public  Integer localtime_epoch;
-		@AuraEnabled public  String localtime;
+	public class Location{
+		@AuraEnabled
+		public String name;
+		@AuraEnabled
+		public String region;
+		@AuraEnabled
+		public String country;
+		@AuraEnabled
+		public Double lat;
+		@AuraEnabled
+		public Double lon;
+		@AuraEnabled
+		public String tz_id;
+		@AuraEnabled
+		public Integer localtime_epoch;
+		@AuraEnabled
+		public String localtime;
 	}
 
-	public  static WeatherForecast parse(String json){
+	public static WeatherForecast parse(String json){
 		json = json.replaceAll('"date":', '"forecastDate":');
 		json = json.replaceAll('"time":', '"forecastTime":');
 		return (WeatherForecast)System.JSON.deserialize(json, WeatherForecast.class);

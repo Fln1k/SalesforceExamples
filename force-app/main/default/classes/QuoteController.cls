@@ -20,6 +20,7 @@ public with sharing class QuoteController{
 			tempQuoteLineItem.UnitPrice = lineItem.price;
 			totalPrice += (lineItem.price * lineItem.amount);
 			quoteLineItems.add(tempQuoteLineItem);
+			system.debug(tempQuoteLineItem.pricebookEntryId);
 		}
 		insert quoteLineItems;
 		quote.Tax = totalPrice / 100 * decimal.valueOf(tax);

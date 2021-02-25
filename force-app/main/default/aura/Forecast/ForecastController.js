@@ -15,7 +15,6 @@
           component.set("v.flagIndicatingDataHasBeenLoadedInVariables", "true");
           component.set("v.forecast", data);
         } else if (state === "INCOMPLETE") {
-
         } else if (state === "ERROR") {
           var errors = response.getError();
           if (errors) {

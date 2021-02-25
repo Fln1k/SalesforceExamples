@@ -1,5 +1,6 @@
 ({
   changeStageFunction: function (component, event, helper) {
+    component.set("v.IsSpinner", true);
     var valueToChange = parseInt(event.getSource().get("v.value"));
     var currentStage = parseInt(component.get("v.currentStage"));
     var isValid = true;
@@ -72,6 +73,7 @@
         component.set("v.currentStage", valueToAssign);
       }, 1000);
     }
+    component.set("v.IsSpinner", false);
   },
   closeModalFunction: function (component, event, helper) {
     component.getEvent("closeModalEvent").fire();
