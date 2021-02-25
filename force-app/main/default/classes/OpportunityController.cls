@@ -2,8 +2,17 @@ public with sharing class OpportunityController{
 	@AuraEnabled
 	public static Opportunity createOpportunity(String accountId){
 		Integer postfix = AccountController.getAccountOpportunities(accountId).size()+1;
-		
+		String country = [Select ShippingCountry
+		                  from Account
+		                  WHERE Id = :accountId
+		                  WITH security_enforced].ShippingCountry;
+		String currencyIsoCode = [SELECT CurrencyIsoCode
+		                          FROM CountrySetting__c
+		                          WHERE Name = :country
+		                          WITH security_enforced
+		                          LIMIT 1].CurrencyIsoCode;
 		Opportunity newOpportunity = new Opportunity();
+		newOpportunity.CurrencyIsoCode = currencyIsoCode;
 		newOpportunity.CloseDate = date.today().addMonths(2);
 		newOpportunity.Name = 'Opportunity ' + postfix;
 		newOpportunity.StageName = 'Prospecting';
@@ -14,7 +23,7 @@ public with sharing class OpportunityController{
 
 	@AuraEnabled
 	public static Id getOpportunityIdByQuoteId(string quoteId){
-		return [SELECT Id, OpportunityId
+		return [SELECT OpportunityId
 		        FROM Quote
 		        WHERE Id = :quoteId
 		        WITH security_enforced

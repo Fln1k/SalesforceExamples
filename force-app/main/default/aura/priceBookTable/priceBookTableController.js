@@ -32,8 +32,6 @@
     var subtotals = component.get("v.subtotals");
     subtotals[component.get("v.options.pricebookName")] = totalPrice;
     component.set("v.subtotals", subtotals);
-    //HERE IS ERROR OCCURED
     component.set("v.options.total", totalPrice);
-    //////////////////
   },
 });

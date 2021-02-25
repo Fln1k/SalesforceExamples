@@ -1,11 +1,11 @@
 public with sharing class AccountController{
 	@AuraEnabled
 	public static Account createAccount(String name, String country){
-		Account acc = new Account();
-		acc.Name = name;
-		acc.ShippingCountry = country;
-		insert acc;
-		return acc;
+		Account account = new Account();
+		account.Name = name;
+		account.ShippingCountry = country;
+		insert account;
+		return account;
 	}
 
 	@AuraEnabled
@@ -18,8 +18,7 @@ public with sharing class AccountController{
 
 	@AuraEnabled
 	public static Account getCurrentAccountInfo(String accountId){
-		Account currentAccount = [SELECT BillingCountry, BillingCity, BillingStreet, BillingPostalCode, 
-		BillingState, ShippingCountry, ShippingStreet, ShippingCity, ShippingPostalCode, ShippingState
+		Account currentAccount = [SELECT BillingCountry, BillingCity, BillingStreet, BillingPostalCode, BillingState, ShippingCountry, ShippingStreet, ShippingCity, ShippingPostalCode, ShippingState
 		                          FROM Account
 		                          WHERE Id = :accountId
 		                          WITH security_enforced];

@@ -1,6 +1,6 @@
 <aura:component>
   <aura:attribute name="forecast" type="Object" />
-  <aura:registerEvent name="dateClickEvent" type="c:dateClick"/>
+  <aura:registerEvent name="dateClickEvent" type="c:dateClick" />
 
   <aura:handler
     name="change"
@@ -13,7 +13,11 @@
       var="dailyForecast"
     >
       <div class="widget">
-        <i>{!v.forecast.location.region},<i onclick="{! c.handleClick }">{!dailyForecast.forecastDate}</i></i>
+        <i
+          >{!v.forecast.location.region},<i onclick="{! c.handleClick }"
+            >{!dailyForecast.forecastDate}</i
+          ></i
+        >
         <div>
           <p class="degree">{!dailyForecast.day.avgtemp_c}</p>
           <p class="country">{!v.forecast.location.name}</p>

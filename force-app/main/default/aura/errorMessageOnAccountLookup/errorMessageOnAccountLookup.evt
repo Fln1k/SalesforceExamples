@@ -1,1 +1,4 @@
-<aura:event type="APPLICATION" />
+<aura:event
+  type="APPLICATION"
+  description="Event, that invokes function to show error on account lookup field"
+/>

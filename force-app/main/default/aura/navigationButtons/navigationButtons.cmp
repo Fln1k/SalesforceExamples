@@ -2,6 +2,8 @@
   extends="c:customFlowVariables"
   controller="OpportunityController"
 >
+  <!-- Attributes -->
+  <aura:attribute name="IsSpinner" type="Boolean" />
   <!-- Events -->
   <aura:registerEvent
     name="checkValidationOnTheFifthStageEvent"
