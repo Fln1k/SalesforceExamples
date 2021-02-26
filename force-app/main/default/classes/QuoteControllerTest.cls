@@ -82,6 +82,6 @@ private class QuoteControllerTest{
 
 		QuoteDocument testedQuoteDocument = QuoteController.generaeteQuotePDF(quoteId);
 
-		System.assertEquals(quoteId, testedQuoteDocument.Id, 'QuoteDocument quoteId doesn\'t matches');
+		System.assertEquals(quoteId, testedQuoteDocument.QuoteId, 'QuoteDocument quoteId doesn\'t matches');
 	}
 }
