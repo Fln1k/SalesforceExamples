@@ -20,7 +20,6 @@ public with sharing class QuoteController{
 			tempQuoteLineItem.UnitPrice = lineItem.price;
 			totalPrice += (lineItem.price * lineItem.amount);
 			quoteLineItems.add(tempQuoteLineItem);
-			system.debug(tempQuoteLineItem.pricebookEntryId);
 		}
 		insert quoteLineItems;
 		quote.Tax = totalPrice / 100 * decimal.valueOf(tax);
@@ -36,7 +35,11 @@ public with sharing class QuoteController{
 		quoteUrl += 'id=' + quoteId;
 		PageReference pageRef = new PageReference(quoteUrl);
 		Blob quoteBlob;
-		quoteBlob = pageRef.getContentAsPDF();
+		if (Test.isRunningTest()){
+			quoteBlob = Blob.valueOf('Generate Pdf');
+		} else{
+			quoteBlob = pageRef.getContentAsPDF();
+		}
 		QuoteDocument quoteDoc = new QuoteDocument();
 		quoteDoc.Document = quoteBlob;
 		quoteDoc.QuoteId = quoteId;

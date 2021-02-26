@@ -3,7 +3,7 @@
     component.set("v.IsSpinner", true);
     var quoteId = component.get("v.recordId");
     var opportunityId = "";
-    var getAccount = component.get("c.getOpportunityAccount");
+    var getAccount = component.get("c.getOpportunity");
     var getOpportunity = component.get("c.getOpportunityIdByQuoteId");
     getOpportunity.setParams({
       quoteId: quoteId,

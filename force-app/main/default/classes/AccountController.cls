@@ -10,7 +10,7 @@ public with sharing class AccountController{
 
 	@AuraEnabled
 	public static List<Opportunity> getAccountOpportunities(string accountId){
-		return new List<Opportunity>([select Id, StageName
+		return new List<Opportunity>([select Id, StageName, Name, AccountId
 		                              from Opportunity
 		                              where AccountId = :accountId
 		                              WITH security_enforced]);
@@ -18,7 +18,8 @@ public with sharing class AccountController{
 
 	@AuraEnabled
 	public static Account getCurrentAccountInfo(String accountId){
-		Account currentAccount = [SELECT BillingCountry, BillingCity, BillingStreet, BillingPostalCode, BillingState, ShippingCountry, ShippingStreet, ShippingCity, ShippingPostalCode, ShippingState
+		Account currentAccount = [SELECT BillingCountry, BillingCity, BillingStreet, BillingPostalCode, BillingState, 
+		ShippingCountry, ShippingStreet, ShippingCity, ShippingPostalCode, ShippingState
 		                          FROM Account
 		                          WHERE Id = :accountId
 		                          WITH security_enforced];
