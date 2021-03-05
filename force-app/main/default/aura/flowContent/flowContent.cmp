@@ -13,20 +13,34 @@
       opportunityId="{!v.opportunityId}"
       canMoveToEnd="{!v.canMoveToEnd}"
       accountOpportunitiesCount="{!v.accountOpportunitiesCount}"
-      closedOpportunitiesAmount="{!v.closedOpportunitiesAmount}"
       productsOptions="{!v.productsOptions}"
       paymentPlan="{!v.paymentPlan}"
       orderType="{!v.orderType}"
       quoteId="{!v.quoteId}"
       opportunityLookupFieldFilter="{!v.opportunityLookupFieldFilter}"
+      accountType="{!v.accountType}"
+      billingStreet="{!v.billingStreet}"
+      billingCity="{!v.billingCity}"
+      billingCountry="{!v.billingCountry}"
+      billingPostalCode="{!v.billingPostalCode}"
+      billingProvince="{!v.billingProvince}"
+      shippingStreet="{!v.shippingStreet}"
+      shippingCity="{!v.shippingCity}"
+      shippingPostalCode="{!v.shippingPostalCode}"
+      shippingCountry="{!v.shippingCountry}"
+      shippingProvince="{!v.shippingProvince}"
     />
   </aura:if>
   <!-- 2 stage -->
   <aura:if isTrue="{!v.currentStage == 2}">
     <c:secondStage
-      closedOpportunitiesAmount="{!v.closedOpportunitiesAmount}"
       paymentPlan="{!v.paymentPlan}"
       orderType="{!v.orderType}"
+      accountType="{!v.accountType}"
+      firstCheckboxGroup="{!v.firstCheckboxGroup}"
+      secondCheckboxGroup="{!v.secondCheckboxGroup}"
+      thirdCheckboxGroup="{!v.thirdCheckboxGroup}"
+      enabledOptions="{!v.enabledOptions}"
     />
   </aura:if>
   <!-- 3 stage -->
@@ -41,6 +55,7 @@
       canMoveToEnd="{!v.canMoveToEnd}"
       tax="{!v.tax}"
       pricebookId="{!v.pricebookId}"
+      paymentPlan="{!v.paymentPlan}"
     />
   </aura:if>
   <!-- 4 stage -->

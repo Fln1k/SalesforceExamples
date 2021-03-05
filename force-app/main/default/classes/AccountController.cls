@@ -19,7 +19,7 @@ public with sharing class AccountController{
 	@AuraEnabled
 	public static Account getCurrentAccountInfo(String accountId){
 		Account currentAccount = [SELECT BillingCountry, BillingCity, BillingStreet, BillingPostalCode, BillingState, 
-		ShippingCountry, ShippingStreet, ShippingCity, ShippingPostalCode, ShippingState
+		ShippingCountry, ShippingStreet, ShippingCity, ShippingPostalCode, ShippingState, Customer_type__c
 		                          FROM Account
 		                          WHERE Id = :accountId
 		                          WITH security_enforced];

@@ -15,18 +15,31 @@
       $A.enqueueAction(component.get("c.showError"));
     }
   },
-
-  disableCheckboxes: function (component, event, helper) {
-    var disabledOptions = component.get("v.disabledOptions");
-    component.find("checkbox").forEach(function (checkbox) {
-      if (disabledOptions.includes(checkbox.get("v.value"))) {
-        checkbox.set("v.disabled", true);
-      } else {
-        checkbox.set("v.disabled", false);
-      }
-      checkbox.set("v.checked", false);
-      component.set("v.value", "");
-    });
+  prepareCheckboxes: function (component, event, helper) {
+    var enabledOptions = component.get("v.enabledOptions");
+    if (enabledOptions.length) {
+      component.find("checkbox").forEach(function (checkbox) {
+        if (enabledOptions.includes(checkbox.get("v.value"))) {
+          checkbox.set("v.disabled", false);
+        } else {
+          checkbox.set("v.disabled", true);
+        }
+      });
+    }
+  },
+  enableCheckboxes: function (component, event, helper) {
+    var enabledOptions = component.get("v.enabledOptions");
+    if (enabledOptions.length) {
+      component.find("checkbox").forEach(function (checkbox) {
+        if (enabledOptions.includes(checkbox.get("v.value"))) {
+          checkbox.set("v.disabled", false);
+        } else {
+          checkbox.set("v.disabled", true);
+        }
+        checkbox.set("v.checked", false);
+        component.set("v.value", "");
+      });
+    }
   },
   showError: function (component, event, helper) {
     component.find("checkbox").forEach(function (checkbox) {

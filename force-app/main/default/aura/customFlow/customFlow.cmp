@@ -1,5 +1,4 @@
 <aura:component extends="c:customFlowVariables">
-  <aura:attribute name="IsSpinner" type="Boolean" />
   <!-- Layout -->
   <c:stageProgress
     currentStage="{!v.currentStage}"
@@ -10,9 +9,6 @@
     canMoveToEnd="{!v.canMoveToEnd}"
   />
   <br />
-  <aura:if isTrue="{!v.IsSpinner}">
-      <lightning:spinner alternativeText="Creating new account" />
-  </aura:if>
   <c:flowContent
     currentStage="{!v.currentStage}"
     accountId="{!v.accountId}"
@@ -62,7 +58,7 @@
       contactId="{!v.contactId}"
       contactEmail="{!v.contactEmail}"
       quoteId="{!v.quoteId}"
-      IsSpinner="{!v.IsSpinner}"
+      isSpinner="{!v.isSpinner}"
     />
   </div>
 </aura:component>

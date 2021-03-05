@@ -34,4 +34,30 @@
     component.set("v.subtotals", subtotals);
     component.set("v.options.total", totalPrice);
   },
+
+  promotionChanged: function (component, event, helper) {
+    var promotion = component.get("v.promotion");
+    var pricebook = component.get("v.options");
+    pricebook["entities"].forEach((element) => {
+      var promoMarkup = document.getElementById(
+        pricebook.pricebookName + "::" + element.name + "_price"
+      );
+      if (promotion.productList.includes(element.name)) {
+        element.promoPrice = (
+          element.price *
+          (1 - promotion.discount / 100)
+        ).toFixed(2);
+        promoMarkup.style.color = "green";
+      } else {
+        element.promoPrice = element.price;
+        promoMarkup.style.color = "black";
+      }
+      promoMarkup.innerHTML = element.promoPrice + pricebook.currency;
+      document.getElementById(
+        pricebook.pricebookName + "::" + element.name + "_total"
+      ).innerHTML =
+        element.promoPrice * element.amount * (1 + pricebook.tax / 100) +
+        pricebook.currency;
+    });
+  },
 });

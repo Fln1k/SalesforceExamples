@@ -4,18 +4,28 @@
   <aura:attribute name="accountId" type="Id" default="" />
   <aura:attribute name="opportunityId" type="Id" default="" />
   <aura:attribute name="quoteId" type="Id" default="" />
+  <aura:attribute name="isSpinner" type="Boolean"/>
   <!-- Events -->
   <aura:handler
     name="closeModalEvent"
     event="c:closeModal"
     action="{!c.closeModal}"
   />
+  <!-- CSS STYLE FOR MODAL WIDTH-->
+  <aura:html tag="style">
+    .slds-modal__container { margin: 0 auto; width: 60%; max-width: 50rem;
+    min-width: 20rem; }
+  </aura:html>
   <!-- Layout -->
   <lightning:overlayLibrary aura:id="modalOverlay" />
+  <aura:if isTrue="{!v.isSpinner}">
+    <lightning:spinner alternativeText="Creating new account" />
+  </aura:if>
   <c:customFlow
     currentStage="{!v.currentStage}"
     opportunityId="{!v.opportunityId}"
     accountId="{!v.accountId}"
     quoteId="{!v.quoteId}"
+    isSpinner="{!v.isSpinner}"
   />
 </aura:component>

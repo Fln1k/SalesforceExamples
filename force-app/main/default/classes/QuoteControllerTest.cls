@@ -10,6 +10,9 @@ private class QuoteControllerTest{
 		Account testAccount = new Account(Name = 'Test account', ShippingCountry = 'France');
 		insert testAccount;
 
+		Contact contact = new Contact(LastName = 'Test', AccountId = testAccount.Id, Email = 'testContactEmail@example.com');
+		insert contact;
+
 		Opportunity newOpportunity = new Opportunity(Name = 'Test opp', StageName = 'Prospecting', AccountId = testAccount.Id, CloseDate = date.today().addMonths(2));
 		insert newOpportunity;
 
@@ -42,6 +45,10 @@ private class QuoteControllerTest{
 		                    FROM Opportunity
 		                    LIMIT 1].Id;
 
+		Contact contact = [SELECT Id, Email
+		                   FROM Contact
+		                   LIMIT 1];
+
 		Id pricebookId = [SELECT Id
 		                  FROM Pricebook2
 		                  LIMIT 1].Id;
@@ -68,7 +75,7 @@ private class QuoteControllerTest{
 		Quote newQuoteTemplate = new Quote();
 		newQuoteTemplate.OpportunityId = opportunityId;
 
-		Quote testedQuote = QuoteController.createQuote(newQuoteTemplate, customOpportunityLineItemsJSON, defaultTax, pricebookId);
+		Quote testedQuote = QuoteController.createQuote(newQuoteTemplate, customOpportunityLineItemsJSON, pricebookId, contact.Id);
 
 		System.assertEquals('Quote ' + quotesAmount, testedQuote.name, 'Quote name doesn\'t matches');
 		System.assertEquals(pricebookId, testedQuote.Pricebook2Id, 'Quote Pricebook2Id doesn\'t matches');

@@ -7,7 +7,6 @@ private class CustomRestServiceTest{
 
 		insert tempAccount;
 		insert tempContact;
-		System.debug(String.valueOf(System.today()).removeEnd(' 00:00:00'));
 		String testDate = String.valueOf(Date.today()).removeEnd(' 00:00:00');
 		RestRequest request = new RestRequest();
 		request.requestUri = 'https://resilient-bear-33i6xj-dev-ed.my.salesforce.com/services/apexrest/CustomRestService/'+testDate;

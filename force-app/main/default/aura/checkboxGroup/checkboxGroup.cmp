@@ -3,16 +3,16 @@
   <aura:attribute name="options" type="List" />
   <aura:attribute name="title" type="String" default="" />
   <aura:attribute name="value" type="String" default="" />
-  <aura:attribute name="disabledOptions" type="List" />
+  <aura:attribute name="enabledOptions" type="List" />
   <aura:attribute name="isError" type="Boolean" default="false" />
-
   <!-- Methods -->
   <aura:method name="showError" action="{!c.showError}" access="PUBLIC" />
   <!-- Events -->
+  <aura:handler name="init" value="{!this}" action="{!c.prepareCheckboxes}" />
   <aura:handler
     name="change"
-    value="{!v.disabledOptions}"
-    action="{!c.disableCheckboxes}"
+    value="{!v.enabledOptions}"
+    action="{!c.enableCheckboxes}"
   />
   <!-- Layout -->
   {!v.title} <br />

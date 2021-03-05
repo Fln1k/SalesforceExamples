@@ -17,7 +17,7 @@
   <br />
   <aura:if isTrue="{!v.IsSpinner}">
     <div>
-      <lightning:spinner alternativeText="Creating new account" />
+      <lightning:spinner/>
     </div>
   </aura:if>
   <c:modal

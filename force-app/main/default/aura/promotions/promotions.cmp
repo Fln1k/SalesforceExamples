@@ -1,0 +1,52 @@
+<aura:component controller="PromotionController">
+  <!-- Attributes -->
+  <aura:attribute name="productsOptions" type="List" default="[]" />
+  <aura:attribute name="promotions" type="List" default="[]" />
+  <aura:attribute name="promotionsSize" type="Integer" default="0" />
+  <aura:attribute name="selectedPromotion" type="Object" default="{}" />
+  <aura:attribute name="accountId" type="Id" default="" />
+  <aura:attribute name="paymentPlan" type="String" default="" />
+  <!-- Events-->
+  <aura:handler name="init" value="{!this}" action="{!c.init}" />
+  <aura:handler name="change" value="{!v.productsOptions}" action="{!c.init}" />
+  <!-- Layout -->
+  <aura:renderIf isTrue="{!v.promotionsSize>0}">
+    <div class="slds-align_absolute-center" style="font-size: x-large">
+      Promotions
+    </div>
+    <br />
+    <table class="slds-table slds-table_cell-buffer slds-table_bordered">
+      <thead>
+        <tr class="slds-line-height_reset">
+          <th class="" scope="col" style="width: 40%">
+            <div class="slds-truncate" title="Name">Name</div>
+          </th>
+          <th class="" scope="col" style="width: 40%">
+            <div class="slds-truncate" title="End Date">End Date</div>
+          </th>
+          <th class="" scope="col" style="width: 20%">
+            <div class="slds-truncate" title="Selected"></div>
+          </th>
+        </tr>
+      </thead>
+      <tbody>
+        <aura:iteration items="{!v.promotions}" var="promotion">
+          <tr class="slds-hint-parent">
+            <th data-label="Name" scope="row">{! promotion.name}</th>
+            <th data-label="End Date" scope="row">{! promotion.endDate}</th>
+            <th data-label="Selected" scope="row">
+              <lightning:button
+                aura:id="promotionSelectButton"
+                variant="brand-outline"
+                value="{!promotion.name}"
+                label="Select"
+                title="Select"
+                onclick="{! c.handleClick }"
+              />
+            </th>
+          </tr>
+        </aura:iteration>
+      </tbody>
+    </table>
+  </aura:renderIf>
+</aura:component>

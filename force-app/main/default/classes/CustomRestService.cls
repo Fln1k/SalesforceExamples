@@ -9,7 +9,6 @@ global with sharing class CustomRestService{
 
 		DateTime dateToFind = DateTime.valueOf(request.requestURI.substring(request.requestURI.lastIndexOf('/')+1)+' 0:0:0').addHours(-8);
 
-		System.Debug('>>request.date<<' + dateToFind);
 		AccountContactWrapper result = new AccountContactWrapper();
 		result.accounts = [SELECT Id
 		                   FROM Account
@@ -29,7 +28,6 @@ global with sharing class CustomRestService{
 		RestRequest request = RestContext.request;
 		String stringJson = request.requestBody.tostring();
 		AccountContactWrapper result = AccountContactWrapper.parse(stringJson);
-		System.debug(result);
 		try{
 			insert result.accounts;
 			insert result.contacts;

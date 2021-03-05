@@ -57,6 +57,7 @@
           canMoveToEnd="{!v.canMoveToEnd}"
           quoteId="{!v.quoteId}"
           disabled="{!v.opportunityFieldDisabled}"
+          accountType="{!v.accountType}"
         />
       </td>
     </tr>

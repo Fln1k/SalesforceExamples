@@ -3,8 +3,12 @@
   <c:secondStageHeader />
   <hr width="100%" size="5" color="#ff0000" />
   <c:secondStageFooter
-    closedOpportunitiesAmount="{!v.closedOpportunitiesAmount}"
     paymentPlan="{!v.paymentPlan}"
     orderType="{!v.orderType}"
+    accountType="{!v.accountType}"
+    firstCheckboxGroup="{!v.firstCheckboxGroup}"
+    secondCheckboxGroup="{!v.secondCheckboxGroup}"
+    thirdCheckboxGroup="{!v.thirdCheckboxGroup}"
+    enabledOptions="{!v.enabledOptions}"
   />
 </aura:component>

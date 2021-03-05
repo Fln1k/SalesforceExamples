@@ -3,13 +3,14 @@
   <aura:attribute name="accountId" type="Id" default="" />
   <aura:attribute name="pricebookId" type="Id" default="" />
   <aura:attribute name="opportunityId" type="Id" default="" />
-  <aura:attribute name="closedOpportunitiesAmount" type="Integer" default="0" />
   <aura:attribute name="accountOpportunitiesCount" type="Integer" default="0" />
+  <aura:attribute name="isSpinner" type="Boolean" default="false" />
   <aura:attribute name="canBack" type="Boolean" default="false" />
   <aura:attribute name="canNext" type="Boolean" default="true" />
   <aura:attribute name="canMoveToEnd" type="Boolean" default="false" />
   <aura:attribute name="productsOptions" type="List" default="[]" />
   <aura:attribute name="paymentPlan" type="String" default="" />
+  <aura:attribute name="accountType" type="String" default="" />
   <aura:attribute name="orderType" type="String" default="" />
   <aura:attribute name="subtotals" type="Object" default="{}" />
   <aura:attribute name="billingStreet" type="String" default="" />
@@ -27,5 +28,9 @@
   <aura:attribute name="contactEmail" type="String" default="" />
   <aura:attribute name="quoteId" type="Id" default="" />
   <aura:attribute name="tax" type="String" default="0.0" />
+  <aura:attribute name="firstCheckboxGroup" type="List" default="[]" />
+  <aura:attribute name="secondCheckboxGroup" type="List" default="[]" />
+  <aura:attribute name="thirdCheckboxGroup" type="List" default="[]" />
+  <aura:attribute name="enabledOptions" type="List" default="[]" />
   <div>{!v.body}</div>
 </aura:component>

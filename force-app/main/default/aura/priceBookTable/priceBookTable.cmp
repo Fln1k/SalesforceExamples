@@ -2,11 +2,17 @@
   <!-- Attributes -->
   <aura:attribute name="options" type="List" default="[]" />
   <aura:attribute name="subtotals" type="Object" default="{}" />
+  <aura:attribute name="promotion" type="Object" default="{}" />
   <!-- Events -->
   <aura:handler
     name="change"
     value="{!v.options}"
     action="{! c.recalculateTotal }"
+  />
+  <aura:handler
+    name="change"
+    value="{!v.promotion}"
+    action="{!c.promotionChanged}"
   />
   <!-- Layout -->
   <div class="slds-truncate" style="font-size: x-large; font-family: fantasy">
@@ -18,11 +24,14 @@
         <th class="" scope="col" style="width: 6%">
           <div class="slds-truncate" title="Amount">Amount</div>
         </th>
-        <th class="" scope="col" style="width: 82%">
+        <th class="" scope="col" style="width: 76%">
           <div class="slds-truncate" title="Name">Name</div>
         </th>
         <th class="" scope="col" style="width: 6%">
-          <div class="slds-truncate" title="Price">Price</div>
+          <div class="slds-truncate" title="Price">Sales Price</div>
+        </th>
+        <th class="" scope="col" style="width: 6%">
+          <div class="slds-truncate" title="Price">Promo Price</div>
         </th>
         <th class="" scope="col" style="width: 6%">
           <div class="slds-truncate" title="Subtotal">Total</div>
@@ -45,12 +54,17 @@
           <th data-label="Name" scope="row">
             <div class="slds-truncate">{!option.name}</div>
           </th>
-          <th data-label="Price" scope="row">
+          <th data-label="Sales Price" scope="row">
+            <div class="slds-truncate">
+              {!option.price + v.options.currency}
+            </div>
+          </th>
+          <th data-label="Promo Price" scope="row">
             <div
               class="slds-truncate"
               id="{!v.options.pricebookName + '::' + option.name+'_price'}"
             >
-              {!option.price + v.options.currency}
+              {! option.promoPrice + v.options.currency}
             </div>
           </th>
           <th data-label="Total" scope="row">
@@ -66,6 +80,7 @@
       <tr class="slds-hint-parent">
         <th data-label="Amount" scope="row"></th>
         <th data-label="Name" scope="row"></th>
+        <th data-label="Price" scope="row"></th>
         <th data-label="Price" scope="row"></th>
         <th data-label="Total" scope="row">
           <div class="slds-truncate">

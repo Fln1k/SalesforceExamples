@@ -26,8 +26,10 @@
       accountId: component.get("v.accountId"),
     });
     action.setCallback(this, function (response) {
-      var newOpportunityId = response.getReturnValue().Id;
-      component.set("v.opportunityId", newOpportunityId);
+      var newOpportunity = response.getReturnValue();
+      component.set("v.opportunityId", newOpportunity.Id);
+      component.set("v.accountType",newOpportunity.Customer_type__c);
+      
     });
     $A.enqueueAction(action);
   },

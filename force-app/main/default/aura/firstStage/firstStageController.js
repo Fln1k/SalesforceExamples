@@ -6,49 +6,11 @@
     component.find("accountLookupField").set("v.error", true);
   },
   accountLookupFieldValueChange: function (component, event, helper) {
-    var id = event.getParam("value");
+    var accountId = event.getParam("value");
     component.find("accountLookupField").set("v.error", false);
-    if (id.length > 0) {
-      var action = component.get("c.getAccountOpportunities");
-      action.setParams({
-        accountId: id,
-      });
-      action.setCallback(this, function (response) {
-        var opportunities = response.getReturnValue();
-        var closedOpportunitiesCounter = 0;
-        var availableOpportunities = [];
-        opportunities.forEach(function (opportunity) {
-          if (opportunity.StageName.includes("Closed")) {
-            ++closedOpportunitiesCounter;
-          } else {
-            availableOpportunities.push(opportunity);
-          }
-        });
-        component.set(
-          "v.closedOpportunitiesAmount",
-          closedOpportunitiesCounter
-        );
-        var opportunityDisabled = false;
-        var availableOpportunitiesLength = availableOpportunities.length;
-        if (!availableOpportunitiesLength) {
-          opportunityDisabled = true;
-        } else {
-          if (availableOpportunitiesLength == 1) {
-            component.set("v.opportunityId", availableOpportunities[0].Id);
-          }
-          opportunityDisabled = false;
-          component.set(
-            "v.accountOpportunitiesCount",
-            availableOpportunitiesLength
-          );
-          component.set(
-            "v.opportunityLookupFieldFilter",
-            "AccountId='" + id + "' and  (NOT StageName like 'Closed%')"
-          );
-        }
-        component.set("v.opportunityFieldDisabled", opportunityDisabled);
-      });
-      $A.enqueueAction(action);
+    if (accountId.length > 0) {
+      helper.setupAccountInfo(component, accountId);
+      helper.setupOpportunityInfo(component, accountId);
     } else {
       component.set("v.opportunityFieldDisabled", true);
       component.set("v.opportunityId", "");
